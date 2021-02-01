@@ -2,7 +2,7 @@ import React from 'react';
 import { SafeAreaView } from 'react-native';
 import { Button, Divider, Layout, TopNavigation } from '@ui-kitten/components';
 
- const Login = ({ navigation }) => {
+ export const Login = ({ navigation }) => {
 
   const navigateDetails = () => {
     navigation.navigate('Details');
@@ -18,4 +18,3 @@ import { Button, Divider, Layout, TopNavigation } from '@ui-kitten/components';
     </SafeAreaView>
   );
 };
-export {Login};

@@ -6,7 +6,7 @@ const BackIcon = (props) => (
   <Icon {...props} name='arrow-back' />
 );
 
- const SignUp = ({ navigation }) => {
+ export const SignUp = ({ navigation }) => {
 
   const navigateBack = () => {
     navigation.goBack();
@@ -26,4 +26,3 @@ const BackIcon = (props) => (
     </SafeAreaView>
   );
 };
-export {SignUp};
