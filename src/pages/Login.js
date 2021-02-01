@@ -1,6 +1,13 @@
 import React from 'react';
+<<<<<<< HEAD
 import {SafeAreaView} from 'react-native';
 import {Button, Divider, Layout, TopNavigation} from '@ui-kitten/components';
+=======
+import { SafeAreaView } from 'react-native';
+import { Button, Divider, Layout, TopNavigation } from '@ui-kitten/components';
+
+ export const Login = ({ navigation }) => {
+>>>>>>> 7fb7253bfeb60d420e8ac0dcbf9da81de3920d6d
 
 function HomeScreen({navigation}) {
   const navigateDetails = () => {
@@ -16,6 +23,10 @@ function HomeScreen({navigation}) {
       </Layout>
     </SafeAreaView>
   );
+<<<<<<< HEAD
 }
 
 export {HomeScreen};
+=======
+};
+>>>>>>> 7fb7253bfeb60d420e8ac0dcbf9da81de3920d6d

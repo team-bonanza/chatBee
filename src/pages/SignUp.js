@@ -9,7 +9,15 @@ import {
   TopNavigationAction,
 } from '@ui-kitten/components';
 
+<<<<<<< HEAD
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />;
+=======
+const BackIcon = (props) => (
+  <Icon {...props} name='arrow-back' />
+);
+
+ export const SignUp = ({ navigation }) => {
+>>>>>>> 7fb7253bfeb60d420e8ac0dcbf9da81de3920d6d
 
 function DetailsScreen({navigation}) {
   const navigateBack = () => {
@@ -33,6 +41,10 @@ function DetailsScreen({navigation}) {
       </Layout>
     </SafeAreaView>
   );
+<<<<<<< HEAD
 }
 
 export {DetailsScreen};
+=======
+};
+>>>>>>> 7fb7253bfeb60d420e8ac0dcbf9da81de3920d6d
