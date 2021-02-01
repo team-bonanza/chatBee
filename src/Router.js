@@ -1,15 +1,20 @@
 import React from 'react';
-import * as eva from '@eva-design/eva';
-import { ApplicationProvider, Layout, Text } from '@ui-kitten/components';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import { Login } from './pages/Login';
+import { SignUp } from './pages/SignUp';
 
-const HomeScreen = () => (
-  <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-    <Text category='h1'>HOME</Text>
-  </Layout>
+const { Navigator, Screen } = createStackNavigator();
+
+const HomeNavigator = () => (
+  <Navigator headerMode='none'>
+    <Screen name='Login' component={Login}/>
+    <Screen name='SignUp' component={SignUp}/>
+  </Navigator>
 );
 
-export default () => (
-  <ApplicationProvider {...eva} theme={eva.light}>
-    <HomeScreen />
-  </ApplicationProvider>
+export const AppNavigator = () => (
+  <NavigationContainer>
+    <HomeNavigator/>
+  </NavigationContainer>
 );
