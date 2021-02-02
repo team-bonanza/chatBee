@@ -1,5 +1,5 @@
 import React from 'react';
-import {SafeAreaView} from 'react-native';
+import {Alert, SafeAreaView} from 'react-native';
 import {
   Divider,
   Icon,
@@ -14,6 +14,7 @@ import {
 
 const DetailsScreen = ({navigation}) => {
   const navigateBack = () => {
+    Alert.alert('AFERİN', 'KAYIT OLDUNUZ');
     navigation.goBack();
   };
 
@@ -24,14 +25,14 @@ const DetailsScreen = ({navigation}) => {
   return (
     <SafeAreaView style={{flex: 1}}>
       <TopNavigation
-        title="MyApp"
+      /*title="MyApp"
         alignment="center"
-        /*  accessoryLeft={BackAction} */ //TODO: icon ile alakalı 3. durum
+         accessoryLeft={BackAction} */ //TODO: icon ile alakalı 3. durum -Zaten TOPNAVIGATION kullanılmayacak ama neden oluyor?
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
-        <Text category="h1">DETAILS</Text>
-        <Button onPress={() => navigation.goBack()}>GO BACK</Button>
+        <Text category="h4">SIGNUP SCREEN</Text>
+        <Button onPress={navigateBack}>LOGIN PAGE</Button>
       </Layout>
     </SafeAreaView>
   );
