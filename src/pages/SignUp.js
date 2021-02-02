@@ -8,9 +8,12 @@ import {
   Button,
   TopNavigation,
   TopNavigationAction,
+  IconRegistry,
 } from '@ui-kitten/components';
+import { EvaIconsPack } from '@ui-kitten/eva-icons';
 
-// const BackIcon = (props) => <Icon {...props} name="arrow-back" />; //TODO: icon ile alakalı 1. durum
+
+ const BackIcon = (props) => <Icon {...props} name="arrow-back" />; //TODO: icon ile alakalı 1. durum
 
 const DetailsScreen = ({navigation}) => {
   const navigateBack = () => {
@@ -18,16 +21,17 @@ const DetailsScreen = ({navigation}) => {
     navigation.goBack();
   };
 
-  // const BackAction = () => (
-  //   <TopNavigationAction icon={BackIcon} onPress={navigateBack} /> //TODO: icon ile alakalı 2. durum
-  // );
+  const BackAction = () => (
+     <TopNavigationAction icon={BackIcon} onPress={navigateBack} /> //TODO: icon ile alakalı 2. durum
+   );
 
   return (
     <SafeAreaView style={{flex: 1}}>
+    <IconRegistry icons={EvaIconsPack} />
       <TopNavigation
-      /*title="MyApp"
+      title="MyApp"
         alignment="center"
-         accessoryLeft={BackAction} */ //TODO: icon ile alakalı 3. durum -Zaten TOPNAVIGATION kullanılmayacak ama neden oluyor?
+         accessoryLeft={BackAction}  //TODO: icon ile alakalı 3. durum -Zaten TOPNAVIGATION kullanılmayacak ama neden oluyor?
       />
       <Divider />
       <Layout style={{flex: 1, justifyContent: 'center', alignItems: 'center'}}>
