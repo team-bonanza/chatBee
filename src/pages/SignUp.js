@@ -14,7 +14,7 @@ import {EvaIconsPack} from '@ui-kitten/eva-icons';
 
 const BackIcon = (props) => <Icon {...props} name="arrow-back" />; //TODO: icon ile alakalı 1. durum
 
-const DetailsScreen = ({navigation}) => {
+const SignUp = ({navigation}) => {
   const navigateBack = () => {
     Alert.alert('AFERİN', 'KAYIT OLDUNUZ');
     navigation.goBack();
@@ -40,4 +40,4 @@ const DetailsScreen = ({navigation}) => {
     </SafeAreaView>
   );
 };
-export {DetailsScreen};
+export {SignUp};

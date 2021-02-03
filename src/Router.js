@@ -1,8 +1,7 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider} from '@ui-kitten/components';
-import {HomeScreen} from './pages/Login';
-import {DetailsScreen} from './pages/SignUp';
+import {Login, SignUp, HomePage, ProfilePage, Lobby, Room} from './pages';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
@@ -16,8 +15,12 @@ function Router() {
       <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
         <NavigationContainer>
           <Navigator headerMode="none">
-            <Screen name="Home" component={HomeScreen} />
-            <Screen name="Details" component={DetailsScreen} />
+            <Screen name="Login" component={Login} />
+            <Screen name="SignUp" component={SignUp} />
+            <Screen name="Home" component={HomePage} />
+            <Screen name="Profile" component={ProfilePage} />
+            <Screen name="Lobby" component={Lobby} />
+            <Screen name="Room" component={Room} />
           </Navigator>
         </NavigationContainer>
       </ApplicationProvider>

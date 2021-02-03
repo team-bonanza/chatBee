@@ -8,9 +8,9 @@ import {
   TopNavigation,
 } from '@ui-kitten/components';
 
-const HomeScreen = ({navigation}) => {
+const Login = ({navigation}) => {
   const navigateDetails = () => {
-    navigation.navigate('Details');
+    navigation.navigate('SignUp');
   };
 
   return (
@@ -24,4 +24,4 @@ const HomeScreen = ({navigation}) => {
   );
 };
 
-export {HomeScreen};
+export {Login};
