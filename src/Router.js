@@ -6,13 +6,17 @@ import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
 import {default as theme} from './assets/theme.json';
+import {default as mapping} from './assets/mapping.json';
 
 const {Navigator, Screen} = createStackNavigator();
 
 function Router() {
   return (
     <>
-      <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
+      <ApplicationProvider
+        {...eva}
+        theme={{...eva.light, ...theme}}
+        customMapping={mapping}>
         <NavigationContainer>
           <Navigator headerMode="none">
             <Screen name="Login" component={Login} />
