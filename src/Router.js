@@ -1,12 +1,27 @@
 import React from 'react';
 import * as eva from '@eva-design/eva';
 import {ApplicationProvider} from '@ui-kitten/components';
-import {AppNavigator} from './pages/Navigation';
+import {HomeScreen} from './pages/Login';
+import {DetailsScreen} from './pages/SignUp';
+import {createStackNavigator} from '@react-navigation/stack';
+import {NavigationContainer} from '@react-navigation/native';
 
-export default () => (
-  <>
-    <ApplicationProvider {...eva} theme={eva.light}>
-      <AppNavigator />
-    </ApplicationProvider>
-  </>
-);
+import {default as theme} from './assets/theme.json';
+
+const {Navigator, Screen} = createStackNavigator();
+
+function Router() {
+  return (
+    <>
+      <ApplicationProvider {...eva} theme={{...eva.light, ...theme}}>
+        <NavigationContainer>
+          <Navigator headerMode="none">
+            <Screen name="Home" component={HomeScreen} />
+            <Screen name="Details" component={DetailsScreen} />
+          </Navigator>
+        </NavigationContainer>
+      </ApplicationProvider>
+    </>
+  );
+}
+export default Router;
