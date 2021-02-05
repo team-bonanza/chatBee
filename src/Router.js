@@ -12,15 +12,7 @@ export default () => (
 );*/
 
 import React, {useState} from 'react';
-import {
-  Button,
-  SafeAreaView,
-  StyleSheet,
-  ScrollView,
-  View,
-  Text,
-  StatusBar,
-} from 'react-native';
+import {Button, SafeAreaView, StyleSheet, View, StatusBar} from 'react-native';
 import {Colors} from 'react-native/Libraries/NewAppScreen';
 import {mediaDevices, RTCView} from 'react-native-webrtc';
 
