@@ -1,6 +1,6 @@
 import * as React from 'react';
-import {Text,StyleSheet} from 'react-native';
-import {BeeView} from './components/BeeView';
+import {Text, StyleSheet} from 'react-native';
+import BeeView from './components/BeeView';
 
 const Main = () => {
   return (
@@ -10,14 +10,10 @@ const Main = () => {
   );
 };
 
-
-const style=StyleSheet.create({
-  
-  text:{
-   
-    fontSize:24
-
-  }
-})
+const style = StyleSheet.create({
+  text: {
+    fontSize: 24,
+  },
+});
 
 export default Main;
