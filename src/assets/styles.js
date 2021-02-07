@@ -17,13 +17,31 @@ const beeView_style = StyleSheet.create({
 const beeButton_style = StyleSheet.create({
   container: {
     backgroundColor: BACKGROUND,
-    borderRadius: 5,
+    borderRadius: 10,
+    elevation: 10,
   },
   title: {
-    color: TEXT,
+    color: '#fff',
     padding: 10,
+    margin: 10,
     fontWeight: 'bold',
+    fontSize: 15,
   },
 });
 
-export {beeView_style, beeButton_style};
+const beeButtonOutline_style = StyleSheet.create({
+  container: {
+    borderRadius: 10,
+    //elevation: 10,
+    margin: 10,
+  },
+  title: {
+    color: BACKGROUND,
+    padding: 10,
+    margin: 10,
+    fontWeight: 'bold',
+    fontSize: 20,
+  },
+});
+
+export {beeView_style, beeButton_style, beeButtonOutline_style};
