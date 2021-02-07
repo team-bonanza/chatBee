@@ -1,19 +1,14 @@
 import * as React from 'react';
 import {Text, StyleSheet} from 'react-native';
 import BeeView from './components/BeeView';
+import BeeButton from './components/BeeButton';
 
 const Main = () => {
   return (
     <BeeView>
-      <Text style={style.text}>zero to dark mode</Text>
+      <BeeButton title="GİRİŞ YAP" />
     </BeeView>
   );
 };
-
-const style = StyleSheet.create({
-  text: {
-    fontSize: 24,
-  },
-});
 
 export default Main;

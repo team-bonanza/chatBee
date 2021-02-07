@@ -1,8 +1,13 @@
 export default {
-  PRIMARY: '#F58634',
-  PRIMARY_HOVER: '#FFA643',
+  BUTTON_DARK: '#F58634',
+  BUTTON_DARK_HOVER: '#FFA643',
+
+  BUTTON_LIGHT: '#203A43',
+  BUTTON_LIGHT_HOVER: '#2C5364',
+
   WHITE: '#FFF',
   BLACK: '#000',
+
   BACGROUND_LIGHT: ['#FFF', '#abbaab'],
   BACKGROUND_DARK: ['#243b55', '#141e30'],
 };

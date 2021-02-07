@@ -2,9 +2,8 @@ import {StyleSheet, Appearance} from 'react-native';
 import colors from './colors';
 
 const theme = Appearance.getColorScheme();
-const BACKGROUND =
-  theme === 'dark' ? colors.BACKGROUND_DARK : colors.BACGROUND_LIGHT;
 const TEXT = theme === 'dark' ? colors.WHITE : colors.BLACK;
+const BACKGROUND = theme === 'dark' ? colors.BUTTON_DARK : colors.BUTTON_LIGHT;
 
 const beeView_style = StyleSheet.create({
   container: {
@@ -14,4 +13,17 @@ const beeView_style = StyleSheet.create({
     resizeMode: 'cover',
   },
 });
-export {beeView_style};
+
+const beeButton_style = StyleSheet.create({
+  container: {
+    backgroundColor: BACKGROUND,
+    borderRadius: 5,
+  },
+  title: {
+    color: TEXT,
+    padding: 10,
+    fontWeight: 'bold',
+  },
+});
+
+export {beeView_style, beeButton_style};
