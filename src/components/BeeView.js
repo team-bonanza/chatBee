@@ -1,13 +1,13 @@
 import React from 'react';
 import { View } from 'react-native';
+import {beeView_style} from '../assets/styles'
 
 
 function BeeView({children}){
     return(
-        <View>
+        <View style={beeView_style.container}>
             {children}
         </View>
-
     );
 }
 
