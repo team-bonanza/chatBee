@@ -1,5 +1,5 @@
 import React from 'react';
-import {CallScreen, RoomScreen} from './pages';
+import {CallScreen, JoinScreen, RoomScreen} from './pages';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
@@ -10,6 +10,7 @@ function CallNavigator() {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Call" component={CallScreen} />
       <Stack.Screen name="Room" component={RoomScreen} />
+      <Stack.Screen name="Join" component={JoinScreen} />
     </Stack.Navigator>
   );
 }
@@ -21,4 +22,4 @@ function Router() {
     </NavigationContainer>
   );
 }
-export {Router};
+export default Router;
