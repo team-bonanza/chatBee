@@ -4,7 +4,7 @@ import {BeeView} from './components/BeeView';
 
 const Main = () => {
   return (
-    <BeeView >
+    <BeeView>
       <Text style={style.text}>zero to dark mode</Text>
     </BeeView>
   );

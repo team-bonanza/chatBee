@@ -1,13 +1,13 @@
 import React from 'react';
-import { View } from 'react-native';
+import {LinearGradient} from 'react-native-linear-gradient';
 import {beeView_style} from '../assets/styles'
 
 
 function BeeView({children}){
     return(
-        <View style={beeView_style.container}>
+        <LinearGradient style={beeView_style.container} >
             {children}
-        </View>
+        </LinearGradient>
     );
 }
 
