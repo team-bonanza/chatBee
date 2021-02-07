@@ -18,8 +18,8 @@ const configuration = {
   iceCandidatePoolSize: 10,
 };
 
-export default function CallScreen({route}) {
-  const {roomId} = route.params;
+function CallScreen({route}) {
+  const {id: roomId} = route.params;
   function onBackPress() {
     if (cachedLocalPC) {
       cachedLocalPC.removeStream(localStream);
@@ -212,3 +212,4 @@ const styles = StyleSheet.create({
     margin: 5,
   },
 });
+export {CallScreen};

@@ -1,43 +1,24 @@
 import React from 'react';
-import {Text, StyleSheet, Button, View, TextInput} from 'react-native';
+import {CallScreen, RoomScreen} from './pages';
+import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
-function RoomScreen({navigation}) {
-  const [roomId, setRoomId] = React.useState(null);
+const Stack = createStackNavigator();
 
-  const onCallOrJoin = (screen) => {
-    if (roomId.length > 0) {
-      navigation.navigate(screen, {id: roomId});
-    }
-  };
-
+function CallNavigator() {
   return (
-    <>
-      <Text style={styles.heading}>Select a Room</Text>
-      <TextInput style={styles.input} value={roomId} onChangeText={setRoomId} />
-      <View style={styles.buttonContainer}>
-        <Button title="Join Screen" onPress={onCallOrJoin('Join')} />
-      </View>
-      <View style={styles.buttonContainer}>
-        <Button title="Call Screen" onPress={() => onCallOrJoin('Call')} />
-      </View>
-    </>
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Call" component={CallScreen} />
+      <Stack.Screen name="Room" component={RoomScreen} />
+    </Stack.Navigator>
   );
 }
 
-const styles = StyleSheet.create({
-  heading: {
-    marginVertical: 10,
-    alignSelf: 'center',
-    fontSize: 30,
-  },
-  input: {
-    margin: 20,
-    height: 40,
-    backgroundColor: '#aaa',
-  },
-  buttonContainer: {
-    margin: 5,
-  },
-});
-
-export default RoomScreen;
+function Router() {
+  return (
+    <NavigationContainer>
+      <CallNavigator />
+    </NavigationContainer>
+  );
+}
+export {Router};
