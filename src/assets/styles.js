@@ -1,9 +1,22 @@
 import {StyleSheet, Appearance} from 'react-native';
 import colors from './colors';
+import {setCustomText, setCustomTextInput} from 'react-native-global-props';
 
+// FOR DARK & LIGHT THEME
 const theme = Appearance.getColorScheme();
 const TEXT = theme === 'dark' ? colors.WHITE : colors.BLACK;
 const BACKGROUND = theme === 'dark' ? colors.BUTTON_DARK : colors.BUTTON_LIGHT;
+
+// FONT UYGULAMASI
+const customTextProps = {
+  style: {
+    fontFamily: 'Comfortaa-Regular',
+  },
+};
+setCustomText(customTextProps);
+setCustomTextInput(customTextProps);
+
+const differentFont = 'Comfortaa-Bold';
 
 const beeView_style = StyleSheet.create({
   container: {
@@ -24,7 +37,6 @@ const beeButton_style = StyleSheet.create({
     color: '#fff',
     padding: 10,
     margin: 10,
-    fontWeight: 'bold',
     fontSize: 15,
   },
 });
@@ -32,15 +44,14 @@ const beeButton_style = StyleSheet.create({
 const beeButtonOutline_style = StyleSheet.create({
   container: {
     borderRadius: 10,
-    //elevation: 10,
     margin: 10,
   },
   title: {
     color: BACKGROUND,
     padding: 10,
     margin: 10,
-    fontWeight: 'bold',
     fontSize: 20,
+    fontFamily: differentFont,
   },
 });
 
