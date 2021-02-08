@@ -5,7 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import LoginContainer from '../components/Login/LoginContainer';
 import useAuth from '../hooks/useAuth';
 const LoginPage = () => {
-  // const navigation=useNavigation();
+   const navigation=useNavigation();
   const {loading, error, login} = useAuth();
 
   async function handleSubmit(values) {
@@ -15,7 +15,7 @@ const LoginPage = () => {
   }
 
   function handleRegister() {
-    // navigation.navigate('Sign');
+     navigation.navigate('Sign Up');
   }
   if (error) {
     Alert.alert('ChatBee', error.message);
