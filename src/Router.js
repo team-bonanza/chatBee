@@ -1,14 +1,16 @@
 import React from 'react';
-import {Login, SignUp, HomePage, ProfilePage, Lobby, Room} from './pages';
+import {LoginPage, SignUp, HomePage, ProfilePage, Lobby, Room} from './pages';
 import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
 
-const Screen = createStackNavigator();
+const Stack = createStackNavigator();
 
 function Router() {
   return (
     <NavigationContainer>
-      <Screen.Stack name="Login" component={Main} />
+      <Stack.Navigator screenOptions={{header: () => null}}>
+      <Stack.Screen name="Login" component={LoginPage} />
+    </Stack.Navigator>
     </NavigationContainer>
   );
 }

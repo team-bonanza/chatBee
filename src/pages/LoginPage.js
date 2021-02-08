@@ -1,10 +1,10 @@
 import * as React from 'react';
 import {Text, StyleSheet, Alert} from 'react-native';
-import BeeView from './components/BeeView';
+import BeeView from '../components/BeeView';
 import {useNavigation} from '@react-navigation/native';
-import LoginContainer from './components/Login/LoginContainer';
-import useAuth from './hooks/useAuth';
-const Main = () => {
+import LoginContainer from '../components/Login/LoginContainer';
+import useAuth from '../hooks/useAuth';
+const LoginPage = () => {
   // const navigation=useNavigation();
   const {loading, error, login} = useAuth();
 
@@ -32,4 +32,4 @@ const Main = () => {
   );
 };
 
-export default Main;
+export  {LoginPage};
