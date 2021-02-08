@@ -18,7 +18,9 @@ const configuration = {
   iceCandidatePoolSize: 10,
 };
 
-function RoomScreen({route}) {
+function RoomScreen({navigation, route}) {
+  const {id: roomId} = route.params;
+
   function onBackPress() {
     if (cachedLocalPC) {
       cachedLocalPC.removeStream(localStream);
@@ -27,8 +29,7 @@ function RoomScreen({route}) {
     setLocalStream();
     setRemoteStream();
     setCachedLocalPC();
-    // cleanup
-    //setScreen(screens.ROOM);
+    navigation.goBack();
   }
 
   const [localStream, setLocalStream] = React.useState();
@@ -40,7 +41,6 @@ function RoomScreen({route}) {
     // isFront will determine if the initial camera should face user or environment
     const isFront = true;
     const devices = await mediaDevices.enumerateDevices();
-
     const facing = isFront ? 'front' : 'environment';
     const videoSourceId = devices.find(
       (device) => device.kind === 'videoinput' && device.facing === facing,

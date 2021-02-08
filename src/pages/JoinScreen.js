@@ -1,6 +1,5 @@
-import React, {useState, useEffect} from 'react';
+import React, {useState} from 'react';
 import {Text, StyleSheet, Button, View} from 'react-native';
-
 import {
   RTCPeerConnection,
   RTCView,
@@ -21,6 +20,7 @@ const configuration = {
 
 function JoinScreen({navigation, route}) {
   const {id: roomId} = route.params;
+
   function onBackPress() {
     if (cachedLocalPC) {
       cachedLocalPC.removeStream(localStream);
@@ -37,10 +37,6 @@ function JoinScreen({navigation, route}) {
   const [cachedLocalPC, setCachedLocalPC] = useState();
 
   const [isMuted, setIsMuted] = useState(false);
-
-  useEffect(() => {
-    // startLocalStream();
-  }, []);
 
   const startLocalStream = async () => {
     // isFront will determine if the initial camera should face user or environment

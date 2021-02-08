@@ -4,11 +4,10 @@ import {Text, StyleSheet, Button, View, TextInput} from 'react-native';
 function CallScreen({navigation}) {
   const [roomId, setRoomId] = React.useState('');
 
-  const onCallOrJoin = (screen) => {
-    if (roomId.length > 0) {
-      navigation.navigate(screen, {id: roomId});
-    }
-  };
+  function onNavigate(screen) {
+    navigation.navigate(screen, {id: roomId});
+    console.log(screen);
+  }
 
   return (
     <>
@@ -19,10 +18,10 @@ function CallScreen({navigation}) {
         onChangeText={(val) => setRoomId(val)}
       />
       <View style={styles.buttonContainer}>
-        <Button title="Join Room" onPress={onCallOrJoin('Join')} />
+        <Button title="Join Room" onPress={() => onNavigate('Join')} />
       </View>
       <View style={styles.buttonContainer}>
-        <Button title="Create Room" onPress={() => onCallOrJoin('Call')} />
+        <Button title="Create Room" onPress={() => onNavigate('Room')} />
       </View>
     </>
   );
