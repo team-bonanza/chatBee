@@ -1,5 +1,5 @@
 import React from 'react';
-import {View,StyleSheet} from 'react-native';
+import {View, Text, StyleSheet} from 'react-native';
 import {Formik} from 'formik';
 import validationSchema from './validationSchema';
 import BeeInput from '../BeeInput';
@@ -32,7 +32,7 @@ export default function LoginContainer({loading, onSubmit, onRegister}) {
               <BeeInput
                 placeholder="e-posta adresinizi giriniz"
                 autoCapitalize="none"
-                keyboardType="email-addres"
+                keyboardType="email-address"
                 onChangeText={handleChange('email')}
                 onBlur={handleBlur('email')}
                 value={values.email}
@@ -49,12 +49,13 @@ export default function LoginContainer({loading, onSubmit, onRegister}) {
                 error={errors.password}
                 isTouched={touched.password}
               />
-              <BeeButton loading={loading}
-              onPress={handleSubmit}
-              title='GİRİŞ YAP'/>
+              <BeeButton
+                loading={loading}
+                onPress={handleSubmit}
+                title="GİRİŞ YAP"
+              />
 
-              <BeeButtonOutline title='Kayıt Ol'
-              onPress={onRegister}/>
+              <BeeButtonOutline title="Kayıt Ol" onPress={onRegister} />
             </View>
           );
         }}
@@ -63,11 +64,10 @@ export default function LoginContainer({loading, onSubmit, onRegister}) {
   );
 }
 
-const styles=StyleSheet.create({
-    container:{
-        flex:1,
-        alignItems:'center',
-        justifyContent:'center',
-    }
-
-})
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+});
