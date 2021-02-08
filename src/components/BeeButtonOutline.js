@@ -1,11 +1,12 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import {beeButtonOutline_style} from '../assets/styles';
 
 function BeeButtonOutline({title, loading, ...otherProps}) {
   return (
-    <TouchableOpacity style={beeButtonOutline_style.container}
-    {...otherProps}
+    <TouchableOpacity
+      style={beeButtonOutline_style.container}
+      {...otherProps}
       disabled={loading}>
       {loading ? (
         <ActivityIndicator color="white" />
