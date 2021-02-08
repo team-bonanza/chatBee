@@ -30,21 +30,27 @@ const beeView_style = StyleSheet.create({
 const beeButton_style = StyleSheet.create({
   container: {
     backgroundColor: BACKGROUND,
-    borderRadius: 10,
+    borderRadius: 6,
     elevation: 10,
+    width:deviceSize.width%100,
+    justifyContent: 'center',
+    marginHorizontal: 88,
+    marginVertical:20,
   },
   title: {
     color: '#fff',
     padding: 5,
     margin: 10,
-    fontSize: 15,
+    fontSize: 12,
+    
   },
 });
 
 const beeButtonOutline_style = StyleSheet.create({
   container: {
     borderRadius: 10,
-    margin: 10,
+    marginHorizontal: 74,
+    
   },
   title: {
     color: BACKGROUND,
@@ -64,13 +70,14 @@ const beeInput_styles=StyleSheet.create({
     backgroundColor:'#fff',
     padding:2,
     borderRadius:5,
-    width:deviceSize.width/2,
+    width:deviceSize.width/1.5,
     height:deviceSize.height%90
 
   },
   errorText:{
     marginTop:2,
-    color:'#FF0000'
+    color:'#FF0000',
+    fontWeight:'bold'
   }
 
 });
