@@ -55,4 +55,22 @@ const beeButtonOutline_style = StyleSheet.create({
   },
 });
 
-export {beeView_style, beeButton_style, beeButtonOutline_style};
+const beeInput_styles=StyleSheet.create({
+  container:{
+    margin:5,
+
+  },
+  formContainer:{
+    backgroundColor:'#fff',
+    padding:5,
+    borderRadius:5
+
+  },
+  errorText:{
+    marginTop:2,
+    color:'#FF0000'
+  }
+
+});
+
+export {beeView_style, beeButton_style, beeButtonOutline_style,beeInput_styles};
