@@ -1,16 +1,33 @@
 import * as React from 'react';
-import {Text, StyleSheet} from 'react-native';
+import {Text, StyleSheet,Alert} from 'react-native';
 import BeeView from './components/BeeView';
-import BeeButton from './components/BeeButton';
-import BeeButtonOutline from './components/BeeButtonOutline';
-import BeeInput from './components/BeeInput';
+import {useNavigation} from '@react-navigation/native';
+import LoginContainer from './components/Login/LoginContainer';
+
 
 const Main = () => {
+  const navigation=useNavigation();
+  async function handleSubmit(values){
+    await login(values);
+    Alert.alert('Aferinn!!');
+    //TODO : navigation.navigate('Feed')
+    
+  }
+  
+  // function handleRegister() {
+  //   navigation.navigate('Sign');
+  // }
+  if (error) {
+    Alert.alert('ChatBee', error.message);
+  }
+
   return (
     <BeeView>
-      <BeeInput />
-      <BeeButton title="GİRİŞ YAP" />
-      <BeeButtonOutline title="Kayıt Ol" />
+      <LoginContainer 
+      loading={loading}
+      onSubmit={handleSubmit}
+      onRegister={handleRegister}/>
+      
     </BeeView>
   );
 };

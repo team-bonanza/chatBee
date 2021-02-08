@@ -1,7 +1,7 @@
-import {StyleSheet, Appearance} from 'react-native';
+import {StyleSheet, Appearance,Dimensions} from 'react-native';
 import colors from './colors';
 import {setCustomText, setCustomTextInput} from 'react-native-global-props';
-
+ const deviceSize=Dimensions.get('window');
 // FOR DARK & LIGHT THEME
 const theme = Appearance.getColorScheme();
 const TEXT = theme === 'dark' ? colors.WHITE : colors.BLACK;
@@ -35,7 +35,7 @@ const beeButton_style = StyleSheet.create({
   },
   title: {
     color: '#fff',
-    padding: 10,
+    padding: 5,
     margin: 10,
     fontSize: 15,
   },
@@ -62,8 +62,10 @@ const beeInput_styles=StyleSheet.create({
   },
   formContainer:{
     backgroundColor:'#fff',
-    padding:5,
-    borderRadius:5
+    padding:2,
+    borderRadius:5,
+    width:deviceSize.width/2,
+    height:deviceSize.height%90
 
   },
   errorText:{

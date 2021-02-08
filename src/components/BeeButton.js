@@ -1,11 +1,18 @@
 import React from 'react';
-import {TouchableOpacity, Text} from 'react-native';
+import {TouchableOpacity, Text, ActivityIndicator} from 'react-native';
 import {beeButton_style} from '../assets/styles';
 
-function BeeButton(props) {
+function BeeButton({title, loading, ...otherProps}) {
   return (
-    <TouchableOpacity style={beeButton_style.container}>
-      <Text style={beeButton_style.title}>{props.title}</Text>
+    <TouchableOpacity
+      style={beeButton_style.container}
+      {...otherProps}
+      disabled={loading}>
+      {loading ? (
+        <ActivityIndicator color="white" />
+      ) : (
+        <Text style={beeButton_style.title}>{title}</Text>
+      )}
     </TouchableOpacity>
   );
 }
