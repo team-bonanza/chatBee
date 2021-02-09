@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, StyleSheet, Image} from 'react-native';
+import {View, Text, Image} from 'react-native';
 import {Formik} from 'formik';
 import validationSchema from './validationSchema';
 import BeeInput from '../BeeInput';
@@ -14,7 +14,7 @@ const initalFormValues = {
 
 export default function LoginContainer({loading, onSubmit, onRegister}) {
   return (
-    <View style={styles.container}>
+    <View style={login_container_styles.container}>
       <Formik
         validationSchema={validationSchema}
         initialValues={initalFormValues}
@@ -72,11 +72,3 @@ export default function LoginContainer({loading, onSubmit, onRegister}) {
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});
