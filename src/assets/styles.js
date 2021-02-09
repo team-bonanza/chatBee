@@ -11,12 +11,41 @@ const BACKGROUND = theme === 'dark' ? colors.BUTTON_DARK : colors.BUTTON_LIGHT;
 const customTextProps = {
   style: {
     fontFamily: 'Comfortaa-Regular',
+    
   },
 };
 setCustomText(customTextProps);
 setCustomTextInput(customTextProps);
 
 const differentFont = 'Comfortaa-Bold';
+const logoFont='NoticiaText-Italic';
+
+const login_container_styles=StyleSheet.create({
+  logoFont:{
+    fontFamily:differentFont,
+    fontSize:40,
+    color:'#333666'
+  },
+  logoContainer:{
+    flex:1,
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center'
+
+
+  },
+  logo:{
+    width:40,
+    height:40,
+    resizeMode:'cover'
+    
+  },
+  inputstyle:{
+    flex:2
+  }
+
+});
+
 
 const beeView_style = StyleSheet.create({
   container: {
@@ -90,4 +119,4 @@ const beeInput_styles=StyleSheet.create({
 
 });
 
-export {beeView_style, beeButton_style, beeButtonOutline_style,beeInput_styles};
+export {beeView_style, beeButton_style, beeButtonOutline_style,beeInput_styles,login_container_styles};
