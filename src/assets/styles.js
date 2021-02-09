@@ -75,6 +75,7 @@ const beeButton_style = StyleSheet.create({
     padding: 5,
     margin: 10,
     fontSize: 12,
+    letterSpacing:4
     
   },
 });
@@ -82,7 +83,8 @@ const beeButton_style = StyleSheet.create({
 const beeButtonOutline_style = StyleSheet.create({
   container: {
     borderRadius: 10,
-    alignSelf:'center'
+    alignSelf:'center',
+    
     
   },
   title: {
@@ -101,9 +103,8 @@ const beeInput_styles=StyleSheet.create({
   },
   formContainer:{
     backgroundColor:'#fff',
-    borderRadius:5,
+    borderRadius:8,
     width:deviceSize.width/1.5,
-    height:deviceSize.height%90,
     borderColor:'#ddd',
     borderWidth:1,
     elevation:5,
