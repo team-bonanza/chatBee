@@ -38,7 +38,8 @@ export default function LoginContainer({loading, onSubmit, onRegister}) {
               </View>
               <View style={login_container_styles.inputstyle}>
                 <BeeInput
-                  placeholder="e-posta adresinizi giriniz"
+                  placeholder="E-posta adresi"
+                  placeholderTextColor="#141e30"
                   autoCapitalize="none"
                   keyboardType="email-address"
                   onChangeText={handleChange('email')}
@@ -49,7 +50,8 @@ export default function LoginContainer({loading, onSubmit, onRegister}) {
                 />
 
                 <BeeInput
-                  placeholder="şifrenizi giriniz"
+                  placeholder="Şifre"
+                  placeholderTextColor="#141e30"
                   secureTextEntry
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}

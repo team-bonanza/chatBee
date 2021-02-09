@@ -1,7 +1,7 @@
 import React from 'react';
-import {View, Text,StyleSheet,Dimensions} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
 import validationSchema from './validationSchema';
-import { Formik} from 'formik';
+import {Formik} from 'formik';
 import BeeButton from '../BeeButton';
 import BeeButtonOutline from '../BeeButtonOutline';
 import BeeInput from '../BeeInput';
@@ -27,10 +27,11 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
           errors,
           touched,
         }) => (
-          <View >
+          <View>
             <Text style={styles.title}>ChatBee</Text>
             <BeeInput
-              placeholder="email adres"
+              placeholder="E-posta adresi"
+              placeholderTextColor="#141e30"
               autoCapitalize="none"
               keyboardType="email-address"
               onChangeText={handleChange('email')}
@@ -41,7 +42,8 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
             />
 
             <BeeInput
-              placeholder="şifre"
+              placeholder="Şifre"
+              placeholderTextColor="#141e30"
               secureTextEntry
               onChangeText={handleChange('password')}
               onBlur={handleBlur('password')}
@@ -51,7 +53,8 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
             />
 
             <BeeInput
-              placeholder="şifre tekrar.."
+              placeholder="Şifre Tekrarı"
+              placeholderTextColor="#141e30"
               secureTextEntry
               onChangeText={handleChange('confirmPassword')}
               onBlur={handleBlur('confirmPassword')}
@@ -73,19 +76,14 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
   );
 }
 
-const styles=StyleSheet.create({
-    container:{
-        
-        backgroundColor:'#fff',
-        borderRadius:5,
-        elevation:10,
-        padding:20
-        
-
-
-    },
-    title:{
-        fontSize:20
-
-    }
-})
+const styles = StyleSheet.create({
+  container: {
+    backgroundColor: 'rgba(250, 250, 250, 0.5)', //TODO: kayıt olma sayfasında arka taraf saydam mı yoksa gölgeli mi olsun?
+    borderRadius: 5,
+    //levation: 10,
+    padding: 20,
+  },
+  title: {
+    fontSize: 20,
+  },
+});

@@ -102,6 +102,7 @@ const beeInput_styles = StyleSheet.create({
     elevation: 5,
     justifyContent: 'center',
     alignSelf: 'center',
+    paddingLeft: 5,
   },
   errorText: {
     marginTop: 2,
