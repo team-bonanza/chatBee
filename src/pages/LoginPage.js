@@ -26,7 +26,7 @@ const LoginPage = () => {
   return (
     <BeeView>
       <Video
-        source={require('../assets/react-native.mp4')}
+        source={require('../assets/chatbee-video.mp4')}
         style={styles.backgroundVideo}
         muted={true}
         repeat={true}
@@ -44,7 +44,7 @@ const LoginPage = () => {
 };
 const styles = StyleSheet.create({
   backgroundVideo: {
-    position:'absolute',
+    position: 'absolute',
     top: 0,
     left: 0,
     bottom: 0,
