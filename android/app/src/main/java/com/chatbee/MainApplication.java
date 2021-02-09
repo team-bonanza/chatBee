@@ -10,6 +10,8 @@ import com.facebook.react.ReactPackage;
 import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
+import com.brentvatne.react.ReactVideoPackage;
+
 
 public class MainApplication extends Application implements ReactApplication {
 
@@ -22,13 +24,18 @@ public class MainApplication extends Application implements ReactApplication {
 
         @Override
         protected List<ReactPackage> getPackages() {
-          @SuppressWarnings("UnnecessaryLocalVariable")
+           @SuppressWarnings("UnnecessaryLocalVariable")
+            new MainReactPackage();
+            new ReactVideoPackage();
+    
+
           List<ReactPackage> packages = new PackageList(this).getPackages();
           // Packages that cannot be autolinked yet can be added manually here, for example:
           // packages.add();
            
           return packages;
         }
+       
 
         @Override
         protected String getJSMainModuleName() {
