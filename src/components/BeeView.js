@@ -4,7 +4,7 @@ import {beeView_style} from '../assets/styles';
 
 function BeeView({children}) {
   const imageDark = require('../assets/bgDarkTwo.jpg');
-  const imageLight = require('../assets/bgLightTwo.jpg');
+  const imageLight = require('../assets/Clouds.jpg');
 
   const theme = Appearance.getColorScheme();
   const image = theme === 'dark' ? imageDark : imageLight;

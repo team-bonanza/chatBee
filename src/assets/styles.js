@@ -70,7 +70,7 @@ const beeButton_style = StyleSheet.create({
     padding: 5,
     margin: 10,
     fontSize: 12,
-    letterSpacing: 5,
+    letterSpacing: 4,
   },
 });
 
@@ -85,7 +85,7 @@ const beeButtonOutline_style = StyleSheet.create({
     margin: 10,
     fontSize: 20,
     fontFamily: differentFont,
-    letterSpacing: 5,
+    letterSpacing: 4,
   },
 });
 
