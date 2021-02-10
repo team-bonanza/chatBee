@@ -4,6 +4,7 @@ import {useNavigation} from '@react-navigation/native';
 import useAuth from '../hooks/useAuth';
 import BeeView from '../components/BeeView';
 import SignUpContainer from '../components/SignUpPages/SignUpContainer';
+import LottieView from 'lottie-react-native';
 
 export function SignUpPage(props) {
   const navigation = useNavigation();
@@ -18,6 +19,14 @@ export function SignUpPage(props) {
   }
   return (
     <BeeView >
+      <>
+
+      <LottieView  source={require('../assets/gif/bee1.json')}
+      autoPlay
+      loop
+      />
+      </>
+      
       <SignUpContainer 
         loading={loading}
         onSubmit={handleSubmit}
