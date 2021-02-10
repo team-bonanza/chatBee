@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Alert} from 'react-native';
+import {View, Text, Alert, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import useAuth from '../hooks/useAuth';
 import BeeView from '../components/BeeView';
@@ -18,16 +18,17 @@ export function SignUpPage(props) {
     Alert.alert('ChatBee', error.message);
   }
   return (
-    <BeeView >
-      <>
-
-      <LottieView  source={require('../assets/gif/bee1.json')}
-      autoPlay
-      loop
+    <BeeView>
+      <LottieView
+        source={require('../assets/gif/bee1.json')}
+        autoPlay
+        loop
+        style={{
+          height: Dimensions.get('window').height / 4,
+        }}
       />
-      </>
-      
-      <SignUpContainer 
+
+      <SignUpContainer
         loading={loading}
         onSubmit={handleSubmit}
         onLogin={() => navigation.navigate('Login')}

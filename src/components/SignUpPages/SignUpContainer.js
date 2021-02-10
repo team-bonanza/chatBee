@@ -28,7 +28,6 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
           touched,
         }) => (
           <View>
-            <Text style={styles.title}>ChatBee</Text>
             <BeeInput
               placeholder="E-posta adresi"
               placeholderTextColor="#141e30"
