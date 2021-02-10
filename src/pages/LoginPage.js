@@ -5,6 +5,7 @@ import {useNavigation} from '@react-navigation/native';
 import LoginContainer from '../components/Login/LoginContainer';
 import useAuth from '../hooks/useAuth';
 import Video from 'react-native-video';
+import {LoadingProvider} from '../components/Loading/LoadingProvider';
 
 const LoginPage = () => {
   const navigation = useNavigation();

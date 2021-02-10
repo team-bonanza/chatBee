@@ -1,14 +1,17 @@
 import React from 'react';
-import {View, Text, Alert, Dimensions} from 'react-native';
+import {View, Text, Alert, Dimensions, ActivityIndicator} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import useAuth from '../hooks/useAuth';
 import BeeView from '../components/BeeView';
 import SignUpContainer from '../components/SignUpPages/SignUpContainer';
 import LottieView from 'lottie-react-native';
+import {LoadingProvider} from '../components/Loading/LoadingProvider';
 
 export function SignUpPage(props) {
+  const [loading, setLoading] = React.useState(false);
+
   const navigation = useNavigation();
-  const {loading, error, sign} = useAuth();
+  const {error, sign} = useAuth();
 
   async function handleSubmit(values) {
     await sign(values);
@@ -17,6 +20,16 @@ export function SignUpPage(props) {
   if (error) {
     Alert.alert('ChatBee', error.message);
   }
+
+  React.useEffect(() => {
+    setTimeout(() => {}, 5000);
+  }, []);
+
+  // if (!loading) {
+  //   // <LoadingProvider />;
+  //   <ActivityIndicator size="large" color="#333" />;
+  // }
+
   return (
     <BeeView>
       <LottieView
