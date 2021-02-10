@@ -1,10 +1,18 @@
 import React from 'react';
-import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  Dimensions,
+  Touchable,
+  TouchableOpacity,
+} from 'react-native';
 import validationSchema from './validationSchema';
 import {Formik} from 'formik';
 import BeeButton from '../BeeButton';
 import BeeButtonOutline from '../BeeButtonOutline';
 import BeeInput from '../BeeInput';
+import LottieView from 'lottie-react-native';
 
 const initialFormValues = {
   email: '',
@@ -67,7 +75,14 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
               onPress={handleSubmit}
               title="Kayıt Ol"
             />
-            <BeeButtonOutline title="ANA SAYFAYA DÖN" onPress={onLogin} />
+            <TouchableOpacity onPress={onLogin}>
+              <LottieView
+                source={require('../../assets/gif/home1.json')}
+                autoPlay
+                loop
+                style={{height: Dimensions.get('window').height / 10, marginTop:10,alignSelf:'center'}}
+              />
+            </TouchableOpacity>
           </View>
         )}
       </Formik>
