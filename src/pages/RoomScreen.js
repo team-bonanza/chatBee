@@ -1,12 +1,6 @@
-import React from 'react';
-import {Text, StyleSheet, Button, View} from 'react-native';
-import {
-  RTCPeerConnection,
-  RTCView,
-  mediaDevices,
-  RTCIceCandidate,
-  RTCSessionDescription,
-} from 'react-native-webrtc';
+import React, { version } from 'react';
+import {Text, StyleSheet, Button, View, Dimensions} from 'react-native';
+import {RTCPeerConnection, RTCView, mediaDevices, RTCIceCandidate, RTCSessionDescription} from 'react-native-webrtc';
 import {db} from '../utilities/firebase';
 
 const configuration = {
@@ -22,6 +16,7 @@ function RoomScreen({navigation, route}) {
   const {id: roomId} = route.params;
 
   function onBackPress() {
+    console.log('basıyo muuu')
     if (cachedLocalPC) {
       cachedLocalPC.removeStream(localStream);
       cachedLocalPC.close();
@@ -50,8 +45,8 @@ function RoomScreen({navigation, route}) {
       audio: true,
       video: {
         mandatory: {
-          minWidth: 500, // Provide your own width, height and frame rate here
-          minHeight: 300,
+          minWidth: 50, // Provide your own width, height and frame rate here
+          minHeight: 30,
           minFrameRate: 30,
         },
         facingMode,
@@ -124,27 +119,28 @@ function RoomScreen({navigation, route}) {
       setIsMuted(!track.enabled);
     });
   };
-
+  
   return (
     <>
-      <Text style={styles.heading}>Call Screen</Text>
+    <Text style={styles.heading}>Call Screen</Text>
       <View style={styles.callButtons}>
-        <View styles={styles.buttonContainer}>
+        <View>
           <Button title="Click to stop call" onPress={onBackPress} />
         </View>
-        <View styles={styles.buttonContainer}>
+        <View>
           {!localStream && (
             <Button title="Click to start stream" onPress={startLocalStream} />
-          )}
+            )}
           {localStream && (
             <Button
-              title="Click to start call"
-              onPress={() => startCall(roomId)}
-              disabled={!!remoteStream}
+            title="Click to start call"
+            onPress={() => startCall(roomId)}
+            disabled={!!remoteStream}
             />
-          )}
+            )}
         </View>
       </View>
+      
 
       {localStream && (
         <View style={styles.toggleButtons}>
@@ -156,20 +152,17 @@ function RoomScreen({navigation, route}) {
           />
         </View>
       )}
-
-      <View style={{display: 'flex', flex: 1, padding: 10}}>
-        <View style={styles.rtcview}>
+      <View style={{display: 'flex', flex: 1}}>
+        <View style={styles.firstPerson}>
           {localStream && (
             <RTCView
-              style={styles.rtc}
               streamURL={localStream && localStream.toURL()}
             />
           )}
         </View>
-        <View style={styles.rtcview}>
+        <View style={styles.secondPerson}>
           {remoteStream && (
             <RTCView
-              style={styles.rtc}
               streamURL={remoteStream && remoteStream.toURL()}
             />
           )}
@@ -183,18 +176,27 @@ const styles = StyleSheet.create({
   heading: {
     alignSelf: 'center',
     fontSize: 30,
+    color:'white',
+    backgroundColor: 'grey'
   },
-  rtcview: {
+  firstPerson:{
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
+    backgroundColor: 'black',
+  },
+  secondPerson: {
+    position: 'absolute',
+    right: 10,
+    bottom: 70,
+    borderRadius: 10,
+    width: Dimensions.get('screen').width/3,
+    height:  Dimensions.get('screen').height/4,
     backgroundColor: 'black',
     margin: 5,
+    backgroundColor: 'gray'
   },
-  rtc: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
+  position:{
+    position: 'absolute',
+    bottom: 5
   },
   toggleButtons: {
     width: '100%',
@@ -202,13 +204,11 @@ const styles = StyleSheet.create({
     justifyContent: 'space-around',
   },
   callButtons: {
+    bottom: 10,
     padding: 10,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
-  },
-  buttonContainer: {
-    margin: 5,
   },
 });
 export {RoomScreen};
