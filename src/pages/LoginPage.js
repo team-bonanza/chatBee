@@ -39,6 +39,7 @@ const LoginPage = () => {
         loading={loading}
         onSubmit={handleSubmit}
         onRegister={handleRegister}
+        onSubmit={() => navigation.navigate('Home Page')}
       />
     </BeeView>
   );

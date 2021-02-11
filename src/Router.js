@@ -5,14 +5,17 @@ import {NavigationContainer} from '@react-navigation/native';
 
 const Stack = createStackNavigator();
 
+
 function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator screenOptions={{header: () => null}}>
       <Stack.Screen name="Login" component={LoginPage} />
       <Stack.Screen name="Sign Up" component={SignUpPage} />
+      <Stack.Screen name='Home Page' component={HomePage} />
     </Stack.Navigator>
     </NavigationContainer>
   );
+  
 }
 export default Router;

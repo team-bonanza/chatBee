@@ -110,6 +110,40 @@ const beeInput_styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+const copy_icon_styles = StyleSheet.create({
+  container:{
+    flexDirection:'row',
+    alignItems:'center',
+    justifyContent:'center',
+    margin:5
+
+
+  },
+  iconCopy: {
+    justifyContent:'center',
+    flexDirection:'column',
+    alignSelf: 'center',
+    backgroundColor:'#00509D',
+    borderBottomRightRadius:5,
+    borderTopRightRadius:5,
+    height:55
+  },
+  iconOut: {
+    bottom:-50,
+    position:'relative',
+    margin: 5,
+    justifyContent: 'center',
+  },
+  input:{
+    width:deviceSize.width /2,
+    borderWidth:2,
+    borderColor:'#00509D',
+    borderBottomLeftRadius:5,
+    borderTopLeftRadius:5,
+    height:55
+
+  }
+});
 
 export {
   beeView_style,
@@ -117,4 +151,5 @@ export {
   beeButtonOutline_style,
   beeInput_styles,
   login_container_styles,
+  copy_icon_styles,
 };
