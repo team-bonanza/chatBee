@@ -6,24 +6,38 @@ import LoginContainer from '../components/Login/LoginContainer';
 import useAuth from '../hooks/useAuth';
 import Video from 'react-native-video';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
-
+//TODO: loading screen
+//TODO:
 const LoginPage = () => {
   const navigation = useNavigation();
-  const {loading, error, login} = useAuth();
+  const {
+    loading,
+    error,
+    response,
+    _,
+    signIn,
+    errorReset,
+    responseReset,
+  } = useAuth();
 
   async function handleSubmit(values) {
-    await login(values);
-    Alert.alert('Aferinn!!');
-    //TODO : navigation.navigate('Feed')
+    await signIn(values);
+    //navigation.navigate('Home Page');
   }
 
   function handleRegister() {
     navigation.navigate('Sign Up');
   }
-  if (error) {
-    Alert.alert('ChatBee', error.message);
+
+  if (response) {
+    navigation.navigate('Home Page');
+    responseReset();
   }
 
+  if (error) {
+    Alert.alert('ChatBee', error.message);
+    errorReset();
+  }
   return (
     <BeeView>
       <Video
@@ -39,7 +53,6 @@ const LoginPage = () => {
         loading={loading}
         onSubmit={handleSubmit}
         onRegister={handleRegister}
-        onSubmit={() => navigation.navigate('Home Page')}
       />
     </BeeView>
   );

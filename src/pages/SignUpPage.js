@@ -8,23 +8,39 @@ import LottieView from 'lottie-react-native';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
 
 export function SignUpPage(props) {
-  const [loading, setLoading] = React.useState(false);
+  //const [loading, setLoading] = React.useState(false);
 
   const navigation = useNavigation();
-  const {error, sign} = useAuth();
+  const {
+    loading,
+    error,
+    response,
+    signUp,
+    _,
+    errorReset,
+    responseReset,
+  } = useAuth();
 
   async function handleSubmit(values) {
-    await sign(values);
+    await signUp(values);
     navigation.navigate('Login');
   }
-  if (error) {
-    Alert.alert('ChatBee', error.message);
+
+  if (response) {
+    navigation.navigate('Login');
+    responseReset();
   }
 
+  if (error) {
+    Alert.alert('ChatBee', error.message);
+    errorReset();
+  }
+
+  /*
   React.useEffect(() => {
     setTimeout(() => {}, 5000);
   }, []);
-
+  */
   // if (!loading) {
   //   // <LoadingProvider />;
   //   <ActivityIndicator size="large" color="#333" />;
