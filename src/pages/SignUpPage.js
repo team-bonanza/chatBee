@@ -23,7 +23,13 @@ export function SignUpPage(props) {
 
   async function handleSubmit(values) {
     await signUp(values);
-    navigation.navigate('Login');
+  }
+
+  if (loading) {
+    // setTimeout(() => {
+    //   Alert.alert('UYARI VERİYORUM');
+    // }, 3000);
+    return <LoadingProvider />;
   }
 
   if (response) {

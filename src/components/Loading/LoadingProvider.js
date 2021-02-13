@@ -6,9 +6,14 @@ function LoadingProvider() {
   return (
     <LottieView
       source={require('../../assets/gif/bee1.json')}
+      resizeMode="center"
       autoplay
       loop
-      style={{height: Dimensions.get('window').height / 2}}
+      style={{
+        alignSelf: 'center',
+        justifyContent: 'center',
+        flex: 1,
+      }}
     />
   );
 }
