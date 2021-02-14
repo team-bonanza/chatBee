@@ -33,6 +33,16 @@ const LoginPage = () => {
     navigation.navigate('Sign Up');
   }
 
+  if (loading) {
+    return <LoadingProvider />;
+  }
+
+  // if (loading) {
+  //   setTimeout(() => {
+  //     Alert.alert('UYARI VERİYORUM');
+  //   }, 3000);
+  // }
+
   if (response) {
     navigation.navigate('Home Page');
     //responseReset();
