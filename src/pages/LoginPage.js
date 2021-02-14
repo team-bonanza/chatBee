@@ -9,7 +9,9 @@ import auth from '@react-native-firebase/auth';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
 //TODO: loading screen
-//TODO:
+//TODO: google sigin için hooks .
+//TODO: google button
+
 const LoginPage = () => {
   const navigation = useNavigation();
   const {
@@ -33,9 +35,8 @@ const LoginPage = () => {
 
   if (response) {
     navigation.navigate('Home Page');
-    responseReset();
+    //responseReset();
   }
-
   if (error) {
     Alert.alert('ChatBee', error.message);
     errorReset();
@@ -48,12 +49,14 @@ const LoginPage = () => {
       await GoogleSignin.hasPlayServices();
       const {accessToken, idToken} = await GoogleSignin.signIn();
       setloggedIn(true);
-      console.log("dd")
+      console.log('dd');
       const credential = auth.GoogleAuthProvider.credential(
         idToken,
         accessToken,
       );
-      await auth().signInWithCredential(credential);
+      await auth()
+        .signInWithCredential(credential)
+        .then(() => navigation.navigate('Home Page'));
     } catch (error) {
       if (error.code === statusCodes.SIGN_IN_CANCELLED) {
         // user cancelled the login flow
@@ -65,7 +68,7 @@ const LoginPage = () => {
         alert('PLAY_SERVICES_NOT_AVAILABLE');
         // play services not available or outdated
       } else {
-        // some other error happened
+        console.log(error);
         alert(error);
       }
     }
@@ -73,7 +76,9 @@ const LoginPage = () => {
   function onAuthStateChanged(user) {
     setUser(user);
     console.log(user);
-    if (user) setloggedIn(true);
+    if (user) {
+      setloggedIn(true);
+    }
   }
   useEffect(() => {
     GoogleSignin.configure({

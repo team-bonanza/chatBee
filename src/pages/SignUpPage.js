@@ -23,7 +23,10 @@ export function SignUpPage(props) {
 
   async function handleSubmit(values) {
     await signUp(values);
-    navigation.navigate('Login');
+    //navigation.navigate('Login');
+  }
+  if (loading) {
+    return <Text>loading....</Text>;
   }
 
   if (response) {

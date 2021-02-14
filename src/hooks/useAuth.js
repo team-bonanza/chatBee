@@ -19,6 +19,7 @@ export default function useAuth() {
         setLoading(false);
         setError(serverError);
       });
+    return;
   }
 
   function signIn(values) {
@@ -34,6 +35,7 @@ export default function useAuth() {
         setLoading(false);
         setError(serverError);
       });
+    return;
   }
 
   function errorReset() {
