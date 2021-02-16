@@ -128,10 +128,26 @@ const copy_icon_styles = StyleSheet.create({
     height: 55,
   },
   iconOut: {
+    bottom:-50,
+    position: 'relative',
+    margin: 5,
+    justifyContent: 'center',
+  },
+  modalIconOut:{
     bottom: -50,
     position: 'relative',
     margin: 5,
     justifyContent: 'center',
+    alignSelf:'center',
+
+  },
+  settingsIcon:{
+    justifyContent: 'center',
+    flexDirection: 'row',
+    alignSelf: 'flex-end',
+    bottom:-200,
+    right:-150,
+    color:'#FFA643'
   },
   input: {
     width: deviceSize.width / 2,
@@ -146,6 +162,7 @@ const copy_icon_styles = StyleSheet.create({
   },
 });
 
+
 export {
   beeView_style,
   beeButton_style,
@@ -153,4 +170,5 @@ export {
   beeInput_styles,
   login_container_styles,
   copy_icon_styles,
+  
 };
