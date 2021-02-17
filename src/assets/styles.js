@@ -207,26 +207,41 @@ const home_page_styles = StyleSheet.create({
     backgroundColor: '#f0f0f0',
     borderRadius: 10,
   },
-  iconOut: {
-    margin: 15,
-    justifyContent: 'center',
-    alignSelf: 'center',
-    position: 'relative',
-    bottom:-60
-
-  },
 
   settingsIcon: {
     color: '#FFA643',
     margin: 15,
   },
-
-  modalIconOut: {
-    bottom: -50,
-    position: 'relative',
-    margin: 5,
+  closingContainer: {
+    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'flex-end',
+    alignContent: 'flex-end',
+    alignItems: 'flex-end',
+    marginBottom: 5,
+    paddingBottom: 5,
+  },
+  closingIcon: {},
+  signOutContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    alignContent: 'center',
     justifyContent: 'center',
-    alignSelf: 'center',
+    marginTop: 5,
+    padding: 5,
+    backgroundColor: '#ff0000',
+    borderRadius: 5,
+    width: deviceSize.width / 3,
+  },
+  signOutIcon: {
+    marginRight: 5,
+    paddingRight: 5,
+  },
+  signOutText: {
+    marginRight: 5,
+    paddingRight: 5,
+    color: '#fff',
+    fontFamily: differentFont,
   },
 });
 

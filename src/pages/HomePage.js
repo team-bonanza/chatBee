@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput,StyleSheet, Dimensions} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import BeeView from '../components/BeeView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -38,7 +38,9 @@ function HomePage({navigation}) {
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
           <Text style={home_page_styles.input}>ODA OLUŞTUR</Text>
-          <TouchableOpacity style={home_page_styles.iconCopy} onPress={()=>navigation.navigate('Lobby')}>
+          <TouchableOpacity
+            style={home_page_styles.iconCopy}
+            onPress={() => navigation.navigate('Lobby')}>
             <Icons name="arrow-right" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -64,26 +66,28 @@ function HomePage({navigation}) {
         </TouchableOpacity>
       </View>
       <View>
-        <Modal isVisible={isModalVisible}
-        
-        
-        
-        >
-          <View >
+        <Modal isVisible={isModalVisible}>
+          <View style={home_page_styles.closingContainer}>
+            <TouchableOpacity
+              onPress={toggleModal}
+              style={home_page_styles.closingIcon}>
+              <Entypo name="circle-with-cross" size={30} color={'#fff'} />
+            </TouchableOpacity>
+          </View>
+          <View style={{flex: 3}}>
             <ModalPage
               loading={loading}
               onLogin={() => navigation.navigate('Home Page')}
             />
-            <TouchableOpacity
-              onPress={toggleModal}
-              style={home_page_styles.modalIconOut}>
-              <Entypo name="circle-with-cross" size={50} color={'#fff'} />
-            </TouchableOpacity>
-            <TouchableOpacity
-              onPress={() => signOut()}
-              style={home_page_styles.iconOut}>
-              <FontAwesome name="sign-out" size={30} color={'white'} />
-            </TouchableOpacity>
+
+            <View style={home_page_styles.signOutContainer}>
+              <TouchableOpacity
+                onPress={() => signOut()}
+                style={home_page_styles.signOutIcon}>
+                <FontAwesome name="sign-out" size={30} color={'white'} />
+              </TouchableOpacity>
+              <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
+            </View>
           </View>
         </Modal>
       </View>
@@ -91,6 +95,5 @@ function HomePage({navigation}) {
     </BeeView>
   );
 }
-
 
 export {HomePage};
