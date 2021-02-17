@@ -110,6 +110,37 @@ const beeInput_styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+const login_page_styles = StyleSheet.create({
+  backgroundVideo: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    bottom: 0,
+    right: 0,
+    alignItems: 'stretch',
+  },
+  googleSign: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    color: '#333',
+    backgroundColor: '#f0f0f0',
+    borderWidth: 2,
+    borderColor: 'white',
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
+    textAlignVertical: 'center',
+    elevation: 10,
+  },
+  googleSignIcon: {
+    padding: 5,
+  },
+  googleSignText: {
+    padding: 5,
+  },
+});
+
 const home_page_styles = StyleSheet.create({
   photoContianer: {
     flex: 2,
@@ -191,5 +222,6 @@ export {
   beeButtonOutline_style,
   beeInput_styles,
   login_container_styles,
+  login_page_styles,
   home_page_styles,
 };

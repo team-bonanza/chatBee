@@ -1,13 +1,18 @@
 import React, {useState, useEffect} from 'react';
-import {Text, StyleSheet, Alert, Dimensions, Button} from 'react-native';
+import {Text, Alert, TouchableOpacity} from 'react-native';
 import BeeView from '../components/BeeView';
 import {useNavigation} from '@react-navigation/native';
 import LoginContainer from '../components/Login/LoginContainer';
-import useAuth from '../hooks/useAuth';
+import {login_page_styles} from '../assets/styles';
 import Video from 'react-native-video';
+import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
+
+import {LoadingProvider} from '../components/Loading/LoadingProvider';
+
+import useAuth from '../hooks/useAuth';
 import auth from '@react-native-firebase/auth';
 import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
-import {LoadingProvider} from '../components/Loading/LoadingProvider';
+
 //TODO: loading screen
 //TODO: google sigin için hooks .
 //TODO: google button
@@ -104,7 +109,7 @@ const LoginPage = () => {
     <BeeView>
       <Video
         source={require('../assets/chatbee-video.mp4')}
-        style={styles.backgroundVideo}
+        style={login_page_styles.backgroundVideo}
         muted={true}
         repeat={true}
         resizeMode={'cover'}
@@ -116,19 +121,20 @@ const LoginPage = () => {
         onSubmit={handleSubmit}
         onRegister={handleRegister}
       />
-      <Button title="Google Sign-In" onPress={signGoogle} />
+      <TouchableOpacity
+        style={login_page_styles.googleSign}
+        onPress={signGoogle}>
+        <Icon
+          name="google"
+          size={25}
+          style={login_page_styles.googleSignIcon}
+        />
+        <Text style={login_page_styles.googleSignText}>
+          Sign in with Google
+        </Text>
+      </TouchableOpacity>
     </BeeView>
   );
 };
-const styles = StyleSheet.create({
-  backgroundVideo: {
-    position: 'absolute',
-    top: 0,
-    left: 0,
-    bottom: 0,
-    right: 0,
-    alignItems: 'stretch',
-  },
-});
 
 export {LoginPage};
