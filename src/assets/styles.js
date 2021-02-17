@@ -110,14 +110,33 @@ const beeInput_styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
-const copy_icon_styles = StyleSheet.create({
+const home_page_styles = StyleSheet.create({
+  photoContianer: {
+    flex: 2,
+    justifyContent: 'center',
+  },
+
+  photo: {
+    height: 100,
+    width: 100,
+    borderRadius: 100,
+    backgroundColor: 'red',
+  },
+
   container: {
+    flex: 2,
+    flexDirection: 'column',
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+    margin: 10,
+  },
+  inputArea: {
     flexDirection: 'row',
+    margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
-
-    margin: 5,
   },
+
   iconCopy: {
     justifyContent: 'center',
     flexDirection: 'column',
@@ -127,27 +146,25 @@ const copy_icon_styles = StyleSheet.create({
     borderTopRightRadius: 5,
     height: 55,
   },
-  iconOut: {
-    bottom:-50,
-    position: 'relative',
-    margin: 5,
-    justifyContent: 'center',
-  },
-  modalIconOut:{
+
+  modalIconOut: {
     bottom: -50,
     position: 'relative',
     margin: 5,
     justifyContent: 'center',
-    alignSelf:'center',
-
+    alignSelf: 'center',
   },
-  settingsIcon:{
-    justifyContent: 'center',
+  buttons: {
+    flex: 1,
     flexDirection: 'row',
-    alignSelf: 'flex-end',
-    bottom:-200,
-    right:-150,
-    color:'#FFA643'
+    alignContent: 'space-between',
+  },
+  iconOut: {
+    margin: 15,
+  },
+  settingsIcon: {
+    color: '#FFA643',
+    margin: 15,
   },
   input: {
     width: deviceSize.width / 2,
@@ -162,13 +179,11 @@ const copy_icon_styles = StyleSheet.create({
   },
 });
 
-
 export {
   beeView_style,
   beeButton_style,
   beeButtonOutline_style,
   beeInput_styles,
   login_container_styles,
-  copy_icon_styles,
-  
+  home_page_styles,
 };
