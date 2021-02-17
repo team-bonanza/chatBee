@@ -19,6 +19,7 @@ function Router() {
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Sign Up" component={SignUpPage} />
         <Stack.Screen name="Home Page" component={HomePage} />
+        <Stack.Screen name="Lobby" component={Lobby} />
       </Stack.Navigator>
     </NavigationContainer>
   );

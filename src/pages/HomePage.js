@@ -1,9 +1,10 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput,StyleSheet, Dimensions} from 'react-native';
 import BeeView from '../components/BeeView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
+import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import {home_page_styles} from '../assets/styles';
 import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
@@ -37,8 +38,8 @@ function HomePage({navigation}) {
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
           <Text style={home_page_styles.input}>ODA OLUŞTUR</Text>
-          <TouchableOpacity style={home_page_styles.iconCopy}>
-            <Ionicons name="copy-outline" size={30} color={'#fff'} />
+          <TouchableOpacity style={home_page_styles.iconCopy} onPress={()=>navigation.navigate('Lobby')}>
+            <Icons name="arrow-right" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
         <View style={home_page_styles.inputArea}>
@@ -48,16 +49,11 @@ function HomePage({navigation}) {
             style={home_page_styles.input}
           />
           <TouchableOpacity style={home_page_styles.iconCopy}>
-            <Ionicons name="ios-checkbox" size={30} color={'#fff'} />
+            <Icons name="check-circle-outline" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
       </View>
       <View style={home_page_styles.buttons}>
-        <TouchableOpacity
-          onPress={() => signOut()}
-          style={home_page_styles.iconOut}>
-          <FontAwesome name="sign-out" size={30} color={'#00509D'} />
-        </TouchableOpacity>
         <TouchableOpacity style={home_page_styles.settingsIcon}>
           <Ionicons
             name="settings"
@@ -68,8 +64,12 @@ function HomePage({navigation}) {
         </TouchableOpacity>
       </View>
       <View>
-        <Modal isVisible={isModalVisible}>
-          <View>
+        <Modal isVisible={isModalVisible}
+        
+        
+        
+        >
+          <View >
             <ModalPage
               loading={loading}
               onLogin={() => navigation.navigate('Home Page')}
@@ -79,6 +79,11 @@ function HomePage({navigation}) {
               style={home_page_styles.modalIconOut}>
               <Entypo name="circle-with-cross" size={50} color={'#fff'} />
             </TouchableOpacity>
+            <TouchableOpacity
+              onPress={() => signOut()}
+              style={home_page_styles.iconOut}>
+              <FontAwesome name="sign-out" size={30} color={'white'} />
+            </TouchableOpacity>
           </View>
         </Modal>
       </View>
@@ -86,5 +91,6 @@ function HomePage({navigation}) {
     </BeeView>
   );
 }
+
 
 export {HomePage};

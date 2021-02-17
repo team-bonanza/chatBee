@@ -209,6 +209,11 @@ const home_page_styles = StyleSheet.create({
   },
   iconOut: {
     margin: 15,
+    justifyContent: 'center',
+    alignSelf: 'center',
+    position: 'relative',
+    bottom:-60
+
   },
 
   settingsIcon: {
