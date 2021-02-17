@@ -165,11 +165,26 @@ const home_page_styles = StyleSheet.create({
     justifyContent: 'flex-start',
     margin: 10,
   },
+
   inputArea: {
     flexDirection: 'row',
     margin: 5,
     alignItems: 'center',
     justifyContent: 'center',
+  },
+
+  input: {
+    width: deviceSize.width / 2,
+    borderWidth: 2,
+    borderColor: '#00509D',
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5,
+    height: 55,
+    paddingLeft: 10,
+    color: '#333666',
+    textAlignVertical: 'center',
+    backgroundColor: '#f0f0f0',
+    fontFamily: differentFont,
   },
 
   iconCopy: {
@@ -182,13 +197,6 @@ const home_page_styles = StyleSheet.create({
     height: 55,
   },
 
-  modalIconOut: {
-    bottom: -50,
-    position: 'relative',
-    margin: 5,
-    justifyContent: 'center',
-    alignSelf: 'center',
-  },
   buttons: {
     flexDirection: 'row',
     alignContent: 'space-between',
@@ -202,20 +210,18 @@ const home_page_styles = StyleSheet.create({
   iconOut: {
     margin: 15,
   },
+
   settingsIcon: {
     color: '#FFA643',
     margin: 15,
   },
-  input: {
-    width: deviceSize.width / 2,
-    borderWidth: 2,
-    borderColor: '#00509D',
-    borderBottomLeftRadius: 5,
-    borderTopLeftRadius: 5,
-    height: 55,
-    paddingLeft: 10,
-    color: '#333666',
-    textAlignVertical: 'center',
+
+  modalIconOut: {
+    bottom: -50,
+    position: 'relative',
+    margin: 5,
+    justifyContent: 'center',
+    alignSelf: 'center',
   },
 });
 
