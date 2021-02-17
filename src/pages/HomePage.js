@@ -1,14 +1,6 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Button,
-  StyleSheet,
-} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import BeeView from '../components/BeeView';
-import BeeInput from '../components/BeeInput';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -17,7 +9,6 @@ import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
 import Modal from 'react-native-modal';
-import SignUpContainer from '../components/SignUpPages/SignUpContainer';
 import ModalPage from '../components/modal/ModalPage';
 
 function HomePage({navigation}) {
@@ -67,12 +58,14 @@ function HomePage({navigation}) {
           style={home_page_styles.iconOut}>
           <FontAwesome name="sign-out" size={30} color={'#00509D'} />
         </TouchableOpacity>
-        <Ionicons
-          name="settings"
-          size={30}
-          onPress={toggleModal}
-          style={home_page_styles.settingsIcon}
-        />
+        <TouchableOpacity style={home_page_styles.settingsIcon}>
+          <Ionicons
+            name="settings"
+            size={30}
+            color={'#FFA643'}
+            onPress={toggleModal}
+          />
+        </TouchableOpacity>
       </View>
       <View>
         <Modal isVisible={isModalVisible}>

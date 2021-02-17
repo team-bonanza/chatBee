@@ -121,6 +121,7 @@ const home_page_styles = StyleSheet.create({
     width: 100,
     borderRadius: 100,
     backgroundColor: 'red',
+    elevation: 15,
   },
 
   container: {
@@ -155,9 +156,14 @@ const home_page_styles = StyleSheet.create({
     alignSelf: 'center',
   },
   buttons: {
-    flex: 1,
     flexDirection: 'row',
     alignContent: 'space-between',
+    marginBottom: 20,
+    elevation: 10,
+    borderWidth: 2,
+    borderColor: 'white',
+    backgroundColor: '#f0f0f0',
+    borderRadius: 10,
   },
   iconOut: {
     margin: 15,
