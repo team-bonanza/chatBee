@@ -135,9 +135,12 @@ const login_page_styles = StyleSheet.create({
   },
   googleSignIcon: {
     padding: 5,
+    color: colors.BUTTON_DARK_HOVER,
   },
   googleSignText: {
     padding: 5,
+    color: colors.BUTTON_DARK,
+    fontFamily: differentFont,
   },
 });
 
