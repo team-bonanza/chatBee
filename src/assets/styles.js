@@ -244,6 +244,91 @@ const home_page_styles = StyleSheet.create({
     fontFamily: differentFont,
   },
 });
+const lobby_container_styles = StyleSheet.create({
+  logoContainer: {
+    flex: 1,
+    alignItems: 'center',
+  },
+  logo: {
+    width: 60,
+    height: 60,
+  },
+  inputCopy: {
+    flexDirection: 'row',
+    margin: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+
+  input: {
+    width: deviceSize.width / 2,
+    borderWidth: 2,
+    borderColor: '#00509D',
+    borderBottomLeftRadius: 5,
+    borderTopLeftRadius: 5,
+    height: 55,
+    paddingLeft: 10,
+    color: '#333666',
+    textAlignVertical: 'center',
+    backgroundColor: '#f0f0f0',
+    fontFamily: differentFont,
+  },
+  iconCopy: {
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignSelf: 'center',
+    backgroundColor: '#00509D',
+    borderBottomRightRadius: 5,
+    borderTopRightRadius: 5,
+    height: 55,
+  },
+
+  buttonOrange: {
+    height: 70,
+    width: 70,
+    borderRadius: 100,
+    backgroundColor: 'orange',
+    elevation: 15,
+    marginRight: 10,
+  },
+
+  phContainer: {
+    backgroundColor:'#f0f0f0',
+    borderWidth:2,
+    borderRadius:10,
+    borderColor:'white',
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginBottom: 5,
+    padding: 5,
+    elevation:15,
+  },
+  buttonYellow: {
+    height: 70,
+    width: 70,
+    borderRadius: 100,
+    backgroundColor: 'green',
+    elevation: 15,
+    marginLeft: 10,
+  },
+  iconHour:{
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignSelf: 'center',
+    height: 70,
+    
+  },
+  iconCheck:{
+    justifyContent: 'center',
+    flexDirection: 'column',
+    alignSelf: 'center',
+    height:70
+    
+    
+
+  }
+});
 
 export {
   beeView_style,
@@ -253,4 +338,5 @@ export {
   login_container_styles,
   login_page_styles,
   home_page_styles,
+  lobby_container_styles,
 };
