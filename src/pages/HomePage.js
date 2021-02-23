@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import BeeView from '../components/BeeView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
 import Entypo from 'react-native-vector-icons/Entypo';
@@ -11,6 +11,7 @@ import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
 import Modal from 'react-native-modal';
 import ModalPage from '../components/modal/ModalPage';
+import ImagePicker from 'react-native-image-picker';
 
 function HomePage({navigation}) {
   const {loading} = useAuth();
@@ -32,8 +33,13 @@ function HomePage({navigation}) {
 
   return (
     <BeeView>
-      <View style={home_page_styles.photoContianer}>
-        <View style={home_page_styles.photo}></View>
+      <View style={home_page_styles.photoMainContianer}>
+        <View style={home_page_styles.photoContianer}>
+          <Image
+            source={{uri: auth().currentUser.photoURL}}
+            style={home_page_styles.photo}
+          />
+        </View>
       </View>
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
