@@ -40,6 +40,11 @@ function HomePage({navigation}) {
             style={home_page_styles.photo}
           />
         </View>
+        <View style={home_page_styles.displayNameContianer}>
+          <Text style={home_page_styles.displayName}>
+            {auth().currentUser.displayName}
+          </Text>
+        </View>
       </View>
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
@@ -61,7 +66,19 @@ function HomePage({navigation}) {
           </TouchableOpacity>
         </View>
       </View>
+
       <View style={home_page_styles.buttons}>
+        <View style={home_page_styles.signOutContainer}>
+          <TouchableOpacity
+            onPress={() => signOut()}
+            style={home_page_styles.signOutIcon}>
+            <FontAwesome name="sign-out" size={30} color={'white'} />
+          </TouchableOpacity>
+          <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
+        </View>
+      </View>
+
+      {/* <View style={home_page_styles.buttons}>
         <TouchableOpacity style={home_page_styles.settingsIcon}>
           <Ionicons
             name="settings"
@@ -70,7 +87,7 @@ function HomePage({navigation}) {
             onPress={toggleModal}
           />
         </TouchableOpacity>
-      </View>
+      </View> */}
       <View>
         <Modal isVisible={isModalVisible}>
           <View style={home_page_styles.closingContainer}>

@@ -150,7 +150,7 @@ const home_page_styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: 100,
-    width: 100,
+    width: deviceSize.width,
     borderRadius: 100,
   },
   photoContianer: {
@@ -162,12 +162,20 @@ const home_page_styles = StyleSheet.create({
 
   photo: {
     alignSelf: 'center',
-
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
     height: 150,
     width: 150,
     borderRadius: 100,
+  },
+  displayNameContianer: {
+    marginTop: 10,
+    backgroundColor: '#efe2e0',
+    padding: 10,
+    borderRadius: 10,
+  },
+  displayName: {
+    color: '#333',
   },
 
   container: {
