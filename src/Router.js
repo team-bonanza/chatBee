@@ -2,26 +2,46 @@ import React from 'react';
 import {
   LoginPage,
   HomePage,
+  LobbyScreen,
   ProfilePage,
-  Lobby,
-  Room,
   SignUpPage,
+  JoinScreen,
+  RoomScreen,
 } from './pages';
-import {createStackNavigator} from '@react-navigation/stack';
 import {NavigationContainer} from '@react-navigation/native';
+import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
+
+function CallStack() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Call" component={LobbyScreen} />
+      <Stack.Screen name="Room" component={RoomScreen} />
+      <Stack.Screen name="Join" component={JoinScreen} />
+    </Stack.Navigator>
+  );
+}
+
+function HomeStack() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Login" component={LoginPage} />
+      <Stack.Screen name="Sign Up" component={SignUpPage} />
+      <Stack.Screen name="Home Page" component={HomePage} />
+      <Stack.Screen name="Lobby" component={CallStack} />
+    </Stack.Navigator>
+  );
+}
 
 function Router() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{header: () => null}}>
-        <Stack.Screen name="Login" component={LoginPage} />
-        <Stack.Screen name="Sign Up" component={SignUpPage} />
-        <Stack.Screen name="Home Page" component={HomePage} />
-        <Stack.Screen name="Lobby" component={Lobby} />
+      <Stack.Navigator>
+        <Stack.Screen name="Home Stack" component={HomeStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
 export default Router;

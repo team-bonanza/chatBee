@@ -1,5 +1,5 @@
 import React from 'react';
-import {View, Text, Alert, Dimensions, ActivityIndicator} from 'react-native';
+import {View, Text, Alert, Dimensions} from 'react-native';
 import {useNavigation} from '@react-navigation/native';
 import useAuth from '../hooks/useAuth';
 import BeeView from '../components/BeeView';
@@ -16,7 +16,6 @@ export function SignUpPage(props) {
     error,
     response,
     signUp,
-    _,
     errorReset,
     responseReset,
   } = useAuth();
