@@ -23,7 +23,8 @@ function HomePage({navigation}) {
   function signOut() {
     auth()
       .signOut()
-      .then(() => navigation.navigate('Login'));
+      .then(() => navigation.navigate('Login'))
+      .then(() => setModalVisible(false));
   }
 
   if (loading) {
@@ -33,7 +34,7 @@ function HomePage({navigation}) {
   return (
     <BeeView>
       <View style={home_page_styles.photoContianer}>
-        <View style={home_page_styles.photo}></View>
+        <View style={home_page_styles.photo} />
       </View>
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
@@ -82,16 +83,16 @@ function HomePage({navigation}) {
 
             <View style={home_page_styles.signOutContainer}>
               <TouchableOpacity
-                onPress={() => signOut()}
+                onPress={signOut}
                 style={home_page_styles.signOutIcon}>
                 <FontAwesome name="sign-out" size={30} color={'white'} />
+                <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
               </TouchableOpacity>
-              <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
             </View>
           </View>
         </Modal>
       </View>
-      <View></View>
+      <View />
     </BeeView>
   );
 }

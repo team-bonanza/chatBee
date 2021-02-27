@@ -236,6 +236,7 @@ const home_page_styles = StyleSheet.create({
   signOutIcon: {
     marginRight: 5,
     paddingRight: 5,
+    flexDirection: 'row',
   },
   signOutText: {
     marginRight: 5,
