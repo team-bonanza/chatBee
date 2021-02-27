@@ -3,6 +3,7 @@ import {View, Text, Image, TextInput, TouchableOpacity} from 'react-native';
 import BeeView from '../components/BeeView';
 import {lobby_container_styles} from '../assets/styles';
 import Ionicons from 'react-native-vector-icons/Ionicons';
+import LobbyContainer from '../components/Lobby/LobbyContainer';
 
 //TODO: En üstteki View BeeView olacak. unutma
 
@@ -26,9 +27,13 @@ function Lobby() {
               placeholderTextColor="#333666"
               style={lobby_container_styles.input}
             />
+
             <TouchableOpacity style={lobby_container_styles.iconCopy}>
               <Ionicons name="copy-outline" size={30} color={'#fff'} />
             </TouchableOpacity>
+          </View>
+          <View>
+            <LobbyContainer />
           </View>
         </View>
         <View style={lobby_container_styles.phContainer}>
@@ -42,7 +47,7 @@ function Lobby() {
 
           <View>
             <View style={lobby_container_styles.buttonYellow}>
-              <TouchableOpacity style={lobby_container_styles.iconCheck} >
+              <TouchableOpacity style={lobby_container_styles.iconCheck}>
                 <Ionicons name="md-checkmark-sharp" size={40} color={'#fff'} />
               </TouchableOpacity>
             </View>
