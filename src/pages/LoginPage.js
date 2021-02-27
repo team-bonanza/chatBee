@@ -45,7 +45,6 @@ const LoginPage = () => {
 
   async function handleSubmit(values) {
     await signIn(values);
-    //navigation.navigate('Home Page');
   }
 
   function handleRegister() {
@@ -56,15 +55,8 @@ const LoginPage = () => {
     return <LoadingProvider />;
   }
 
-  // if (loading) {
-  //   setTimeout(() => {
-  //     Alert.alert('UYARI VERİYORUM');
-  //   }, 3000);
-  // }
-
-  if (response) {
+  if (response && !error) {
     navigation.navigate('Home Page');
-    //responseReset();
   }
   if (error) {
     Alert.alert('ChatBee', error.message);
@@ -84,9 +76,9 @@ const LoginPage = () => {
       await auth()
         .signInWithCredential(credential)
         .then(() => navigation.navigate('Home Page'));
-    } catch (error) {
-      if (error.code) {
-        Alert.alert('Error', error.code);
+    } catch (googleError) {
+      if (googleError.code) {
+        Alert.alert('Error', googleError.code);
       }
     }
   };
