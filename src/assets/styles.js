@@ -345,7 +345,9 @@ const lobby_container_styles = StyleSheet.create({
     height: 70,
   },
   card:{
-    justifyContent:'center',
+    margin:10,
+    padding:10,
+    alignContent:'center',
     alignItems: 'center',
     width: deviceSize.width/2.5,
     borderRadius:10,
@@ -357,9 +359,12 @@ const lobby_container_styles = StyleSheet.create({
     height: 80,
     borderRadius: 80,
     elevation: 20,
+    
   },
 
   photo: {
+
+    justifyContent:'center',
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
     height: 80,
@@ -374,6 +379,10 @@ const lobby_container_styles = StyleSheet.create({
   },
   displayName: {
     color: '#333',
+  },
+  photoMainContianer: {
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   
   

@@ -15,12 +15,12 @@ export default function LobbyContainer() {
                   source={{uri:auth().currentUser.photoURL}}
                   style={lobby_container_styles.photo}
                   />
+                  </View>
                   <View style={lobby_container_styles.displayNameContianer}>
                       <Text style={lobby_container_styles.displayName}>
                           {auth().currentUser.displayName}
                       </Text>
                   </View>
-              </View>
           </View>
           
       </View>
