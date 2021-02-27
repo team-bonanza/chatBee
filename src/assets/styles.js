@@ -347,11 +347,11 @@ const lobby_container_styles = StyleSheet.create({
   card:{
     margin:10,
     padding:10,
-    alignContent:'center',
-    alignItems: 'center',
+    justifyContent:'center',
+    alignItems:'center',
     width: deviceSize.width/2.5,
     borderRadius:10,
-    backgroundColor: 'rgba(100, 250,250, 1.5)',
+    backgroundColor: 'rgba(250, 250,250, 0.5)',
   },
 
   photoContianer: {
@@ -364,7 +364,6 @@ const lobby_container_styles = StyleSheet.create({
 
   photo: {
 
-    justifyContent:'center',
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
     height: 80,
