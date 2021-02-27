@@ -15,7 +15,7 @@ const Stack = createStackNavigator();
 function Router() {
   return (
     <NavigationContainer>
-      <Stack.Navigator screenOptions={{header: () => null}}>
+      <Stack.Navigator screenOptions={{headerShown: false}}>
         <Stack.Screen name="Login" component={LoginPage} />
         <Stack.Screen name="Sign Up" component={SignUpPage} />
         <Stack.Screen name="Home Page" component={HomePage} />

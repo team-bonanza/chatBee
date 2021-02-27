@@ -18,6 +18,9 @@ import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
 //TODO: google button
 
 const LoginPage = () => {
+  const [loggedIn, setloggedIn] = useState(false);
+  const [user, setUser] = useState([]);
+
   const navigation = useNavigation();
   const {
     loading,
@@ -56,8 +59,6 @@ const LoginPage = () => {
     Alert.alert('ChatBee', error.message);
     errorReset();
   }
-  const [loggedIn, setloggedIn] = useState(false);
-  const [user, setUser] = useState([]);
 
   const signGoogle = async () => {
     try {
@@ -73,18 +74,8 @@ const LoginPage = () => {
         .signInWithCredential(credential)
         .then(() => navigation.navigate('Home Page'));
     } catch (error) {
-      if (error.code === statusCodes.SIGN_IN_CANCELLED) {
-        // user cancelled the login flow
-        alert('Cancel');
-      } else if (error.code === statusCodes.IN_PROGRESS) {
-        alert('Signin in progress');
-        // operation (f.e. sign in) is in progress already
-      } else if (error.code === statusCodes.PLAY_SERVICES_NOT_AVAILABLE) {
-        alert('PLAY_SERVICES_NOT_AVAILABLE');
-        // play services not available or outdated
-      } else {
-        console.log(error);
-        alert(error);
+      if (error.code) {
+        Alert.alert('Error', error.code);
       }
     }
   };
