@@ -19,7 +19,7 @@ const configuration = {
 };
 
 function RoomScreen({navigation, route}) {
-  const {id: roomId} = route.params;
+  const {id: uniqueId} = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {

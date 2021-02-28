@@ -16,7 +16,7 @@ const Stack = createStackNavigator();
 function CallStack() {
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="Call" component={LobbyScreen} />
+      <Stack.Screen name="Home Page" component={HomePage} />
       <Stack.Screen name="Room" component={RoomScreen} />
       <Stack.Screen name="Join" component={JoinScreen} />
     </Stack.Navigator>
@@ -28,8 +28,7 @@ function HomeStack() {
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Login" component={LoginPage} />
       <Stack.Screen name="Sign Up" component={SignUpPage} />
-      <Stack.Screen name="Home Page" component={HomePage} />
-      <Stack.Screen name="Lobby" component={CallStack} />
+      <Stack.Screen name="Home Page" component={CallStack} />
     </Stack.Navigator>
   );
 }
@@ -38,7 +37,7 @@ function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="Home Stack" component={HomeStack} />
+        <Stack.Screen name="HomeStack" component={HomeStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
