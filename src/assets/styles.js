@@ -347,6 +347,49 @@ const lobby_container_styles = StyleSheet.create({
     alignSelf: 'center',
     height: 70,
   },
+  card:{
+    margin:10,
+    padding:10,
+    justifyContent:'center',
+    alignItems:'center',
+    width: deviceSize.width/2.5,
+    borderRadius:10,
+    backgroundColor: 'rgba(250, 250,250, 0.5)',
+  },
+
+  photoContianer: {
+    width: 80,
+    height: 80,
+    borderRadius: 80,
+    elevation: 20,
+    
+  },
+
+  photo: {
+
+    borderWidth: 2,
+    borderColor: colors.BUTTON_DARK,
+    height: 80,
+    width: 80,
+    borderRadius: 80,
+  },
+  displayNameContianer: {
+    marginTop: 10,
+    backgroundColor: '#efe2e0',
+    padding: 10,
+    borderRadius: 10,
+  },
+  displayName: {
+    color: '#333',
+  },
+  photoMainContianer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  
+
+  
 });
 
 export {
