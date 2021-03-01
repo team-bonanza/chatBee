@@ -17,6 +17,7 @@ function CallStack() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Home Page" component={HomePage} />
+      <Stack.Screen name="Lobby" component={LobbyScreen} />
       <Stack.Screen name="Room" component={RoomScreen} />
       <Stack.Screen name="Join" component={JoinScreen} />
     </Stack.Navigator>
@@ -37,7 +38,7 @@ function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="HomeStack" component={CallStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

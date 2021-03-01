@@ -33,12 +33,11 @@ function HomePage({navigation}) {
     return <LoadingProvider />;
   }
 
-  function onNavigate(screen) {
-    if (screen == 'Room') {
-      navigation.navigate(screen, {id: uniqueId});
-    } else {
-      navigation.navigate(screen, {id: roomId});
-    }
+  function onNavigateToRoom(screen) {
+    navigation.navigate(screen, {id: uniqueId, toScreen: 'Room'});
+  }
+  function onNavigateToJoin(screen) {
+    navigation.navigate(screen, {id: roomId, toScreen: 'Join'});
   }
 
   function createUniqueId() {
@@ -62,7 +61,7 @@ function HomePage({navigation}) {
           <Text style={home_page_styles.input}>{uniqueId}</Text>
           <TouchableOpacity
             style={home_page_styles.iconCopy}
-            onPress={() => onNavigate('Room')}>
+            onPress={() => onNavigateToRoom('Lobby')}>
             <Icons name="arrow-right" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -76,7 +75,7 @@ function HomePage({navigation}) {
           />
           <TouchableOpacity
             style={home_page_styles.iconCopy}
-            onPress={() => onNavigate('Join')}>
+            onPress={() => onNavigateToJoin('Lobby')}>
             <Icons name="check-circle-outline" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -101,10 +100,10 @@ function HomePage({navigation}) {
             </TouchableOpacity>
           </View>
           <View style={{flex: 3}}>
-            <ModalPage
+            {/* <ModalPage
               loading={loading}
               onLogin={() => navigation.navigate('Home Page')}
-            />
+            /> */}
 
             <View style={home_page_styles.signOutContainer}>
               <TouchableOpacity
