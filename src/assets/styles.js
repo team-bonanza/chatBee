@@ -157,7 +157,7 @@ const home_page_styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 100,
-    elevation: 20,
+    elevation: 10,
   },
 
   photo: {
@@ -173,6 +173,7 @@ const home_page_styles = StyleSheet.create({
     backgroundColor: '#efe2e0',
     padding: 10,
     borderRadius: 10,
+    elevation: 10,
   },
   displayName: {
     color: '#333',
@@ -221,11 +222,11 @@ const home_page_styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'space-between',
     marginBottom: 20,
-    elevation: 10,
-    borderWidth: 2,
+    elevation: 5,
+    borderWidth: 3,
     borderColor: 'white',
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 5,
   },
 
   settingsIcon: {
@@ -241,17 +242,19 @@ const home_page_styles = StyleSheet.create({
     marginBottom: 5,
     paddingBottom: 5,
   },
-  closingIcon: {},
   signOutContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    marginTop: 5,
-    padding: 5,
-    backgroundColor: '#ff0000',
+    margin: 4,
+    padding: 4,
+    backgroundColor: '#e00000',
+    borderWidth: 3,
+    borderColor: 'red',
     borderRadius: 5,
     width: deviceSize.width / 3,
+    elevation: 5,
   },
   signOutIcon: {
     marginRight: 5,
