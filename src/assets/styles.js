@@ -17,6 +17,8 @@ const PHOTOCONTAINERCOLOR =
 const NAMEBACKGROUND =
   theme === 'dark' ? colors.BACKGROUND_LIGHT : colors.BACKGROUND_DARK;
 
+const ICONCOLOR = theme === 'dark' ? 'white' : '#00509D';
+
 // FONT UYGULAMASI
 const customTextProps = {
   style: {
@@ -156,7 +158,7 @@ const login_page_styles = StyleSheet.create({
 
 const home_page_styles = StyleSheet.create({
   photoMainContianer: {
-    flex: 2,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
     height: 100,
@@ -169,7 +171,7 @@ const home_page_styles = StyleSheet.create({
     width: 150,
     height: 150,
     borderRadius: 100,
-    elevation: 10,
+    elevation: 5,
     padding: 5,
   },
 
@@ -181,17 +183,17 @@ const home_page_styles = StyleSheet.create({
     width: 150,
     borderRadius: 100,
   },
-  displayNameContianer: {
+  displayNameContainer: {
     margin: 10,
-    backgroundColor: NAMEBACKGROUND,
+    backgroundColor: TEXT,
     borderWidth: 2,
     borderColor: PHOTOCONTAINERCOLOR,
     padding: 5,
     borderRadius: 10,
-    elevation: 10,
+    elevation: 5,
   },
   displayName: {
-    color: TEXT,
+    color: NAMEBACKGROUND,
   },
 
   container: {
@@ -220,7 +222,7 @@ const home_page_styles = StyleSheet.create({
   input: {
     width: deviceSize.width / 2,
     borderWidth: 2,
-    borderColor: '#00509D',
+    borderColor: ICONCOLOR,
     borderBottomLeftRadius: 5,
     borderTopLeftRadius: 5,
     height: 55,
@@ -238,10 +240,18 @@ const home_page_styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
-    backgroundColor: '#00509D',
+    //backgroundColor: '#00509D',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderRightWidth: 2,
+    borderTopWidth: 2,
+    borderColor: ICONCOLOR,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
     height: 55,
+  },
+  icon: {
+    color: ICONCOLOR,
   },
   buttonContainer: {
     flex: 2,
@@ -407,4 +417,5 @@ export {
   home_page_styles,
   lobby_container_styles,
   INPUTTEXT,
+  ICONCOLOR,
 };

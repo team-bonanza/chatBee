@@ -10,7 +10,7 @@ import {
 import BeeView from '../components/BeeView';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {home_page_styles, INPUTTEXT} from '../assets/styles';
+import {home_page_styles, INPUTTEXT, ICONCOLOR} from '../assets/styles';
 import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
@@ -72,7 +72,7 @@ function HomePage({navigation}) {
             style={home_page_styles.photo}
           />
         </View>
-        <View style={home_page_styles.displayNameContianer}>
+        <View style={home_page_styles.displayNameContainer}>
           <Text style={home_page_styles.displayName}>
             {auth().currentUser.displayName}
           </Text>
@@ -87,7 +87,7 @@ function HomePage({navigation}) {
           <TouchableOpacity
             style={home_page_styles.goToRoom}
             onPress={() => onNavigateToRoom('CallStack')}>
-            <Icons name="arrow-right" size={30} color={'#fff'} />
+            <Icons name="arrow-right" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
         <View style={home_page_styles.inputArea}>
@@ -101,7 +101,7 @@ function HomePage({navigation}) {
           <TouchableOpacity
             style={home_page_styles.goToRoom}
             onPress={() => onNavigateToJoin('CallStack')}>
-            <Icons name="check-circle-outline" size={30} color={'#fff'} />
+            <Icons name="check-circle-outline" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
       </View>

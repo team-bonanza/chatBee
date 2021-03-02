@@ -5,8 +5,8 @@ export default {
   BUTTON_LIGHT: '#243b55',
   BUTTON_LIGHT_HOVER: '#2C5364',
 
-  TEXTONE: '#444444',
-  TEXTTWO: '#ddd',
+  TEXTONE: '#2C5364',
+  TEXTTWO: '#fff',
 
   BACKGROUND_LIGHT: '#ddd',
   BACKGROUND_DARK: '#2C5364',
