@@ -145,17 +145,38 @@ const login_page_styles = StyleSheet.create({
 });
 
 const home_page_styles = StyleSheet.create({
-  photoContianer: {
+  photoMainContianer: {
     flex: 2,
+    alignItems: 'center',
     justifyContent: 'center',
+    height: 100,
+    width: deviceSize.width,
+    borderRadius: 100,
+  },
+  photoContianer: {
+    width: 150,
+    height: 150,
+    borderRadius: 100,
+    elevation: 10,
   },
 
   photo: {
-    height: 100,
-    width: 100,
+    alignSelf: 'center',
+    borderWidth: 2,
+    borderColor: colors.BUTTON_DARK,
+    height: 150,
+    width: 150,
     borderRadius: 100,
-    backgroundColor: 'red',
-    elevation: 15,
+  },
+  displayNameContianer: {
+    marginTop: 10,
+    backgroundColor: '#efe2e0',
+    padding: 10,
+    borderRadius: 10,
+    elevation: 10,
+  },
+  displayName: {
+    color: '#333',
   },
 
   container: {
@@ -201,11 +222,11 @@ const home_page_styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'space-between',
     marginBottom: 20,
-    elevation: 10,
-    borderWidth: 2,
+    elevation: 5,
+    borderWidth: 3,
     borderColor: 'white',
-    backgroundColor: '#f0f0f0',
-    borderRadius: 10,
+    backgroundColor: '#e0e0e0',
+    borderRadius: 5,
   },
 
   settingsIcon: {
@@ -221,17 +242,19 @@ const home_page_styles = StyleSheet.create({
     marginBottom: 5,
     paddingBottom: 5,
   },
-  closingIcon: {},
   signOutContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     alignContent: 'center',
     justifyContent: 'center',
-    marginTop: 5,
-    padding: 5,
-    backgroundColor: '#ff0000',
+    margin: 4,
+    padding: 4,
+    backgroundColor: '#e00000',
+    borderWidth: 3,
+    borderColor: 'red',
     borderRadius: 5,
     width: deviceSize.width / 3,
+    elevation: 5,
   },
   signOutIcon: {
     marginRight: 5,
@@ -293,16 +316,16 @@ const lobby_container_styles = StyleSheet.create({
   },
 
   phContainer: {
-    backgroundColor:'#f0f0f0',
-    borderWidth:2,
-    borderRadius:10,
-    borderColor:'white',
+    backgroundColor: '#f0f0f0',
+    borderWidth: 2,
+    borderRadius: 10,
+    borderColor: 'white',
     flexDirection: 'row',
     justifyContent: 'center',
     alignContent: 'center',
     marginBottom: 5,
     padding: 5,
-    elevation:15,
+    elevation: 15,
   },
   buttonYellow: {
     height: 70,
@@ -312,22 +335,61 @@ const lobby_container_styles = StyleSheet.create({
     elevation: 15,
     marginLeft: 10,
   },
-  iconHour:{
+  iconHour: {
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
     height: 70,
-    
   },
-  iconCheck:{
+  iconCheck: {
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
-    height:70
-    
-    
+    height: 70,
+  },
+  card:{
+    margin:10,
+    padding:10,
+    justifyContent:'center',
+    alignItems:'center',
+    width: deviceSize.width/2.5,
+    borderRadius:10,
+    backgroundColor: 'rgba(250, 250,250, 0.5)',
+  },
 
-  }
+  photoContianer: {
+    width: 80,
+    height: 80,
+    borderRadius: 80,
+    elevation: 20,
+    
+  },
+
+  photo: {
+
+    borderWidth: 2,
+    borderColor: colors.BUTTON_DARK,
+    height: 80,
+    width: 80,
+    borderRadius: 80,
+  },
+  displayNameContianer: {
+    marginTop: 10,
+    backgroundColor: '#efe2e0',
+    padding: 10,
+    borderRadius: 10,
+  },
+  displayName: {
+    color: '#333',
+  },
+  photoMainContianer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  
+  
+
+  
 });
 
 export {
