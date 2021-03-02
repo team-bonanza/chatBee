@@ -22,7 +22,7 @@ function HomePage({navigation}) {
   function signOut() {
     auth()
       .signOut()
-      .then(() => navigation.navigate('Login'));
+      .then(() => navigation.navigate('HomeStack'));
   }
 
   if (loading) {
@@ -73,10 +73,12 @@ function HomePage({navigation}) {
       </View>
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
-          <Text style={home_page_styles.input}>{uniqueId}</Text>
+          <Text style={home_page_styles.input} numberOfLines={1}>
+            {uniqueId}
+          </Text>
           <TouchableOpacity
             style={home_page_styles.iconCopy}
-            onPress={() => onNavigateToRoom('Lobby')}>
+            onPress={() => onNavigateToRoom('CallStack')}>
             <Icons name="arrow-right" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -90,7 +92,7 @@ function HomePage({navigation}) {
           />
           <TouchableOpacity
             style={home_page_styles.iconCopy}
-            onPress={() => onNavigateToJoin('Lobby')}>
+            onPress={() => onNavigateToJoin('CallStack')}>
             <Icons name="check-circle-outline" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -102,8 +104,8 @@ function HomePage({navigation}) {
             onPress={() => signOut()}
             style={home_page_styles.signOutIcon}>
             <FontAwesome name="sign-out" size={30} color={'white'} />
+            <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
           </TouchableOpacity>
-          <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
         </View>
       </View>
       <View />
