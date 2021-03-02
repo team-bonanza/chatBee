@@ -388,9 +388,47 @@ const lobby_screen_styles = StyleSheet.create({
   lobbyContainer: {
     padding: 10,
   },
+  buttonsMainContainer: {
+    width: deviceSize.width / 2,
+    position: 'relative',
+    //flex: 0.5,
+    borderRadius: 5,
+    marginBottom: 10,
+    padding: 5,
+    backgroundColor: LESSOPACITYCONTAINER,
+    elevation: 5,
+  },
   buttonsContainer: {
-    flex: 0.5,
-    backgroundColor: 'orange',
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 10,
+  },
+  hourglassContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0a500',
+    elevation: 5,
+  },
+  hourglassIcon: {
+    color: 'white',
+  },
+  checkContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#007965',
+    elevation: 5,
+  },
+  checkIcon: {
+    color: 'white',
   },
 });
 

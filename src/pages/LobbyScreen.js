@@ -1,13 +1,23 @@
 import React from 'react';
-import {Text, Image, Button, View, TouchableOpacity, Share} from 'react-native';
+import {
+  Text,
+  Image,
+  View,
+  TouchableOpacity,
+  Share,
+  Alert,
+  FlatList,
+} from 'react-native';
 
 import storage from '@react-native-firebase/storage';
+import {db} from '../utilities/firebase';
 
 import BeeView from '../components/BeeView';
 import {LobbyContainer} from '../components/Lobby';
 import {lobby_screen_styles} from '../assets/styles';
 
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
 
 import {logo} from '../assets/images';
@@ -41,12 +51,32 @@ function LobbyScreen({navigation, route}) {
 
   const copyToClipboard = () => {
     Clipboard.setString(id);
+    Alert.alert('Kopyalandı', 'Bunu kendi kendine kaybolan bi uyarı yapsak?!');
     console.log('Copy to clipboard');
   };
 
   function onNavigate(screen) {
     navigation.navigate(screen, {id: id});
   }
+
+  async function getUsers() {
+    const roomRef = await db
+      .collection('lobby')
+      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .get();
+    //roomRef.collection();
+    console.log('ANAN ANAN HATTA ANNEN ' + roomRef.data().user.displayName);
+  }
+
+  React.useEffect(() => {
+    getUsers();
+  }, []);
+
+  const renderComponent = ({data}) => {
+    return (
+      <LobbyContainer name={roomRef.data().user.displayName} data={data} />
+    );
+  };
 
   //TODO: Flatliste Gidecek Olan Component LobbyContainer
 
@@ -96,11 +126,38 @@ function LobbyScreen({navigation, route}) {
       <View style={lobby_screen_styles.listContainer}>
         <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
         <View style={lobby_screen_styles.lobbyContainer}>
-          <LobbyContainer />
+          <LobbyContainer
+            // photo={source={{uri: getUsers().photoURL}}}
+            name={getUsers().displayName}
+          />
+          <FlatList
+            keyExtractor={(item) => item.id.toString()}
+            data={getUsers}
+            renderItem={renderComponent}
+          />
         </View>
       </View>
-      <View style={lobby_screen_styles.buttonsContainer}>
-        <Text>Buttons</Text>
+      <View style={lobby_screen_styles.buttonsMainContainer}>
+        <View style={lobby_screen_styles.buttonsContainer}>
+          <TouchableOpacity
+            style={lobby_screen_styles.hourglassContainer}
+            onPress={() => copyToClipboard()}>
+            <MaterialIcons
+              style={lobby_screen_styles.hourglassIcon}
+              name="hourglass-full"
+              size={30}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={lobby_screen_styles.checkContainer}
+            onPress={() => copyToClipboard()}>
+            <Icons
+              style={lobby_screen_styles.checkIcon}
+              name="check-bold"
+              size={30}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
     </BeeView>
   );
