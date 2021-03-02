@@ -3,7 +3,6 @@ import {
   LoginPage,
   HomePage,
   LobbyScreen,
-  ProfilePage,
   SignUpPage,
   JoinScreen,
   RoomScreen,
@@ -38,7 +37,7 @@ function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={HomePage} />
+        <Stack.Screen name="HomeStack" component={HomeStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
