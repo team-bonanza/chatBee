@@ -19,7 +19,11 @@ const configuration = {
 };
 
 function JoinScreen({navigation, route}) {
-  const {id: roomId} = route.params;
+  const {
+    id: roomId,
+    roomRef: roomRef,
+    roomSnapshot: roomSnapshot,
+  } = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {
@@ -65,12 +69,6 @@ function JoinScreen({navigation, route}) {
   };
 
   const joinCall = async (id) => {
-    const roomRef = await db.collection('rooms').doc(id);
-    const roomSnapshot = await roomRef.get();
-
-    if (!roomSnapshot.exists) {
-      return;
-    }
     const localPC = new RTCPeerConnection(configuration);
     localPC.addStream(localStream);
 

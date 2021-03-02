@@ -38,7 +38,7 @@ function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={CallStack} />
+        <Stack.Screen name="HomeStack" component={HomePage} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -11,8 +11,13 @@ import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
 
 function LobbyScreen({navigation, route}) {
-  const {id: id} = route.params;
-  const {toScreen: toScreen} = route.params;
+  const {
+    id: id,
+    toScreen: toScreen,
+    roomRef: roomRef,
+    roomSnapshot: roomSnapshot,
+  } = route.params;
+
   const onShare = async () => {
     try {
       const result = await Share.share({

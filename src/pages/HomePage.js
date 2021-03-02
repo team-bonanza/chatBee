@@ -10,14 +10,18 @@ import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
 import Modal from 'react-native-modal';
-import ModalPage from '../components/modal/ModalPage';
 import UUIID from 'uuid-random';
+import {db} from '../utilities/firebase';
 
 function HomePage({navigation}) {
   const [uniqueId, setUniqueId] = React.useState('');
   const [roomId, setRoomId] = React.useState('');
   const {loading} = useAuth();
   const [isModalVisible, setModalVisible] = useState(false);
+
+  React.useEffect(() => {
+    createUniqueId();
+  }, []);
 
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
@@ -36,8 +40,21 @@ function HomePage({navigation}) {
   function onNavigateToRoom(screen) {
     navigation.navigate(screen, {id: uniqueId, toScreen: 'Room'});
   }
-  function onNavigateToJoin(screen) {
-    navigation.navigate(screen, {id: roomId, toScreen: 'Join'});
+  async function onNavigateToJoin(screen) {
+    const roomRef = await db.collection('rooms').doc(roomId);
+    const roomSnapshot = await roomRef.get();
+    console.log('roomref', roomRef);
+    console.log('roomsp', roomSnapshot);
+
+    if (!roomSnapshot.exists) {
+      console.log('oda yok');
+    }
+    navigation.navigate(screen, {
+      id: roomId,
+      toScreen: 'Join',
+      roomRef: roomRef,
+      roomSnapshot: roomSnapshot,
+    });
   }
 
   function createUniqueId() {
@@ -46,10 +63,6 @@ function HomePage({navigation}) {
 
     return uniqueId;
   }
-
-  useEffect(() => {
-    createUniqueId();
-  }, [])
 
   return (
     <BeeView>

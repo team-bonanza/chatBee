@@ -19,7 +19,7 @@ const configuration = {
 };
 
 function RoomScreen({navigation, route}) {
-  const {uniqueId: uniqueId} = route.params;
+  const {id: id} = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {
@@ -139,7 +139,7 @@ function RoomScreen({navigation, route}) {
           {localStream && (
             <Button
               title="Click to start call"
-              onPress={() => startCall(uniqueId)}
+              onPress={() => startCall(id)}
               disabled={!!remoteStream}
             />
           )}
