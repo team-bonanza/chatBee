@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {View, Text, TouchableOpacity, TextInput} from 'react-native';
 import BeeView from '../components/BeeView';
 import Ionicons from 'react-native-vector-icons/Ionicons';
@@ -10,12 +10,19 @@ import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
 import Modal from 'react-native-modal';
-import ModalPage from '../components/modal/ModalPage';
+import UUIID from 'uuid-random';
+import {db} from '../utilities/firebase';
 
 function HomePage({navigation}) {
+  const [uniqueId, setUniqueId] = React.useState('');
+  const [roomId, setRoomId] = React.useState('');
   const {loading} = useAuth();
-
   const [isModalVisible, setModalVisible] = useState(false);
+
+  React.useEffect(() => {
+    createUniqueId();
+  }, []);
+
   const toggleModal = () => {
     setModalVisible(!isModalVisible);
   };
@@ -31,6 +38,33 @@ function HomePage({navigation}) {
     return <LoadingProvider />;
   }
 
+  function onNavigateToRoom(screen) {
+    navigation.navigate(screen, {id: uniqueId, toScreen: 'Room'});
+  }
+  async function onNavigateToJoin(screen) {
+    const roomRef = await db.collection('rooms').doc(roomId);
+    const roomSnapshot = await roomRef.get();
+    console.log('roomref', roomRef);
+    console.log('roomsp', roomSnapshot);
+
+    if (!roomSnapshot.exists) {
+      console.log('oda yok');
+    }
+    navigation.navigate(screen, {
+      id: roomId,
+      toScreen: 'Join',
+      roomRef: roomRef,
+      roomSnapshot: roomSnapshot,
+    });
+  }
+
+  function createUniqueId() {
+    const uid = UUIID();
+    setUniqueId(uid);
+
+    return uniqueId;
+  }
+
   return (
     <BeeView>
       <View style={home_page_styles.photoContianer}>
@@ -38,10 +72,10 @@ function HomePage({navigation}) {
       </View>
       <View style={home_page_styles.container}>
         <View style={home_page_styles.inputArea}>
-          <Text style={home_page_styles.input}>ODA OLUŞTUR</Text>
+          <Text style={home_page_styles.input}>{uniqueId}</Text>
           <TouchableOpacity
             style={home_page_styles.iconCopy}
-            onPress={() => navigation.navigate('Lobby')}>
+            onPress={() => onNavigateToRoom('Lobby')}>
             <Icons name="arrow-right" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -50,8 +84,12 @@ function HomePage({navigation}) {
             placeholder="KOD GİRİNİZ"
             placeholderTextColor="#333666"
             style={home_page_styles.input}
+            value={roomId}
+            onChangeText={(val) => setRoomId(val)}
           />
-          <TouchableOpacity style={home_page_styles.iconCopy}>
+          <TouchableOpacity
+            style={home_page_styles.iconCopy}
+            onPress={() => onNavigateToJoin('Lobby')}>
             <Icons name="check-circle-outline" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
@@ -76,10 +114,10 @@ function HomePage({navigation}) {
             </TouchableOpacity>
           </View>
           <View style={{flex: 3}}>
-            <ModalPage
+            {/* <ModalPage
               loading={loading}
               onLogin={() => navigation.navigate('Home Page')}
-            />
+            /> */}
 
             <View style={home_page_styles.signOutContainer}>
               <TouchableOpacity
