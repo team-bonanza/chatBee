@@ -240,7 +240,6 @@ const home_page_styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
-    //backgroundColor: '#00509D',
     borderTopWidth: 2,
     borderBottomWidth: 2,
     borderRightWidth: 2,
@@ -289,31 +288,109 @@ const home_page_styles = StyleSheet.create({
   },
 });
 
+const SHAREICONS =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+
+const ROOMTITLECOLOR = theme === 'dark' ? colors.BACKGROUND_LIGHT : '#f0a500';
+const ROOMTITLETEXTCOLOR =
+  theme === 'dark' ? colors.TEXTONE : colors.BACKGROUND_LIGHT;
+
+const LESSOPACITYCONTAINER =
+  theme === 'dark' ? 'rgba(137, 33, 242, 0.2)' : 'rgba(242, 233, 200, 0.5)';
+
 const lobby_screen_styles = StyleSheet.create({
   mainContainer: {
-    flex: 2,
+    flex: 1,
     flexDirection: 'column',
-    alignContent: 'space-around',
+    alignContent: 'flex-start',
     margin: 5,
     padding: 5,
+    width: deviceSize.width * 0.9,
+    backgroundColor: LESSOPACITYCONTAINER,
+    borderRadius: 5,
   },
   topContainer: {
     alignItems: 'center',
-    justifyContent: 'center',
+    justifyContent: 'flex-start',
   },
   logo: {
-    flex: 1,
     padding: 5,
     margin: 5,
-    height: 50,
-    width: 50,
+    height: 40,
+    width: 40,
     resizeMode: 'center',
   },
+
+  inviteContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //borderWidth: 4,
+    //borderRadius: 5,
+    //borderColor: INPUTBACKGROUND,
+  },
+  inviteId: {
+    width: deviceSize.width / 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 40,
+    color: INPUTTEXT,
+    textAlignVertical: 'center',
+    backgroundColor: INPUTBACKGROUND,
+    borderRadius: 5,
+    fontFamily: differentFont,
+    padding: 5,
+  },
+
+  shareIcon: {
+    padding: 5,
+    height: 40,
+    justifyContent: 'center',
+  },
+  copyIcon: {
+    padding: 5,
+    height: 40,
+    justifyContent: 'center',
+  },
+
+  icon: {
+    color: SHAREICONS,
+    padding: 5,
+  },
+  streamButtonContainer: {
+    width: deviceSize.width / 2,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  streamButton: {
+    backgroundColor: '#ff3344',
+    color: '#eeeacc',
+    fontFamily: differentFont,
+    elevation: 5,
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
+  },
+
   listContainer: {
     flex: 3,
+    justifyContent: 'flex-start',
+  },
+  roomTitle: {
+    width: deviceSize.width * 1,
+    backgroundColor: ROOMTITLECOLOR,
+    color: ROOMTITLETEXTCOLOR,
+    paddingTop: 5,
+    paddingBottom: 5,
+    textAlign: 'center',
+  },
+  lobbyContainer: {
+    padding: 10,
   },
   buttonsContainer: {
-    flex: 1,
+    flex: 0.5,
+    backgroundColor: 'orange',
   },
 });
 
@@ -404,7 +481,9 @@ const lobby_container_styles = StyleSheet.create({
     alignItems: 'center',
     width: deviceSize.width / 2.5,
     borderRadius: 10,
-    backgroundColor: 'rgba(250, 250,250, 0.5)',
+    backgroundColor: LESSOPACITYCONTAINER,
+    borderWidth: 2,
+    borderColor: 'yellow',
   },
 
   photoContianer: {

@@ -50,42 +50,56 @@ function LobbyScreen({navigation, route}) {
 
   //TODO: Flatliste Gidecek Olan Component LobbyContainer
 
-  console.log(logo);
-
   return (
     <BeeView>
       <View style={lobby_screen_styles.mainContainer}>
         <View style={lobby_screen_styles.topContainer}>
-          <Image source={logo} style={lobby_screen_styles.logo} />
+          {/* <Image source={logo._W} style={lobby_screen_styles.logo} /> */}
 
-          {/* <Image
+          <Image
             source={require('../assets/bee.png')}
             style={lobby_screen_styles.logo}
-          /> */}
-          <Text>{id}</Text>
-          <TouchableOpacity onPress={onShare}>
-            <Icons name="share-variant" size={30} color={'#000'} />
-          </TouchableOpacity>
-          <TouchableOpacity onPress={() => copyToClipboard()}>
-            <Icons name="content-copy" size={30} color={'#000'} />
-          </TouchableOpacity>
+          />
+
+          <View style={lobby_screen_styles.inviteContainer}>
+            <TouchableOpacity
+              style={lobby_screen_styles.shareIcon}
+              onPress={onShare}>
+              <Icons
+                style={lobby_screen_styles.icon}
+                name="share-variant"
+                size={30}
+              />
+            </TouchableOpacity>
+            <Text numberOfLines={1} style={lobby_screen_styles.inviteId}>
+              {id}
+            </Text>
+            <TouchableOpacity
+              style={lobby_screen_styles.copyIcon}
+              onPress={() => copyToClipboard()}>
+              <Icons
+                style={lobby_screen_styles.icon}
+                name="content-copy"
+                size={30}
+              />
+            </TouchableOpacity>
+          </View>
         </View>
-        <Button
-          title="Click to start stream"
-          onPress={() => onNavigate(toScreen)}
-        />
+        <TouchableOpacity
+          style={lobby_screen_styles.streamButtonContainer}
+          onPress={() => onNavigate(toScreen)}>
+          <Text style={lobby_screen_styles.streamButton}>
+            Click to start stream
+          </Text>
+        </TouchableOpacity>
       </View>
-      <View
-        style={
-          (lobby_screen_styles.listContainer, {backgroundColor: 'yellow'})
-        }>
-        <Text>Liste</Text>
-        <LobbyContainer />
+      <View style={lobby_screen_styles.listContainer}>
+        <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+        <View style={lobby_screen_styles.lobbyContainer}>
+          <LobbyContainer />
+        </View>
       </View>
-      <View
-        style={
-          (lobby_screen_styles.buttonsContainer, {backgroundColor: 'orange'})
-        }>
+      <View style={lobby_screen_styles.buttonsContainer}>
         <Text>Buttons</Text>
       </View>
     </BeeView>
