@@ -2,7 +2,6 @@ import React, {useState, useEffect} from 'react';
 import {Text, Alert, TouchableOpacity} from 'react-native';
 import BeeView from '../components/BeeView';
 import {useNavigation} from '@react-navigation/native';
-import LoginContainer from '../components/Login/LoginContainer';
 import {login_page_styles} from '../assets/styles';
 import Video from 'react-native-video';
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -68,7 +67,7 @@ const LoginPage = () => {
       await GoogleSignin.hasPlayServices();
       const {accessToken, idToken} = await GoogleSignin.signIn();
       setloggedIn(true);
-      console.log('dd');
+
       const credential = auth.GoogleAuthProvider.credential(
         idToken,
         accessToken,
@@ -100,11 +99,7 @@ const LoginPage = () => {
         rate={1.0}
         ignoreSilentSwitch={'obey'}
       />
-      <LoginContainer
-        loading={loading}
-        onSubmit={handleSubmit}
-        onRegister={handleRegister}
-      />
+
       <TouchableOpacity
         style={login_page_styles.googleSign}
         onPress={signGoogle}>
