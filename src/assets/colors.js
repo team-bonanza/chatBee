@@ -1,16 +1,18 @@
 export default {
   BUTTON_DARK: '#F58634',
-  BUTTON_DARK_HOVER: '#FFA643',
+  BUTTON_DARK_HOVER: '#FFa240',
 
   BUTTON_LIGHT: '#243b55',
   BUTTON_LIGHT_HOVER: '#2C5364',
 
-  WHITE: '#FFF',
-  BLACK: '#000',
+  TEXTONE: '#444444',
+  TEXTTWO: '#ddd',
 
-  BACGROUND_LIGHT: ['#FFF', '#abbaab'],
-  BACKGROUND_DARK: ['#243b55', '#141e30'],
+  BACKGROUND_LIGHT: '#ddd',
+  BACKGROUND_DARK: '#2C5364',
 };
+
+//#4e2634
 
 // const BACKGROUND_DARK = [
 //     '#243b55',

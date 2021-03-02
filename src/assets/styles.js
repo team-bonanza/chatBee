@@ -4,8 +4,18 @@ import {setCustomText, setCustomTextInput} from 'react-native-global-props';
 const deviceSize = Dimensions.get('window');
 // FOR DARK & LIGHT THEME
 const theme = Appearance.getColorScheme();
-const TEXT = theme === 'dark' ? colors.WHITE : colors.BLACK;
+const TEXT = theme === 'dark' ? colors.TEXTONE : colors.TEXTTWO;
 const BACKGROUND = theme === 'dark' ? colors.BUTTON_DARK : colors.BUTTON_LIGHT;
+
+const INPUTBACKGROUND =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+const INPUTTEXT = theme === 'dark' ? '#f0f0f0' : 'white';
+
+const PHOTOCONTAINERCOLOR =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+
+const NAMEBACKGROUND =
+  theme === 'dark' ? colors.BACKGROUND_LIGHT : colors.BACKGROUND_DARK;
 
 // FONT UYGULAMASI
 const customTextProps = {
@@ -152,6 +162,7 @@ const home_page_styles = StyleSheet.create({
     height: 100,
     width: deviceSize.width,
     borderRadius: 100,
+    paddingTop: 20,
   },
   photoContianer: {
     width: 150,
@@ -163,28 +174,29 @@ const home_page_styles = StyleSheet.create({
   photo: {
     alignSelf: 'center',
     borderWidth: 2,
-    borderColor: colors.BUTTON_DARK,
+    borderColor: PHOTOCONTAINERCOLOR,
     height: 150,
     width: 150,
     borderRadius: 100,
   },
   displayNameContianer: {
     marginTop: 10,
-    backgroundColor: '#efe2e0',
-    padding: 10,
+    backgroundColor: NAMEBACKGROUND,
+    borderWidth: 2,
+    borderColor: PHOTOCONTAINERCOLOR,
+    padding: 5,
     borderRadius: 10,
     elevation: 10,
   },
   displayName: {
-    color: '#333',
+    color: TEXT,
   },
 
   container: {
     flex: 2,
     flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
-    margin: 10,
+    justifyContent: 'center',
+    //margin: 10,
   },
 
   inputArea: {
@@ -201,14 +213,17 @@ const home_page_styles = StyleSheet.create({
     borderBottomLeftRadius: 5,
     borderTopLeftRadius: 5,
     height: 55,
+    paddingTop: 5,
+    paddingBottom: 5,
     paddingLeft: 10,
-    color: '#333666',
+    paddingRight: 10,
+    color: INPUTTEXT,
     textAlignVertical: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: INPUTBACKGROUND,
     fontFamily: differentFont,
   },
 
-  iconCopy: {
+  goToRoom: {
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
@@ -217,55 +232,39 @@ const home_page_styles = StyleSheet.create({
     borderTopRightRadius: 5,
     height: 55,
   },
+  buttonContainer: {
+    flex: 2,
+    justifyContent: 'center',
+  },
 
-  buttons: {
-    flexDirection: 'row',
-    alignContent: 'space-between',
+  button: {
     marginBottom: 20,
     elevation: 5,
-    borderWidth: 3,
-    borderColor: 'white',
-    backgroundColor: '#e0e0e0',
+    borderWidth: 1,
+    borderColor: '#ef0000',
+    backgroundColor: 'red',
     borderRadius: 5,
   },
 
-  settingsIcon: {
-    color: '#FFA643',
-    margin: 15,
-  },
-  closingContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignContent: 'flex-end',
-    alignItems: 'flex-end',
-    marginBottom: 5,
-    paddingBottom: 5,
-  },
   signOutContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
-    margin: 4,
-    padding: 4,
-    backgroundColor: '#e00000',
+    backgroundColor: '#fdfdfd',
     borderWidth: 3,
-    borderColor: 'red',
+    borderColor: 'white',
     borderRadius: 5,
     width: deviceSize.width / 3,
-    elevation: 5,
+    //elevation: 5,
   },
-  signOutIcon: {
-    marginRight: 5,
-    paddingRight: 5,
+  signOut: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 5,
   },
   signOutText: {
-    marginRight: 5,
-    paddingRight: 5,
-    color: '#fff',
+    color: '#e00000',
     fontFamily: differentFont,
+    paddingBottom: 3,
+    paddingLeft: 3,
   },
 });
 const lobby_container_styles = StyleSheet.create({
@@ -348,13 +347,13 @@ const lobby_container_styles = StyleSheet.create({
     alignSelf: 'center',
     height: 70,
   },
-  card:{
-    margin:10,
-    padding:10,
-    justifyContent:'center',
-    alignItems:'center',
-    width: deviceSize.width/2.5,
-    borderRadius:10,
+  card: {
+    margin: 10,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: deviceSize.width / 2.5,
+    borderRadius: 10,
     backgroundColor: 'rgba(250, 250,250, 0.5)',
   },
 
@@ -363,11 +362,9 @@ const lobby_container_styles = StyleSheet.create({
     height: 80,
     borderRadius: 80,
     elevation: 20,
-    
   },
 
   photo: {
-
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
     height: 80,
@@ -387,10 +384,6 @@ const lobby_container_styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  
-  
-
-  
 });
 
 export {
@@ -402,4 +395,5 @@ export {
   login_page_styles,
   home_page_styles,
   lobby_container_styles,
+  INPUTTEXT,
 };

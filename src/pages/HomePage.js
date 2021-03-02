@@ -3,7 +3,7 @@ import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import BeeView from '../components/BeeView';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {home_page_styles} from '../assets/styles';
+import {home_page_styles, INPUTTEXT} from '../assets/styles';
 import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
@@ -77,7 +77,7 @@ function HomePage({navigation}) {
             {uniqueId}
           </Text>
           <TouchableOpacity
-            style={home_page_styles.iconCopy}
+            style={home_page_styles.goToRoom}
             onPress={() => onNavigateToRoom('CallStack')}>
             <Icons name="arrow-right" size={30} color={'#fff'} />
           </TouchableOpacity>
@@ -85,30 +85,32 @@ function HomePage({navigation}) {
         <View style={home_page_styles.inputArea}>
           <TextInput
             placeholder="KOD GİRİNİZ"
-            placeholderTextColor="#333666"
+            placeholderTextColor={INPUTTEXT}
             style={home_page_styles.input}
             value={roomId}
             onChangeText={(val) => setRoomId(val)}
           />
           <TouchableOpacity
-            style={home_page_styles.iconCopy}
+            style={home_page_styles.goToRoom}
             onPress={() => onNavigateToJoin('CallStack')}>
             <Icons name="check-circle-outline" size={30} color={'#fff'} />
           </TouchableOpacity>
         </View>
       </View>
 
-      <View style={home_page_styles.buttons}>
-        <View style={home_page_styles.signOutContainer}>
-          <TouchableOpacity
-            onPress={() => signOut()}
-            style={home_page_styles.signOutIcon}>
-            <FontAwesome name="sign-out" size={30} color={'white'} />
-            <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
-          </TouchableOpacity>
+      <View style={home_page_styles.buttonContainer}>
+        <View style={home_page_styles.button}>
+          <View style={home_page_styles.signOutContainer}>
+            <TouchableOpacity
+              onPress={() => signOut()}
+              style={home_page_styles.signOut}>
+              <FontAwesome name="sign-out" size={30} color={'#e00000'} />
+              <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+        <View />
       </View>
-      <View />
     </BeeView>
   );
 }
