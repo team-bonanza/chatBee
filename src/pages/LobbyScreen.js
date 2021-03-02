@@ -1,14 +1,16 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  Button,
-  View,
-  TouchableOpacity,
-  Share,
-} from 'react-native';
+import {Text, Image, Button, View, TouchableOpacity, Share} from 'react-native';
+
+import storage from '@react-native-firebase/storage';
+
+import BeeView from '../components/BeeView';
+import {LobbyContainer} from '../components/Lobby';
+import {lobby_screen_styles} from '../assets/styles';
+
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
+
+import {logo} from '../assets/images';
 
 function LobbyScreen({navigation, route}) {
   const {
@@ -46,54 +48,48 @@ function LobbyScreen({navigation, route}) {
     navigation.navigate(screen, {id: id});
   }
 
+  //TODO: Flatliste Gidecek Olan Component LobbyContainer
+
+  console.log(logo);
+
   return (
-    <View style={styles.container}>
-      <Text>{id}</Text>
-      <TouchableOpacity onPress={onShare}>
-        <Icons name="share-variant" size={30} color={'#000'} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => copyToClipboard()}>
-        <Icons name="content-copy" size={30} color={'#000'} />
-      </TouchableOpacity>
-      <View>{console.log(id)}</View>
-      <Button
-        title="Click to start stream"
-        onPress={() => onNavigate(toScreen)}
-      />
-      <View>
-        <Text>Üst Kısım | Logo ile Kodun Kopyalanacağı Kısım Olacak</Text>
+    <BeeView>
+      <View style={lobby_screen_styles.mainContainer}>
+        <View style={lobby_screen_styles.topContainer}>
+          <Image source={logo} style={lobby_screen_styles.logo} />
+
+          {/* <Image
+            source={require('../assets/bee.png')}
+            style={lobby_screen_styles.logo}
+          /> */}
+          <Text>{id}</Text>
+          <TouchableOpacity onPress={onShare}>
+            <Icons name="share-variant" size={30} color={'#000'} />
+          </TouchableOpacity>
+          <TouchableOpacity onPress={() => copyToClipboard()}>
+            <Icons name="content-copy" size={30} color={'#000'} />
+          </TouchableOpacity>
+        </View>
+        <Button
+          title="Click to start stream"
+          onPress={() => onNavigate(toScreen)}
+        />
       </View>
-      <View>
-        <Text>Orta Kısım | Kullanıcılar Bu Kısımda Gözükecekler</Text>
+      <View
+        style={
+          (lobby_screen_styles.listContainer, {backgroundColor: 'yellow'})
+        }>
+        <Text>Liste</Text>
+        <LobbyContainer />
       </View>
-      <View>
-        <Text>
-          Alt Kısım | Kullanıcılar Hazır Olup Olmadıklarını Buradaki Tuşlarla
-          Kontrol Edebilecekler
-        </Text>
+      <View
+        style={
+          (lobby_screen_styles.buttonsContainer, {backgroundColor: 'orange'})
+        }>
+        <Text>Buttons</Text>
       </View>
-    </View>
+    </BeeView>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-evenly',
-  },
-  heading: {
-    marginVertical: 10,
-    alignSelf: 'center',
-    fontSize: 30,
-  },
-  input: {
-    margin: 20,
-    height: 40,
-    backgroundColor: '#aaa',
-  },
-  buttonContainer: {
-    margin: 5,
-  },
-});
 
 export {LobbyScreen};

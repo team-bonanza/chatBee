@@ -3,7 +3,7 @@ import {View, Text, Image} from 'react-native';
 import {lobby_container_styles} from '../../assets/styles';
 import auth from '@react-native-firebase/auth';
 
-export default function LobbyContainer() {
+export function LobbyContainer() {
   return (
     <View style={lobby_container_styles.photoMainContainer}>
       <View style={lobby_container_styles.card}>

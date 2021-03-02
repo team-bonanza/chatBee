@@ -86,7 +86,7 @@ function HomePage({navigation}) {
           </Text>
           <TouchableOpacity
             style={home_page_styles.goToRoom}
-            onPress={() => onNavigateToRoom('CallStack')}>
+            onPress={() => onNavigateToRoom('Lobby')}>
             <Icons name="arrow-right" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
@@ -100,7 +100,7 @@ function HomePage({navigation}) {
           />
           <TouchableOpacity
             style={home_page_styles.goToRoom}
-            onPress={() => onNavigateToJoin('CallStack')}>
+            onPress={() => onNavigateToJoin('Lobby')}>
             <Icons name="check-circle-outline" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>

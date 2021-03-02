@@ -288,6 +288,35 @@ const home_page_styles = StyleSheet.create({
     paddingLeft: 3,
   },
 });
+
+const lobby_screen_styles = StyleSheet.create({
+  mainContainer: {
+    flex: 2,
+    flexDirection: 'column',
+    alignContent: 'space-around',
+    margin: 5,
+    padding: 5,
+  },
+  topContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  logo: {
+    flex: 1,
+    padding: 5,
+    margin: 5,
+    height: 50,
+    width: 50,
+    resizeMode: 'center',
+  },
+  listContainer: {
+    flex: 3,
+  },
+  buttonsContainer: {
+    flex: 1,
+  },
+});
+
 const lobby_container_styles = StyleSheet.create({
   logoContainer: {
     flex: 1,
@@ -415,6 +444,7 @@ export {
   login_container_styles,
   login_page_styles,
   home_page_styles,
+  lobby_screen_styles,
   lobby_container_styles,
   INPUTTEXT,
   ICONCOLOR,
