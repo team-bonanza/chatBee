@@ -163,12 +163,14 @@ const home_page_styles = StyleSheet.create({
     width: deviceSize.width,
     borderRadius: 100,
     paddingTop: 20,
+    margin: 10,
   },
   photoContianer: {
     width: 150,
     height: 150,
     borderRadius: 100,
     elevation: 10,
+    padding: 5,
   },
 
   photo: {
@@ -180,7 +182,7 @@ const home_page_styles = StyleSheet.create({
     borderRadius: 100,
   },
   displayNameContianer: {
-    marginTop: 10,
+    margin: 10,
     backgroundColor: NAMEBACKGROUND,
     borderWidth: 2,
     borderColor: PHOTOCONTAINERCOLOR,
@@ -194,9 +196,18 @@ const home_page_styles = StyleSheet.create({
 
   container: {
     flex: 2,
+    margin: 10,
+    padding: 10,
     flexDirection: 'column',
     justifyContent: 'center',
     //margin: 10,
+  },
+  createRoom: {
+    color: INPUTTEXT,
+    fontSize: 8,
+    paddingLeft: 10,
+    marginBottom: -20,
+    zIndex: 1000,
   },
 
   inputArea: {

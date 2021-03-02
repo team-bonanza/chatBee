@@ -1,5 +1,12 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native';
 import BeeView from '../components/BeeView';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
@@ -72,6 +79,7 @@ function HomePage({navigation}) {
         </View>
       </View>
       <View style={home_page_styles.container}>
+        <Text style={home_page_styles.createRoom}>ODA OLUŞTUR</Text>
         <View style={home_page_styles.inputArea}>
           <Text style={home_page_styles.input} numberOfLines={1}>
             {uniqueId}
