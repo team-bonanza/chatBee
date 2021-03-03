@@ -1,5 +1,12 @@
 import React from 'react';
-import {Text, StyleSheet, Button, View, TouchableOpacity} from 'react-native';
+import {
+  Text,
+  StyleSheet,
+  Button,
+  View,
+  TouchableOpacity,
+  Dimensions,
+} from 'react-native';
 
 import Icons from 'react-native-vector-icons/MaterialIcons';
 
@@ -11,6 +18,9 @@ import {
   RTCSessionDescription,
 } from 'react-native-webrtc';
 import {db} from '../utilities/firebase';
+
+//About the style
+const ICONCOLOR = 'rgba(250,250,250,0.5)';
 
 const configuration = {
   iceServers: [
@@ -132,56 +142,82 @@ function RoomScreen({navigation, route}) {
     <>
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
-          <TouchableOpacity onPress={onBackPress}>
+          <TouchableOpacity style={styles.buttonCover} onPress={onBackPress}>
             <Icons name="call-end" size={30} color={'red'} />
           </TouchableOpacity>
         </View>
         <View styles={styles.buttonContainer}>
           {!localStream && (
-            <TouchableOpacity onPress={startLocalStream}>
-              <Icons name="call" size={30} color={'#e0e'} />
+            <TouchableOpacity
+              style={styles.buttonCover}
+              onPress={startLocalStream}>
+              <Icons name="call" size={30} color={ICONCOLOR} />
             </TouchableOpacity>
           )}
           {localStream && (
             <TouchableOpacity
+              style={styles.buttonCover}
               onPress={() => startCall(id)}
               disabled={!!remoteStream}>
-              <Icons name="call" size={30} color={'#e0e'} />
+              <Icons name="call" size={30} color={ICONCOLOR} />
             </TouchableOpacity>
           )}
         </View>
       </View>
 
       {localStream && (
-        <View style={styles.toggleButtons}>
-          <TouchableOpacity onPress={switchCamera}>
-            <Icons name="flip-camera-android" size={30} color={'#e0e'} />
+        <View style={styles.VolumeAndFlip}>
+          <TouchableOpacity style={styles.volumeButton} onPress={switchCamera}>
+            <Icons name="flip-camera-android" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
 
           <TouchableOpacity
+            style={styles.volumeButton}
             title={`${isMuted ? 'Unmute' : 'Mute'} stream`}
             onPress={toggleMute}
             disabled={!remoteStream}>
-            <Icons name="volume-mute" size={30} color={'#e0e'} />
+            <Icons name="volume-mute" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
       )}
 
-      <View style={{display: 'flex', flex: 1, padding: 10}}>
+      <View style={styles.callingContainer}>
         <View style={styles.rtcview1}>
-          {localStream && (
+          {localStream ? (
             <RTCView
               style={styles.rtc1}
               streamURL={localStream && localStream.toURL()}
             />
+          ) : (
+            <Text
+              style={{
+                color: 'white',
+                alignSelf: 'center',
+                textAlignVertical: 'center',
+                fontSize: 20,
+              }}>
+              Kameranı Aç da Gül Cemalini Görelim
+            </Text>
           )}
         </View>
         <View style={styles.rtcview2}>
-          {remoteStream && (
+          {remoteStream ? (
             <RTCView
               style={styles.rtc2}
               streamURL={remoteStream && remoteStream.toURL()}
             />
+          ) : (
+            <Text
+              style={{
+                color: 'white',
+                alignSelf: 'center',
+                textAlignVertical: 'center',
+                justifyContent: 'center',
+                fontSize: 20,
+                padding: 20,
+              }}>
+              Sanırım o da utanıyor
+            </Text>
           )}
         </View>
       </View>
@@ -190,54 +226,111 @@ function RoomScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
+  callingContainer: {
+    position: 'absolute',
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    margin: 0,
+    padding: 0,
+  },
   rtcview1: {
     position: 'relative',
     backgroundColor: 'green',
-
+    borderRadius: 5,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
     bottom: 0,
     right: 0,
 
-    margin: 5,
-    width: '100%',
-    height: '100%',
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
+
+  rtc1: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+  },
+
   rtcview2: {
     position: 'absolute',
 
-    bottom: 0,
+    bottom: 55,
     right: 0,
 
     zIndex: 100,
     backgroundColor: '#f546dd',
-    margin: 5,
-    width: 200,
-    height: 300,
+    borderRadius: 5,
+    margin: 25,
+    width: 150,
+    height: 250,
   },
-  rtc1: {
-    width: '100%',
-    height: '100%',
-    resizeMode: 'contain',
-  },
+
   rtc2: {
     width: 100,
     height: 300,
+    margin: 5,
+    borderRadius: 5,
   },
-  toggleButtons: {
-    width: '100%',
+  VolumeAndFlip: {
+    position: 'absolute',
+    top: 10,
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'purple',
+    justifyContent: 'center',
+    alignContent: 'center',
+    marginTop: 10,
   },
+  volumeButton: {
+    zIndex: 101,
+    top: 20,
+    right: 0,
+    margin: 5,
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+  },
+  // flipIcon: {
+  //   position: 'absolute',
+  //   zIndex: 1003,
+  //   top: 20,
+  //   backgroundColor: 'rgba(250,250,250, 0.5)',
+  //   alignContent: 'center',
+  //   justifyContent: 'center',
+  //   alignItems: 'center',
+  //   width: 50,
+  //   height: 50,
+  //   borderRadius: 50,
+  // },
   callButtons: {
-    padding: 10,
+    position: 'absolute',
+    zIndex: 102,
+    bottom: 40,
+    left: 0,
+    //padding: 10,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-around',
-    backgroundColor: 'orange',
+    justifyContent: 'space-evenly',
   },
   buttonContainer: {
-    margin: 5,
-    backgroundColor: 'blue',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  buttonCover: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
   },
 });
 export {RoomScreen};
