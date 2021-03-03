@@ -2,7 +2,7 @@ import React from 'react';
 import {
   Text,
   StyleSheet,
-  Button,
+  Image,
   View,
   TouchableOpacity,
   Dimensions,
@@ -140,6 +140,16 @@ function RoomScreen({navigation, route}) {
 
   return (
     <>
+      <View style={styles.topContainer}>
+        <View style={styles.logoContainer}>
+          <Image source={require('../assets/bee.png')} style={styles.logo} />
+        </View>
+
+        <View style={styles.questionContainer}>
+          <Text style={styles.question}>BURALARA YAZ GÜNÜ SORU YAĞIYOR</Text>
+        </View>
+      </View>
+
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
           <TouchableOpacity style={styles.buttonCover} onPress={onBackPress}>
@@ -226,8 +236,39 @@ function RoomScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  callingContainer: {
+  topContainer: {
     position: 'absolute',
+    top: 10,
+    padding: 10,
+    width: Dimensions.get('window').width,
+    marginTop: 5,
+    zIndex: 1004,
+  },
+  logoContainer: {
+    backgroundColor: 'rgba(250,250,250,0.1)',
+    width: 55,
+    height: 55,
+    padding: 40,
+    marginBottom: 10,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  logo: {
+    width: 55,
+    height: 55,
+  },
+  questionContainer: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    margin: 5,
+    padding: 5,
+    borderRadius: 5,
+  },
+  question: {
+    textAlign: 'center',
+  },
+  callingContainer: {
     width: Dimensions.get('window').width,
     height: Dimensions.get('window').height,
     margin: 0,
@@ -248,16 +289,17 @@ const styles = StyleSheet.create({
   },
 
   rtc1: {
-    width: Dimensions.get('window').width,
+    width: Dimensions.get('window').width * 1.55,
     height: Dimensions.get('window').height,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
   },
 
   rtcview2: {
     position: 'absolute',
-
     bottom: 55,
     right: 0,
-
     zIndex: 100,
     backgroundColor: '#f546dd',
     borderRadius: 5,
@@ -274,17 +316,12 @@ const styles = StyleSheet.create({
   },
   VolumeAndFlip: {
     position: 'absolute',
-    top: 10,
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginTop: 10,
+    bottom: 40,
+    left: 10,
+    zIndex: 1005,
+    flexDirection: 'column',
   },
   volumeButton: {
-    zIndex: 101,
-    top: 20,
-    right: 0,
-    margin: 5,
     backgroundColor: 'rgba(250,250,250, 0.5)',
     justifyContent: 'center',
     alignContent: 'center',
@@ -292,36 +329,24 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
+    marginTop: 15,
   },
-  // flipIcon: {
-  //   position: 'absolute',
-  //   zIndex: 1003,
-  //   top: 20,
-  //   backgroundColor: 'rgba(250,250,250, 0.5)',
-  //   alignContent: 'center',
-  //   justifyContent: 'center',
-  //   alignItems: 'center',
-  //   width: 50,
-  //   height: 50,
-  //   borderRadius: 50,
-  // },
+
   callButtons: {
     position: 'absolute',
     zIndex: 102,
     bottom: 40,
     left: 0,
-    //padding: 10,
     width: '100%',
     flexDirection: 'row',
-    justifyContent: 'space-evenly',
+    paddingRight: 40,
+    justifyContent: 'center',
   },
   buttonContainer: {
     width: 50,
     height: 50,
     borderRadius: 50,
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
+    marginRight: 10,
   },
   buttonCover: {
     backgroundColor: 'rgba(250,250,250, 0.5)',
@@ -331,6 +356,8 @@ const styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
+
+    marginRight: 40,
   },
 });
 export {RoomScreen};
