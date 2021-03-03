@@ -1,5 +1,8 @@
 import React from 'react';
-import {Text, StyleSheet, Button, View} from 'react-native';
+import {Text, StyleSheet, Button, View, TouchableOpacity} from 'react-native';
+
+import Icons from 'react-native-vector-icons/MaterialIcons';
+
 import {
   RTCPeerConnection,
   RTCView,
@@ -127,49 +130,56 @@ function RoomScreen({navigation, route}) {
 
   return (
     <>
-      <Text style={styles.heading}>Call Screen</Text>
       <View style={styles.callButtons}>
         <View styles={styles.buttonContainer}>
-          <Button title="Click to stop call" onPress={onBackPress} />
+          <TouchableOpacity onPress={onBackPress}>
+            <Icons name="call-end" size={30} color={'red'} />
+          </TouchableOpacity>
         </View>
         <View styles={styles.buttonContainer}>
           {!localStream && (
-            <Button title="Click to start stream" onPress={startLocalStream} />
+            <TouchableOpacity onPress={startLocalStream}>
+              <Icons name="call" size={30} color={'#e0e'} />
+            </TouchableOpacity>
           )}
           {localStream && (
-            <Button
-              title="Click to start call"
+            <TouchableOpacity
               onPress={() => startCall(id)}
-              disabled={!!remoteStream}
-            />
+              disabled={!!remoteStream}>
+              <Icons name="call" size={30} color={'#e0e'} />
+            </TouchableOpacity>
           )}
         </View>
       </View>
 
       {localStream && (
         <View style={styles.toggleButtons}>
-          <Button title="Switch camera" onPress={switchCamera} />
-          <Button
+          <TouchableOpacity onPress={switchCamera}>
+            <Icons name="flip-camera-android" size={30} color={'#e0e'} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
             title={`${isMuted ? 'Unmute' : 'Mute'} stream`}
             onPress={toggleMute}
-            disabled={!remoteStream}
-          />
+            disabled={!remoteStream}>
+            <Icons name="volume-mute" size={30} color={'#e0e'} />
+          </TouchableOpacity>
         </View>
       )}
 
       <View style={{display: 'flex', flex: 1, padding: 10}}>
-        <View style={styles.rtcview}>
+        <View style={styles.rtcview1}>
           {localStream && (
             <RTCView
-              style={styles.rtc}
+              style={styles.rtc1}
               streamURL={localStream && localStream.toURL()}
             />
           )}
         </View>
-        <View style={styles.rtcview}>
+        <View style={styles.rtcview2}>
           {remoteStream && (
             <RTCView
-              style={styles.rtc}
+              style={styles.rtc2}
               streamURL={remoteStream && remoteStream.toURL()}
             />
           )}
@@ -180,35 +190,54 @@ function RoomScreen({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  heading: {
-    alignSelf: 'center',
-    fontSize: 30,
-  },
-  rtcview: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
+  rtcview1: {
+    position: 'relative',
+    backgroundColor: 'green',
+
+    bottom: 0,
+    right: 0,
+
     margin: 5,
-  },
-  rtc: {
-    flex: 1,
     width: '100%',
     height: '100%',
+  },
+  rtcview2: {
+    position: 'absolute',
+
+    bottom: 0,
+    right: 0,
+
+    zIndex: 100,
+    backgroundColor: '#f546dd',
+    margin: 5,
+    width: 200,
+    height: 300,
+  },
+  rtc1: {
+    width: '100%',
+    height: '100%',
+    resizeMode: 'contain',
+  },
+  rtc2: {
+    width: 100,
+    height: 300,
   },
   toggleButtons: {
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    backgroundColor: 'purple',
   },
   callButtons: {
     padding: 10,
     width: '100%',
     flexDirection: 'row',
     justifyContent: 'space-around',
+    backgroundColor: 'orange',
   },
   buttonContainer: {
     margin: 5,
+    backgroundColor: 'blue',
   },
 });
 export {RoomScreen};

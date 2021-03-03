@@ -78,7 +78,7 @@ function LobbyScreen({navigation, route}) {
     );
   };
 
-  //TODO: Flatliste Gidecek Olan Component LobbyContainer
+  //TODO: LobbyContainer is the container that is going to added to FlatList
 
   return (
     <BeeView>
@@ -141,7 +141,12 @@ function LobbyScreen({navigation, route}) {
         <View style={lobby_screen_styles.buttonsContainer}>
           <TouchableOpacity
             style={lobby_screen_styles.hourglassContainer}
-            onPress={() => copyToClipboard()}>
+            onPress={() =>
+              Alert.alert(
+                'HOLD ON',
+                "User's Card Border Color will be yellow when clicking the button",
+              )
+            }>
             <MaterialIcons
               style={lobby_screen_styles.hourglassIcon}
               name="hourglass-full"
@@ -150,7 +155,12 @@ function LobbyScreen({navigation, route}) {
           </TouchableOpacity>
           <TouchableOpacity
             style={lobby_screen_styles.checkContainer}
-            onPress={() => copyToClipboard()}>
+            onPress={() =>
+              Alert.alert(
+                'READY',
+                "User's Card Border Color will be green when clicking the button",
+              )
+            }>
             <Icons
               style={lobby_screen_styles.checkIcon}
               name="check-bold"
@@ -162,5 +172,7 @@ function LobbyScreen({navigation, route}) {
     </BeeView>
   );
 }
+
+//TODO: buttons must be affecting the border colors
 
 export {LobbyScreen};
