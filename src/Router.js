@@ -6,6 +6,7 @@ import {
   SignUpPage,
   JoinScreen,
   RoomScreen,
+  OnboardingScreens,
 } from './pages';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
@@ -26,6 +27,7 @@ function CallStack() {
 function HomeStack() {
   return (
     <Stack.Navigator headerMode="none">
+<Stack.Screen name="onboaring" component={OnboardingScreens} />
       <Stack.Screen name="Login" component={LoginPage} />
       <Stack.Screen name="Sign Up" component={SignUpPage} />
       <Stack.Screen name="Home Page" component={CallStack} />
@@ -37,7 +39,7 @@ function Router() {
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="Home Stack" component={HomeStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );

@@ -6,3 +6,4 @@ export * from './SignUpPage';
 export * from './LobbyScreen';
 export * from './RoomScreen';
 export * from './JoinScreen';
+export * from './OnboardingScreens';
