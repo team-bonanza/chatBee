@@ -7,10 +7,15 @@ import {
   JoinScreen,
   RoomScreen,
 } from './pages';
+
+import auth from '@react-native-firebase/auth';
+
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 
 const Stack = createStackNavigator();
+
+const hasSession = auth().currentUser;
 
 function CallStack() {
   return (
@@ -27,8 +32,6 @@ function HomeStack() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Login" component={LoginPage} />
-      <Stack.Screen name="Sign Up" component={SignUpPage} />
-      <Stack.Screen name="Home Page" component={CallStack} />
     </Stack.Navigator>
   );
 }
@@ -36,8 +39,13 @@ function HomeStack() {
 function Router() {
   return (
     <NavigationContainer>
-      <Stack.Navigator>
+      <Stack.Navigator
+        screenOptions={{
+          headerShown: false,
+        }}
+        initialRouteName={hasSession ? 'CallStack' : 'HomeStack'}>
         <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="CallStack" component={CallStack} />
       </Stack.Navigator>
     </NavigationContainer>
   );
