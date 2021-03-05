@@ -83,7 +83,7 @@ const LoginPage = () => {
   };
   function onAuthStateChanged(user) {
     setUser(user);
-    console.log(user);
+    console.log("user", user);
     if (user) {
       setloggedIn(true);
     }

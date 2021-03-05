@@ -1,11 +1,12 @@
 import React from 'react';
 import {Image} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 function OnboardingScreens({navigation}) {
-  function onNavigate() {
+  async function onNavigate() {
     // navigation.navigate('Home Page');
-    navigation.navigate('Login');
+    await AsyncStorage.setItem('hasLaunch', 'true');
+    navigation.navigate('HomeStack');
   }
   return (
     <Onboarding
@@ -29,7 +30,7 @@ function OnboardingScreens({navigation}) {
           subtitle: 'Done with React Native Onboarding Swiper',
         },
       ]}
-      onDone={onNavigate()}
+      onDone={() => onNavigate()}
     />
   );
 }

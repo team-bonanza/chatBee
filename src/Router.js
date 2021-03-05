@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   LoginPage,
   HomePage,
@@ -10,7 +10,7 @@ import {
 } from './pages';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
 
 function CallStack() {
@@ -27,7 +27,6 @@ function CallStack() {
 function HomeStack() {
   return (
     <Stack.Navigator headerMode="none">
-<Stack.Screen name="onboaring" component={OnboardingScreens} />
       <Stack.Screen name="Login" component={LoginPage} />
       <Stack.Screen name="Sign Up" component={SignUpPage} />
       <Stack.Screen name="Home Page" component={CallStack} />
@@ -36,10 +35,19 @@ function HomeStack() {
 }
 
 function Router() {
+  const [firstLaunch, setFirstLaunch] = useState(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem('hasLaunch').then((value) => setFirstLaunch(value));
+    console.log('Router', firstLaunch);
+  }, []);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator>
-        <Stack.Screen name="Home Stack" component={HomeStack} />
+      <Stack.Navigator
+        initialRouteName={firstLaunch ? 'HomeStack' : 'Onboarding'}>
+        <Stack.Screen name="HomeStack" component={HomeStack} />
+        <Stack.Screen name="Onboarding" component={OnboardingScreens} />
       </Stack.Navigator>
     </NavigationContainer>
   );
