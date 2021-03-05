@@ -1,8 +1,5 @@
 import React from 'react';
 import {Text, Image, Button, View, TouchableOpacity, Share} from 'react-native';
-
-import storage from '@react-native-firebase/storage';
-
 import BeeView from '../components/BeeView';
 import {LobbyContainer} from '../components/Lobby';
 import {lobby_screen_styles} from '../assets/styles';
@@ -10,7 +7,7 @@ import {lobby_screen_styles} from '../assets/styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
 
-import {logo} from '../assets/images';
+import {getImgURL} from '../assets/images';
 
 function LobbyScreen({navigation, route}) {
   const {
@@ -47,16 +44,17 @@ function LobbyScreen({navigation, route}) {
   function onNavigate(screen) {
     navigation.navigate(screen, {id: id});
   }
-
+  const url = async () => {
+    const imageurl = await getImgURL();
+    console.log(imageurl);
+    return imageurl;
+  };
   //TODO: Flatliste Gidecek Olan Component LobbyContainer
-
-  console.log(logo);
-
   return (
     <BeeView>
       <View style={lobby_screen_styles.mainContainer}>
         <View style={lobby_screen_styles.topContainer}>
-          <Image source={logo} style={lobby_screen_styles.logo} />
+          <Image source={{uri: `${url()}`}} style={lobby_screen_styles.logo} />
 
           {/* <Image
             source={require('../assets/bee.png')}

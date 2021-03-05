@@ -305,8 +305,8 @@ const lobby_screen_styles = StyleSheet.create({
     flex: 1,
     padding: 5,
     margin: 5,
-    height: 50,
-    width: 50,
+    height: 100,
+    width: 100,
     resizeMode: 'center',
   },
   listContainer: {
