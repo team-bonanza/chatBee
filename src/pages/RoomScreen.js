@@ -145,9 +145,9 @@ function RoomScreen({navigation, route}) {
         </View> */}
 
         <View style={room_screen_styles.questionContainer}>
-          <Text style={room_screen_styles.question}>
-            BURALARA YAZ GÜNÜ SORU YAĞIYOR
-          </Text>
+          <View style={room_screen_styles.question}>
+            <RandomQuote />
+          </View>
         </View>
       </View>
 
@@ -213,7 +213,7 @@ function RoomScreen({navigation, route}) {
               />
 
               <Text style={room_screen_styles.gifText}>
-                <RandomQuote />
+                Kameranı aç da gül cemalini görelim
               </Text>
             </View>
           )}

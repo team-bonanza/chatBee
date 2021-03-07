@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
-import {View, Text} from 'react-native';
+import {View, Text, StyleSheet, Dimensions} from 'react-native';
+import {diffrentFont} from '../assets/styles';
 
 const quotes = [
   {
@@ -58,11 +59,26 @@ function RandomQuote() {
   }, []);
 
   return (
-    <View>
-      <Text>{quotes[index] && quotes[index].quote}</Text>
-      <Text>{quotes[index] && quotes[index].cite}</Text>
+    <View style={styles.container}>
+      <Text style={styles.quote}>{quotes[index] && quotes[index].quote}</Text>
+      <Text style={styles.cite}>{quotes[index] && quotes[index].cite}</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    margin: 2,
+    padding: 2,
+  },
+  quote: {
+    textAlign: 'justify',
+  },
+  cite: {
+    fontFamily: diffrentFont,
+    textAlign: 'right',
+    fontStyle: 'italic',
+  },
+});
 
 export default RandomQuote;
