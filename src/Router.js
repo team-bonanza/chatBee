@@ -38,16 +38,33 @@ function Router() {
   const [firstLaunch, setFirstLaunch] = useState(false);
 
   useEffect(() => {
-    AsyncStorage.getItem('hasLaunch').then((value) => setFirstLaunch(value));
-    console.log('Router', firstLaunch);
+    AsyncStorage.getItem('hasLaunch').then((value) => {
+      if (value == 'true') {
+        setFirstLaunch(true);
+      }
+    });
   }, []);
 
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        initialRouteName={firstLaunch ? 'HomeStack' : 'Onboarding'}>
-        <Stack.Screen name="HomeStack" component={HomeStack} />
-        <Stack.Screen name="Onboarding" component={OnboardingScreens} />
+      <Stack.Navigator>
+        {firstLaunch ? (
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="HomeStack"
+            component={HomeStack}
+          />
+        ) : (
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Onboarding"
+            component={OnboardingScreens}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
