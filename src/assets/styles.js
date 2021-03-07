@@ -300,25 +300,17 @@ const LESSOPACITYCONTAINER =
 
 const lobby_screen_styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
     flexDirection: 'column',
     alignContent: 'flex-start',
     margin: 5,
     padding: 5,
-    width: deviceSize.width * 0.9,
+    //    width: deviceSize.width * 0.9,
     backgroundColor: LESSOPACITYCONTAINER,
     borderRadius: 5,
   },
   topContainer: {
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  logo: {
-    padding: 5,
-    margin: 5,
-    height: 40,
-    width: 40,
-    resizeMode: 'center',
   },
 
   inviteContainer: {
@@ -333,8 +325,9 @@ const lobby_screen_styles = StyleSheet.create({
     width: deviceSize.width / 2,
     paddingLeft: 10,
     paddingRight: 10,
-    height: 40,
+    height: 30,
     color: INPUTTEXT,
+    fontSize: 12,
     textAlignVertical: 'center',
     backgroundColor: INPUTBACKGROUND,
     borderRadius: 5,
@@ -344,12 +337,12 @@ const lobby_screen_styles = StyleSheet.create({
 
   shareIcon: {
     padding: 5,
-    height: 40,
+    height: 30,
     justifyContent: 'center',
   },
   copyIcon: {
     padding: 5,
-    height: 40,
+    height: 30,
     justifyContent: 'center',
   },
 
@@ -367,20 +360,37 @@ const lobby_screen_styles = StyleSheet.create({
     backgroundColor: '#ff3344',
     color: '#eeeacc',
     fontFamily: differentFont,
+    fontSize: 11,
     elevation: 5,
     borderRadius: 5,
     margin: 10,
     padding: 10,
   },
-
   listContainer: {
     flex: 3,
     justifyContent: 'flex-start',
   },
+  roomTitleContainer: {
+    width: deviceSize.width,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    flex: 1,
+    height: 40,
+    width: 40,
+    resizeMode: 'center',
+    // top: 50,
+    textAlignVertical: 'center',
+  },
   roomTitle: {
-    width: deviceSize.width * 1,
+    flex: 1,
+    fontFamily: differentFont,
     backgroundColor: ROOMTITLECOLOR,
     color: ROOMTITLETEXTCOLOR,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
     paddingTop: 5,
     paddingBottom: 5,
     textAlign: 'center',

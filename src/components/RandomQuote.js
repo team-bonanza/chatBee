@@ -28,8 +28,7 @@ const quotes = [
     cite: 'Linus Torvalds',
   },
   {
-    quote: `Most software today is very much like an Egyptian pyramid with millions of bricks piled on top of each other, with no structural integrity, but just done by brute force and 
-        thousands of slaves.`,
+    quote: `Most software today is very much like an Egyptian pyramid with millions of bricks piled on top of each other, with no structural integrity, but just done by brute force and thousands of slaves.`,
     cite: 'Alan Kay',
   },
   {

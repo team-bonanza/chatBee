@@ -86,10 +86,10 @@ function LobbyScreen({navigation, route}) {
         <View style={lobby_screen_styles.topContainer}>
           {/* <Image source={logo._W} style={lobby_screen_styles.logo} /> */}
 
-          <Image
+          {/* <Image
             source={require('../assets/bee.png')}
             style={lobby_screen_styles.logo}
-          />
+          /> */}
 
           <View style={lobby_screen_styles.inviteContainer}>
             <TouchableOpacity
@@ -98,7 +98,7 @@ function LobbyScreen({navigation, route}) {
               <Icons
                 style={lobby_screen_styles.icon}
                 name="share-variant"
-                size={30}
+                size={25}
               />
             </TouchableOpacity>
             <Text numberOfLines={1} style={lobby_screen_styles.inviteId}>
@@ -110,7 +110,7 @@ function LobbyScreen({navigation, route}) {
               <Icons
                 style={lobby_screen_styles.icon}
                 name="content-copy"
-                size={30}
+                size={25}
               />
             </TouchableOpacity>
           </View>
@@ -124,7 +124,13 @@ function LobbyScreen({navigation, route}) {
         </TouchableOpacity>
       </View>
       <View style={lobby_screen_styles.listContainer}>
-        <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+        <View style={lobby_screen_styles.roomTitleContainer}>
+          <Image
+            source={require('../assets/bee.png')}
+            style={lobby_screen_styles.logo}
+          />
+          <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+        </View>
         <View style={lobby_screen_styles.lobbyContainer}>
           {/* <LobbyContainer
             // photo={source={{uri: getUsers().photoURL}}}
