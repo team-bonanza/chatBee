@@ -382,7 +382,6 @@ const lobby_screen_styles = StyleSheet.create({
     width: 40,
     resizeMode: 'center',
     // top: 50,
-    textAlignVertical: 'center',
   },
   roomTitle: {
     flex: 1,
@@ -626,13 +625,12 @@ const room_screen_styles = StyleSheet.create({
 
   rtcview2: {
     position: 'absolute',
-    backgroundColor: 'rgba(250,200,20, 0.9)',
-    bottom: 40,
-    right: 0,
+    backgroundColor: 'rgba(250,200,20, 0.6)',
+    bottom: 0,
+    alignSelf: 'center',
     zIndex: 100,
     borderRadius: 5,
-    marginRight: 15,
-    width: 150,
+    width: 350,
     height: 250,
   },
 
@@ -654,11 +652,14 @@ const room_screen_styles = StyleSheet.create({
     fontSize: 20,
   },
   VolumeAndFlip: {
+    //height: deviceSize.height / 12,
+    width: deviceSize.width,
     position: 'absolute',
+    zIndex: 1006,
     bottom: 40,
-    left: 10,
-    zIndex: 1005,
+    paddingRight: 20,
     flexDirection: 'column',
+    alignItems: 'flex-end',
   },
   volumeButton: {
     backgroundColor: 'rgba(250,250,250, 0.5)',
@@ -668,30 +669,28 @@ const room_screen_styles = StyleSheet.create({
     width: 50,
     height: 50,
     borderRadius: 50,
-    marginTop: 30,
+    margin: 15,
   },
 
   callButtons: {
+    //height: deviceSize.height / 12,
+    width: deviceSize.width,
     position: 'absolute',
-    zIndex: 102,
-    bottom: 40,
-    left: 0,
-    width: '100%',
+    zIndex: 1006,
     flexDirection: 'row',
-    paddingRight: 40,
     justifyContent: 'center',
+    bottom: 40,
   },
 
   buttonCover: {
     backgroundColor: 'rgba(250,250,250, 0.5)',
-    alignContent: 'center',
     justifyContent: 'center',
     alignItems: 'center',
     width: 50,
     height: 50,
     borderRadius: 50,
-
-    marginRight: 40,
+    margin: 15,
+    //marginRight: 40,
   },
 });
 
