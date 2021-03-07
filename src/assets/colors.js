@@ -8,7 +8,7 @@ export default {
   TEXTONE: '#2C5364',
   TEXTTWO: '#fff',
 
-  BACKGROUND_LIGHT: '#ddd',
+  BACKGROUND_LIGHT: '#eeddee',
   BACKGROUND_DARK: '#2C5364',
 };
 

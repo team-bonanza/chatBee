@@ -74,7 +74,6 @@ export default function ModalPage({loading, onSubmit, onLogin}) {
               onPress={handleSubmit}
               title="KAYDET"
             />
-            
           </View>
         )}
       </Formik>
@@ -84,7 +83,7 @@ export default function ModalPage({loading, onSubmit, onLogin}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(250, 250, 250, 0.5)', //TODO: kayıt olma sayfasında arka taraf saydam mı yoksa gölgeli mi olsun?
+    backgroundColor: 'rgba(250, 250, 250, 0.5)',
     borderRadius: 5,
     //levation: 10,
     padding: 20,
@@ -92,6 +91,4 @@ const styles = StyleSheet.create({
   title: {
     fontSize: 20,
   },
-  
-  
 });

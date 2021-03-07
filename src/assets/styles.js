@@ -240,11 +240,9 @@ const home_page_styles = StyleSheet.create({
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
-    //backgroundColor: '#00509D',
     borderTopWidth: 2,
     borderBottomWidth: 2,
     borderRightWidth: 2,
-    borderTopWidth: 2,
     borderColor: ICONCOLOR,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
@@ -289,31 +287,156 @@ const home_page_styles = StyleSheet.create({
   },
 });
 
+const SHAREICONS =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+
+const ROOMTITLECOLOR = theme === 'dark' ? colors.BACKGROUND_LIGHT : '#f0a500';
+const ROOMTITLETEXTCOLOR =
+  theme === 'dark' ? colors.TEXTONE : colors.BACKGROUND_LIGHT;
+
+const LESSOPACITYCONTAINER =
+  theme === 'dark' ? 'rgba(137, 33, 242, 0.2)' : 'rgba(242, 233, 200, 0.5)';
+
 const lobby_screen_styles = StyleSheet.create({
   mainContainer: {
-    flex: 2,
     flexDirection: 'column',
-    alignContent: 'space-around',
+    alignContent: 'flex-start',
     margin: 5,
     padding: 5,
+    //    width: deviceSize.width * 0.9,
+    backgroundColor: LESSOPACITYCONTAINER,
+    borderRadius: 5,
   },
   topContainer: {
     alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+
+  inviteContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //borderWidth: 4,
+    //borderRadius: 5,
+    //borderColor: INPUTBACKGROUND,
+  },
+  inviteId: {
+    width: deviceSize.width / 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 30,
+    color: INPUTTEXT,
+    fontSize: 12,
+    textAlignVertical: 'center',
+    backgroundColor: INPUTBACKGROUND,
+    borderRadius: 5,
+    fontFamily: differentFont,
+    padding: 5,
+  },
+
+  shareIcon: {
+    padding: 5,
+    height: 30,
     justifyContent: 'center',
   },
-  logo: {
-    flex: 1,
+  copyIcon: {
     padding: 5,
-    margin: 5,
-    height: 100,
-    width: 100,
-    resizeMode: 'center',
+    height: 30,
+    justifyContent: 'center',
+  },
+
+  icon: {
+    color: SHAREICONS,
+    padding: 5,
+  },
+  streamButtonContainer: {
+    width: deviceSize.width / 2,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  streamButton: {
+    backgroundColor: '#ff3344',
+    color: '#eeeacc',
+    fontFamily: differentFont,
+    fontSize: 11,
+    elevation: 5,
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
   },
   listContainer: {
     flex: 3,
+    justifyContent: 'flex-start',
+  },
+  roomTitleContainer: {
+    width: deviceSize.width,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  logo: {
+    flex: 1,
+    height: 40,
+    width: 40,
+    resizeMode: 'center',
+    // top: 50,
+  },
+  roomTitle: {
+    flex: 1,
+    fontFamily: differentFont,
+    backgroundColor: ROOMTITLECOLOR,
+    color: ROOMTITLETEXTCOLOR,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    paddingTop: 5,
+    paddingBottom: 5,
+    textAlign: 'center',
+  },
+  lobbyContainer: {
+    padding: 10,
+  },
+  buttonsMainContainer: {
+    width: deviceSize.width / 2,
+    position: 'relative',
+    //flex: 0.5,
+    borderRadius: 5,
+    marginBottom: 10,
+    padding: 5,
+    backgroundColor: LESSOPACITYCONTAINER,
+    elevation: 5,
   },
   buttonsContainer: {
-    flex: 1,
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 10,
+  },
+  hourglassContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0a500',
+    elevation: 5,
+  },
+  hourglassIcon: {
+    color: 'white',
+  },
+  checkContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#007965',
+    elevation: 5,
+  },
+  checkIcon: {
+    color: 'white',
   },
 });
 
@@ -404,7 +527,9 @@ const lobby_container_styles = StyleSheet.create({
     alignItems: 'center',
     width: deviceSize.width / 2.5,
     borderRadius: 10,
-    backgroundColor: 'rgba(250, 250,250, 0.5)',
+    backgroundColor: LESSOPACITYCONTAINER,
+    borderWidth: 2,
+    borderColor: 'yellow',
   },
 
   photoContianer: {
@@ -436,6 +561,138 @@ const lobby_container_styles = StyleSheet.create({
   },
 });
 
+const room_screen_styles = StyleSheet.create({
+  topContainer: {
+    position: 'absolute',
+    top: 10,
+    padding: 10,
+    width: Dimensions.get('window').width,
+    marginTop: 5,
+    zIndex: 1004,
+  },
+  logoContainer: {
+    backgroundColor: 'rgba(250,250,250,0.1)',
+    width: 55,
+    height: 55,
+    padding: 40,
+    marginBottom: 10,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  logo: {
+    width: 55,
+    height: 55,
+  },
+  questionContainer: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    margin: 5,
+    padding: 5,
+    borderRadius: 5,
+  },
+  question: {
+    textAlign: 'center',
+  },
+  callingContainer: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    margin: 0,
+    padding: 0,
+  },
+  rtcview1: {
+    position: 'relative',
+    backgroundColor: 'rgba(20,20,20, 0.2)',
+    borderRadius: 5,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    bottom: 0,
+    right: 0,
+
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+
+  rtc1: {
+    width: Dimensions.get('window').width * 1.55,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+
+  rtcview2: {
+    position: 'absolute',
+    backgroundColor: 'rgba(250,200,20, 0.6)',
+    bottom: 0,
+    alignSelf: 'center',
+    zIndex: 100,
+    borderRadius: 5,
+    width: 350,
+    height: 250,
+  },
+
+  rtc2: {
+    width: 100,
+    height: 300,
+    margin: 5,
+    borderRadius: 5,
+  },
+  gif: {
+    width: 50,
+    height: 50,
+    alignSelf: 'center',
+  },
+  gifText: {
+    color: '#222',
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
+  },
+  VolumeAndFlip: {
+    //height: deviceSize.height / 12,
+    width: deviceSize.width,
+    position: 'absolute',
+    zIndex: 1006,
+    bottom: 40,
+    paddingRight: 20,
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
+  volumeButton: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    margin: 15,
+  },
+
+  callButtons: {
+    //height: deviceSize.height / 12,
+    width: deviceSize.width,
+    position: 'absolute',
+    zIndex: 1006,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    bottom: 40,
+  },
+
+  buttonCover: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    margin: 15,
+    //marginRight: 40,
+  },
+});
+
 export {
   beeView_style,
   beeButton_style,
@@ -446,6 +703,7 @@ export {
   home_page_styles,
   lobby_screen_styles,
   lobby_container_styles,
+  room_screen_styles,
   INPUTTEXT,
   ICONCOLOR,
 };
