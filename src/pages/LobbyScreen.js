@@ -126,7 +126,7 @@ function LobbyScreen({navigation, route}) {
       <View style={lobby_screen_styles.listContainer}>
         <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
         <View style={lobby_screen_styles.lobbyContainer}>
-          <LobbyContainer
+          {/* <LobbyContainer
             // photo={source={{uri: getUsers().photoURL}}}
             name={getUsers().displayName}
           />
@@ -134,7 +134,7 @@ function LobbyScreen({navigation, route}) {
             keyExtractor={(item) => item.id.toString()}
             data={getUsers}
             renderItem={renderComponent}
-          />
+          /> */}
         </View>
       </View>
       <View style={lobby_screen_styles.buttonsMainContainer}>

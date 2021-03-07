@@ -1,5 +1,6 @@
 import React from 'react';
 import {Text, Image, View, TouchableOpacity} from 'react-native';
+import RandomQuote from '../components/RandomQuote';
 
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {room_screen_styles} from '../assets/styles';
@@ -212,7 +213,7 @@ function RoomScreen({navigation, route}) {
               />
 
               <Text style={room_screen_styles.gifText}>
-                Kameranı Aç da Gül Cemalini Görelim
+                <RandomQuote />
               </Text>
             </View>
           )}
