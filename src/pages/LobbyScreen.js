@@ -23,6 +23,7 @@ import {getImgURL} from '../assets/images';
 
 function LobbyScreen({navigation, route}) {
   const {id: id, toScreen: toScreen} = route.params;
+  const [lobbyUsers, setLobbyUsers] = React.useState([]);
 
   const onShare = async () => {
     try {
@@ -58,19 +59,17 @@ function LobbyScreen({navigation, route}) {
       .collection('lobby')
       .doc('a9oiOCCYqeb97Ja9OS6D')
       .get();
-    //roomRef.collection();
-    console.log('ANAN ANAN HATTA ANNEN ' + roomRef.data().user.displayName);
+    const users = roomRef.data().user;
+    setLobbyUsers(users);
   }
 
   React.useEffect(() => {
     getUsers();
   }, []);
 
-  // const renderComponent = ({data}) => {
-  //   return (
-  //     <LobbyContainer name={roomRef.data().user.displayName} data={data} />
-  //   );
-  // };
+  const renderComponent = ({item}) => {
+    return <LobbyContainer user={item} />;
+  };
 
   //TODO: LobbyContainer is the container that is going to added to FlatList
 
@@ -126,15 +125,11 @@ function LobbyScreen({navigation, route}) {
           <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
         </View>
         <View style={lobby_screen_styles.lobbyContainer}>
-          {/* <LobbyContainer
-            // photo={source={{uri: getUsers().photoURL}}}
-            name={getUsers().displayName}
-          />
           <FlatList
-            keyExtractor={(item) => item.id.toString()}
-            data={getUsers}
+            keyExtractor={(_, index) => index.toString()}
+            data={lobbyUsers}
             renderItem={renderComponent}
-          /> */}
+          />
         </View>
       </View>
       <View style={lobby_screen_styles.buttonsMainContainer}>
