@@ -18,8 +18,7 @@ import {lobby_screen_styles} from '../assets/styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
-
-import {getImgURL} from '../assets/images';
+import auth from '@react-native-firebase/auth';
 
 function LobbyScreen({navigation, route}) {
   const {id: id, toScreen: toScreen} = route.params;
@@ -40,9 +39,20 @@ function LobbyScreen({navigation, route}) {
         // dismissed
       }
     } catch (error) {
-      alert(error.message);
+      Alert.alert(error.message);
     }
   };
+
+  async function onUserGetReady() {
+    const user = db
+      .collection('lobby')
+      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .collection('users')
+      .doc(`${auth().currentUser.uid}`);
+    await user.update({
+      isReady: true,
+    });
+  }
 
   const copyToClipboard = () => {
     Clipboard.setString(id);
@@ -53,14 +63,18 @@ function LobbyScreen({navigation, route}) {
   function onNavigate(screen) {
     navigation.navigate(screen, {id: id});
   }
-
+  // TODO: buraya yarın bakarsın
   async function getUsers() {
-    const roomRef = await db
+    const userList = [];
+    const userRef = db
       .collection('lobby')
       .doc('a9oiOCCYqeb97Ja9OS6D')
-      .get();
-    const users = roomRef.data().user;
-    setLobbyUsers(users);
+      .collection('users');
+
+    userRef.onSnapshot((querySnapshot) =>
+      querySnapshot.forEach((snapshot) => userList.push(snapshot.data())),
+    );
+    setLobbyUsers(userList);
   }
 
   React.useEffect(() => {
@@ -150,12 +164,7 @@ function LobbyScreen({navigation, route}) {
           </TouchableOpacity>
           <TouchableOpacity
             style={lobby_screen_styles.checkContainer}
-            onPress={() =>
-              Alert.alert(
-                'READY',
-                "User's Card Border Color will be green when clicking the button",
-              )
-            }>
+            onPress={() => onUserGetReady()}>
             <Icons
               style={lobby_screen_styles.checkIcon}
               name="check-bold"

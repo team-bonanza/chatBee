@@ -3,7 +3,6 @@ import {View, Text, Image} from 'react-native';
 import {lobby_container_styles} from '../../assets/styles';
 
 export function LobbyContainer({user}) {
-  console.log(typeof user);
   return (
     <View style={lobby_container_styles.photoMainContainer}>
       <View style={lobby_container_styles.card}>
@@ -17,6 +16,7 @@ export function LobbyContainer({user}) {
           <Text style={lobby_container_styles.displayName}>
             {user.displayName}
           </Text>
+          <Text>{`Kullanıcı ${user.isReady}`}</Text>
         </View>
       </View>
     </View>
