@@ -47,12 +47,23 @@ function HomePage({navigation}) {
   async function onNavigateToJoin(screen) {
     const roomRef = db.collection('rooms').doc(roomId);
     const roomSnapshot = await roomRef.get();
-    console.log('roomref', roomRef);
-    console.log('roomsp', roomSnapshot);
 
     if (!roomSnapshot.exists) {
       console.log('oda yok');
     }
+
+    db.collection('lobby')
+      .doc(roomId)
+      .collection('users')
+      .doc(`${auth().currentUser.uid}`)
+      .set(
+        {
+          displayName: auth().currentUser.displayName,
+          isReady: false,
+          photoURL: auth().currentUser.photoURL,
+        },
+        {merge: true},
+      );
 
     navigation.navigate(screen, {
       id: roomId,
