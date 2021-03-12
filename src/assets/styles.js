@@ -243,7 +243,6 @@ const home_page_styles = StyleSheet.create({
     borderTopWidth: 2,
     borderBottomWidth: 2,
     borderRightWidth: 2,
-    borderTopWidth: 2,
     borderColor: ICONCOLOR,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
@@ -296,29 +295,21 @@ const ROOMTITLETEXTCOLOR =
   theme === 'dark' ? colors.TEXTONE : colors.BACKGROUND_LIGHT;
 
 const LESSOPACITYCONTAINER =
-  theme === 'dark' ? 'rgba(137, 33, 242, 0.2)' : 'rgba(242, 233, 200, 0.5)';
+  theme === 'dark' ? 'rgb(37, 133, 142)' : 'rgb(100, 200, 200)';
 
 const lobby_screen_styles = StyleSheet.create({
   mainContainer: {
-    flex: 1,
     flexDirection: 'column',
     alignContent: 'flex-start',
     margin: 5,
     padding: 5,
-    width: deviceSize.width * 0.9,
+    //    width: deviceSize.width * 0.9,
     backgroundColor: LESSOPACITYCONTAINER,
     borderRadius: 5,
   },
   topContainer: {
     alignItems: 'center',
     justifyContent: 'flex-start',
-  },
-  logo: {
-    padding: 5,
-    margin: 5,
-    height: 40,
-    width: 40,
-    resizeMode: 'center',
   },
 
   inviteContainer: {
@@ -333,8 +324,9 @@ const lobby_screen_styles = StyleSheet.create({
     width: deviceSize.width / 2,
     paddingLeft: 10,
     paddingRight: 10,
-    height: 40,
+    height: 30,
     color: INPUTTEXT,
+    fontSize: 12,
     textAlignVertical: 'center',
     backgroundColor: INPUTBACKGROUND,
     borderRadius: 5,
@@ -344,12 +336,12 @@ const lobby_screen_styles = StyleSheet.create({
 
   shareIcon: {
     padding: 5,
-    height: 40,
+    height: 30,
     justifyContent: 'center',
   },
   copyIcon: {
     padding: 5,
-    height: 40,
+    height: 30,
     justifyContent: 'center',
   },
 
@@ -367,23 +359,51 @@ const lobby_screen_styles = StyleSheet.create({
     backgroundColor: '#ff3344',
     color: '#eeeacc',
     fontFamily: differentFont,
+    fontSize: 14,
     elevation: 5,
     borderRadius: 5,
     margin: 10,
     padding: 10,
   },
-
   listContainer: {
     flex: 3,
     justifyContent: 'flex-start',
   },
-  roomTitle: {
-    width: deviceSize.width * 1,
+  roomTitleContainer: {
+    width: deviceSize.width,
+    margin: 5,
+    padding: 5,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
     backgroundColor: ROOMTITLECOLOR,
+  },
+  logoContainer: {
+    backgroundColor: '#ddd',
+    flex: 1,
+    marginLeft: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    elevation: 5,
+  },
+  logo: {
+    height: 40,
+    width: 40,
+    resizeMode: 'center',
+    // top: 50,
+  },
+  roomTitle: {
+    flex: 1,
+    fontFamily: differentFont,
+
     color: ROOMTITLETEXTCOLOR,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
     paddingTop: 5,
     paddingBottom: 5,
     textAlign: 'center',
+    fontSize: 15,
   },
   lobbyContainer: {
     padding: 10,
@@ -395,21 +415,21 @@ const lobby_screen_styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     padding: 5,
-    backgroundColor: LESSOPACITYCONTAINER,
-    elevation: 5,
+    //backgroundColor: LESSOPACITYCONTAINER,
+    //elevation: 5,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
     borderRadius: 5,
-    padding: 10,
+    padding: 5,
   },
   hourglassContainer: {
     width: 60,
     height: 60,
-    borderRadius: 50,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f0a500',
@@ -433,123 +453,184 @@ const lobby_screen_styles = StyleSheet.create({
 });
 
 const lobby_container_styles = StyleSheet.create({
-  logoContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  logo: {
-    width: 60,
-    height: 60,
-  },
-  inputCopy: {
-    flexDirection: 'row',
-    margin: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  input: {
-    width: deviceSize.width / 2,
-    borderWidth: 2,
-    borderColor: '#00509D',
-    borderBottomLeftRadius: 5,
-    borderTopLeftRadius: 5,
-    height: 55,
-    paddingLeft: 10,
-    color: '#333666',
-    textAlignVertical: 'center',
-    backgroundColor: '#f0f0f0',
-    fontFamily: differentFont,
-  },
-  iconCopy: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    backgroundColor: '#00509D',
-    borderBottomRightRadius: 5,
-    borderTopRightRadius: 5,
-    height: 55,
-  },
-
-  buttonOrange: {
-    height: 70,
-    width: 70,
-    borderRadius: 100,
-    backgroundColor: 'orange',
-    elevation: 15,
-    marginRight: 10,
-  },
-
-  phContainer: {
-    backgroundColor: '#f0f0f0',
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: 'white',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginBottom: 5,
-    padding: 5,
-    elevation: 15,
-  },
-  buttonYellow: {
-    height: 70,
-    width: 70,
-    borderRadius: 100,
-    backgroundColor: 'green',
-    elevation: 15,
-    marginLeft: 10,
-  },
-  iconHour: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    height: 70,
-  },
-  iconCheck: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    height: 70,
-  },
   card: {
-    margin: 10,
-    padding: 10,
-    justifyContent: 'center',
+    margin: 5,
+    marginTop: 7,
+    marginBottom: 7,
+    padding: 5,
+    paddingLeft: 10,
+    flexDirection: 'row',
     alignItems: 'center',
-    width: deviceSize.width / 2.5,
+    alignSelf: 'center',
+    width: deviceSize.width * 0.9,
     borderRadius: 10,
     backgroundColor: LESSOPACITYCONTAINER,
-    borderWidth: 2,
-    borderColor: 'yellow',
-  },
-
-  photoContianer: {
-    width: 80,
-    height: 80,
-    borderRadius: 80,
-    elevation: 20,
+    borderWidth: 3,
+    elevation: 5,
   },
 
   photo: {
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
-    height: 80,
-    width: 80,
-    borderRadius: 80,
+    height: 40,
+    width: 40,
+    borderRadius: 40,
+    marginRight: 5,
   },
   displayNameContianer: {
-    marginTop: 10,
     backgroundColor: '#efe2e0',
-    padding: 10,
-    borderRadius: 10,
+    flex: 1,
+    marginLeft: 5,
+    padding: 5,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
+    elevation: 5,
   },
   displayName: {
     color: '#333',
+    textAlign: 'center',
+    fontFamily: differentFont,
+    fontSize: 15,
   },
   photoMainContianer: {
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'red',
+  },
+});
+
+const room_screen_styles = StyleSheet.create({
+  topContainer: {
+    position: 'absolute',
+    top: 10,
+    padding: 10,
+    width: Dimensions.get('window').width,
+    marginTop: 5,
+    zIndex: 1004,
+  },
+  logoContainer: {
+    backgroundColor: 'rgba(250,250,250,0.1)',
+    width: 55,
+    height: 55,
+    padding: 40,
+    marginBottom: 10,
+    borderRadius: 40,
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignSelf: 'center',
+  },
+  logo: {
+    width: 55,
+    height: 55,
+  },
+  questionContainer: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    margin: 5,
+    padding: 5,
+    borderRadius: 5,
+  },
+  question: {
+    textAlign: 'center',
+  },
+  callingContainer: {
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    margin: 0,
+    padding: 0,
+  },
+  rtcview1: {
+    position: 'relative',
+    backgroundColor: 'rgba(20,20,20, 0.2)',
+    borderRadius: 5,
+    width: Dimensions.get('window').width,
+    height: Dimensions.get('window').height,
+    bottom: 0,
+    right: 0,
+
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+
+  rtc1: {
+    width: Dimensions.get('window').width * 1.55,
+    height: Dimensions.get('window').height,
+    alignItems: 'center',
+    alignSelf: 'center',
+    justifyContent: 'center',
+  },
+
+  rtcview2: {
+    position: 'absolute',
+    backgroundColor: 'rgba(250,200,20, 0.6)',
+    bottom: 0,
+    alignSelf: 'center',
+    zIndex: 100,
+    borderRadius: 5,
+    width: 350,
+    height: 250,
+  },
+
+  rtc2: {
+    width: 100,
+    height: 300,
+    margin: 5,
+    borderRadius: 5,
+  },
+  gif: {
+    width: 50,
+    height: 50,
+    alignSelf: 'center',
+  },
+  gifText: {
+    color: '#222',
+    alignSelf: 'center',
+    textAlignVertical: 'center',
+    fontSize: 20,
+  },
+  VolumeAndFlip: {
+    //height: deviceSize.height / 12,
+    width: deviceSize.width,
+    position: 'absolute',
+    zIndex: 1006,
+    bottom: 40,
+    paddingRight: 20,
+    flexDirection: 'column',
+    alignItems: 'flex-end',
+  },
+  volumeButton: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    justifyContent: 'center',
+    alignContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    margin: 15,
+  },
+
+  callButtons: {
+    //height: deviceSize.height / 12,
+    width: deviceSize.width,
+    position: 'absolute',
+    zIndex: 1006,
+    flexDirection: 'row',
+    justifyContent: 'center',
+    bottom: 40,
+  },
+
+  buttonCover: {
+    backgroundColor: 'rgba(250,250,250, 0.5)',
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: 50,
+    height: 50,
+    borderRadius: 50,
+    margin: 15,
+    //marginRight: 40,
   },
 });
 
@@ -563,6 +644,7 @@ export {
   home_page_styles,
   lobby_screen_styles,
   lobby_container_styles,
+  room_screen_styles,
   INPUTTEXT,
   ICONCOLOR,
 };

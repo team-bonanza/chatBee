@@ -1,14 +1,10 @@
 import React from 'react';
-import {
-  Text,
-  StyleSheet,
-  Image,
-  View,
-  TouchableOpacity,
-  Dimensions,
-} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
+import RandomQuote from '../components/RandomQuote';
 
 import Icons from 'react-native-vector-icons/MaterialIcons';
+import {room_screen_styles} from '../assets/styles';
+import LottieView from 'lottie-react-native';
 
 import {
   RTCPeerConnection,
@@ -140,33 +136,40 @@ function RoomScreen({navigation, route}) {
 
   return (
     <>
-      <View style={styles.topContainer}>
-        <View style={styles.logoContainer}>
-          <Image source={require('../assets/bee.png')} style={styles.logo} />
-        </View>
+      <View style={room_screen_styles.topContainer}>
+        {/* <View style={room_screen_styles.logoContainer}>
+          <Image
+            source={require('../assets/bee.png')}
+            style={room_screen_styles.logo}
+          />
+        </View> */}
 
-        <View style={styles.questionContainer}>
-          <Text style={styles.question}>BURALARA YAZ GÜNÜ SORU YAĞIYOR</Text>
+        <View style={room_screen_styles.questionContainer}>
+          <View style={room_screen_styles.question}>
+            <RandomQuote />
+          </View>
         </View>
       </View>
 
-      <View style={styles.callButtons}>
-        <View styles={styles.buttonContainer}>
-          <TouchableOpacity style={styles.buttonCover} onPress={onBackPress}>
+      <View style={room_screen_styles.callButtons}>
+        <View>
+          <TouchableOpacity
+            style={room_screen_styles.buttonCover}
+            onPress={onBackPress}>
             <Icons name="call-end" size={30} color={'red'} />
           </TouchableOpacity>
         </View>
-        <View styles={styles.buttonContainer}>
+        <View>
           {!localStream && (
             <TouchableOpacity
-              style={styles.buttonCover}
+              style={room_screen_styles.buttonCover}
               onPress={startLocalStream}>
               <Icons name="call" size={30} color={ICONCOLOR} />
             </TouchableOpacity>
           )}
           {localStream && (
             <TouchableOpacity
-              style={styles.buttonCover}
+              style={room_screen_styles.buttonCover}
               onPress={() => startCall(id)}
               disabled={!!remoteStream}>
               <Icons name="call" size={30} color={ICONCOLOR} />
@@ -176,13 +179,15 @@ function RoomScreen({navigation, route}) {
       </View>
 
       {localStream && (
-        <View style={styles.VolumeAndFlip}>
-          <TouchableOpacity style={styles.volumeButton} onPress={switchCamera}>
+        <View style={room_screen_styles.VolumeAndFlip}>
+          <TouchableOpacity
+            style={room_screen_styles.volumeButton}
+            onPress={switchCamera}>
             <Icons name="flip-camera-android" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
 
           <TouchableOpacity
-            style={styles.volumeButton}
+            style={room_screen_styles.volumeButton}
             title={`${isMuted ? 'Unmute' : 'Mute'} stream`}
             onPress={toggleMute}
             disabled={!remoteStream}>
@@ -191,43 +196,34 @@ function RoomScreen({navigation, route}) {
         </View>
       )}
 
-      <View style={styles.callingContainer}>
-        <View style={styles.rtcview1}>
+      <View style={room_screen_styles.callingContainer}>
+        <View style={room_screen_styles.rtcview1}>
           {localStream ? (
             <RTCView
-              style={styles.rtc1}
+              style={room_screen_styles.rtc1}
               streamURL={localStream && localStream.toURL()}
             />
           ) : (
-            <Text
-              style={{
-                color: 'white',
-                alignSelf: 'center',
-                textAlignVertical: 'center',
-                fontSize: 20,
-              }}>
-              Kameranı Aç da Gül Cemalini Görelim
-            </Text>
+            <View style={room_screen_styles.gifArea}>
+              <LottieView
+                style={room_screen_styles.gif}
+                source={require('../assets/gif/bee1.json')}
+                autoPlay
+                loop
+              />
+
+              <Text style={room_screen_styles.gifText}>
+                Kameranı aç da gül cemalini görelim
+              </Text>
+            </View>
           )}
         </View>
-        <View style={styles.rtcview2}>
-          {remoteStream ? (
+        <View style={room_screen_styles.rtcview2}>
+          {remoteStream && (
             <RTCView
-              style={styles.rtc2}
+              style={room_screen_styles.rtc2}
               streamURL={remoteStream && remoteStream.toURL()}
             />
-          ) : (
-            <Text
-              style={{
-                color: 'white',
-                alignSelf: 'center',
-                textAlignVertical: 'center',
-                justifyContent: 'center',
-                fontSize: 20,
-                padding: 20,
-              }}>
-              Sanırım o da utanıyor
-            </Text>
           )}
         </View>
       </View>
@@ -235,129 +231,4 @@ function RoomScreen({navigation, route}) {
   );
 }
 
-const styles = StyleSheet.create({
-  topContainer: {
-    position: 'absolute',
-    top: 10,
-    padding: 10,
-    width: Dimensions.get('window').width,
-    marginTop: 5,
-    zIndex: 1004,
-  },
-  logoContainer: {
-    backgroundColor: 'rgba(250,250,250,0.1)',
-    width: 55,
-    height: 55,
-    padding: 40,
-    marginBottom: 10,
-    borderRadius: 40,
-    justifyContent: 'center',
-    alignItems: 'center',
-    alignSelf: 'center',
-  },
-  logo: {
-    width: 55,
-    height: 55,
-  },
-  questionContainer: {
-    backgroundColor: 'rgba(250,250,250, 0.5)',
-    margin: 5,
-    padding: 5,
-    borderRadius: 5,
-  },
-  question: {
-    textAlign: 'center',
-  },
-  callingContainer: {
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-    margin: 0,
-    padding: 0,
-  },
-  rtcview1: {
-    position: 'relative',
-    backgroundColor: 'green',
-    borderRadius: 5,
-    width: Dimensions.get('window').width,
-    height: Dimensions.get('window').height,
-    bottom: 0,
-    right: 0,
-
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
-
-  rtc1: {
-    width: Dimensions.get('window').width * 1.55,
-    height: Dimensions.get('window').height,
-    alignItems: 'center',
-    alignSelf: 'center',
-    justifyContent: 'center',
-  },
-
-  rtcview2: {
-    position: 'absolute',
-    bottom: 55,
-    right: 0,
-    zIndex: 100,
-    backgroundColor: '#f546dd',
-    borderRadius: 5,
-    margin: 25,
-    width: 150,
-    height: 250,
-  },
-
-  rtc2: {
-    width: 100,
-    height: 300,
-    margin: 5,
-    borderRadius: 5,
-  },
-  VolumeAndFlip: {
-    position: 'absolute',
-    bottom: 40,
-    left: 10,
-    zIndex: 1005,
-    flexDirection: 'column',
-  },
-  volumeButton: {
-    backgroundColor: 'rgba(250,250,250, 0.5)',
-    justifyContent: 'center',
-    alignContent: 'center',
-    alignItems: 'center',
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    marginTop: 15,
-  },
-
-  callButtons: {
-    position: 'absolute',
-    zIndex: 102,
-    bottom: 40,
-    left: 0,
-    width: '100%',
-    flexDirection: 'row',
-    paddingRight: 40,
-    justifyContent: 'center',
-  },
-  buttonContainer: {
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-    marginRight: 10,
-  },
-  buttonCover: {
-    backgroundColor: 'rgba(250,250,250, 0.5)',
-    alignContent: 'center',
-    justifyContent: 'center',
-    alignItems: 'center',
-    width: 50,
-    height: 50,
-    borderRadius: 50,
-
-    marginRight: 40,
-  },
-});
 export {RoomScreen};

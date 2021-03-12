@@ -1,21 +1,27 @@
 import React from 'react';
 import {View, Text, Image} from 'react-native';
 import {lobby_container_styles} from '../../assets/styles';
-import auth from '@react-native-firebase/auth';
 
-export function LobbyContainer({name, photo}) {
+export function LobbyContainer({user}) {
   return (
     <View style={lobby_container_styles.photoMainContainer}>
-      <View style={lobby_container_styles.card}>
+      <View
+        style={[
+          lobby_container_styles.card,
+          {borderColor: user.isReady ? '#007965' : '#f0a500'},
+        ]}>
         <View style={lobby_container_styles.photoContianer}>
-          <Image source={photo} style={lobby_container_styles.photo} />
+          <Image
+            source={{uri: user.photoURL}}
+            style={lobby_container_styles.photo}
+          />
         </View>
         <View style={lobby_container_styles.displayNameContianer}>
-          <Text style={lobby_container_styles.displayName}>{name}</Text>
+          <Text style={lobby_container_styles.displayName}>
+            {user.displayName}
+          </Text>
         </View>
       </View>
     </View>
   );
 }
-
-// source={{uri: auth().currentUser.photoURL}}

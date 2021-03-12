@@ -18,14 +18,11 @@ import {lobby_screen_styles} from '../assets/styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
+import auth from '@react-native-firebase/auth';
 
 function LobbyScreen({navigation, route}) {
-  const {
-    id: id,
-    toScreen: toScreen,
-    roomRef: roomRef,
-    roomSnapshot: roomSnapshot,
-  } = route.params;
+  const {id: id, toScreen: toScreen} = route.params;
+  const [lobbyUsers, setLobbyUsers] = React.useState([]);
 
   const onShare = async () => {
     try {
@@ -42,9 +39,31 @@ function LobbyScreen({navigation, route}) {
         // dismissed
       }
     } catch (error) {
-      alert(error.message);
+      Alert.alert(error.message);
     }
   };
+
+  async function onUserGetReady() {
+    const user = db
+      .collection('lobby')
+      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .collection('users')
+      .doc(`${auth().currentUser.uid}`);
+    await user.update({
+      isReady: true,
+    });
+  }
+
+  async function onUserBusy() {
+    const user = db
+      .collection('lobby')
+      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .collection('users')
+      .doc(`${auth().currentUser.uid}`);
+    await user.update({
+      isReady: false,
+    });
+  }
 
   const copyToClipboard = () => {
     Clipboard.setString(id);
@@ -55,24 +74,26 @@ function LobbyScreen({navigation, route}) {
   function onNavigate(screen) {
     navigation.navigate(screen, {id: id});
   }
-
-  async function getUsers() {
-    const roomRef = await db
-      .collection('lobby')
+  // TODO: buraya yarın bakarsın
+  function getUsers() {
+    db.collection('lobby')
       .doc('a9oiOCCYqeb97Ja9OS6D')
-      .get();
-    //roomRef.collection();
-    console.log('ANAN ANAN HATTA ANNEN ' + roomRef.data().user.displayName);
+      .collection('users')
+      .onSnapshot((querySnapshot) => {
+        const userList = [];
+        querySnapshot.forEach((snapshot) => {
+          userList.push({...snapshot.data()});
+        });
+        setLobbyUsers(userList);
+      });
   }
 
   React.useEffect(() => {
     getUsers();
   }, []);
 
-  const renderComponent = ({data}) => {
-    return (
-      <LobbyContainer name={roomRef.data().user.displayName} data={data} />
-    );
+  const renderComponent = ({item}) => {
+    return <LobbyContainer user={item} />;
   };
 
   //TODO: LobbyContainer is the container that is going to added to FlatList
@@ -83,10 +104,10 @@ function LobbyScreen({navigation, route}) {
         <View style={lobby_screen_styles.topContainer}>
           {/* <Image source={logo._W} style={lobby_screen_styles.logo} /> */}
 
-          <Image
+          {/* <Image
             source={require('../assets/bee.png')}
             style={lobby_screen_styles.logo}
-          />
+          /> */}
 
           <View style={lobby_screen_styles.inviteContainer}>
             <TouchableOpacity
@@ -95,7 +116,7 @@ function LobbyScreen({navigation, route}) {
               <Icons
                 style={lobby_screen_styles.icon}
                 name="share-variant"
-                size={30}
+                size={25}
               />
             </TouchableOpacity>
             <Text numberOfLines={1} style={lobby_screen_styles.inviteId}>
@@ -107,7 +128,7 @@ function LobbyScreen({navigation, route}) {
               <Icons
                 style={lobby_screen_styles.icon}
                 name="content-copy"
-                size={30}
+                size={25}
               />
             </TouchableOpacity>
           </View>
@@ -121,15 +142,19 @@ function LobbyScreen({navigation, route}) {
         </TouchableOpacity>
       </View>
       <View style={lobby_screen_styles.listContainer}>
-        <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+        <View style={lobby_screen_styles.roomTitleContainer}>
+          <View style={lobby_screen_styles.logoContainer}>
+            <Image
+              source={require('../assets/bee.png')}
+              style={lobby_screen_styles.logo}
+            />
+          </View>
+          <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+        </View>
         <View style={lobby_screen_styles.lobbyContainer}>
-          <LobbyContainer
-            // photo={source={{uri: getUsers().photoURL}}}
-            name={getUsers().displayName}
-          />
           <FlatList
-            keyExtractor={(item) => item.id.toString()}
-            data={getUsers}
+            keyExtractor={(_, index) => index.toString()}
+            data={lobbyUsers}
             renderItem={renderComponent}
           />
         </View>
@@ -138,12 +163,7 @@ function LobbyScreen({navigation, route}) {
         <View style={lobby_screen_styles.buttonsContainer}>
           <TouchableOpacity
             style={lobby_screen_styles.hourglassContainer}
-            onPress={() =>
-              Alert.alert(
-                'HOLD ON',
-                "User's Card Border Color will be yellow when clicking the button",
-              )
-            }>
+            onPress={() => onUserBusy()}>
             <MaterialIcons
               style={lobby_screen_styles.hourglassIcon}
               name="hourglass-full"
@@ -152,12 +172,7 @@ function LobbyScreen({navigation, route}) {
           </TouchableOpacity>
           <TouchableOpacity
             style={lobby_screen_styles.checkContainer}
-            onPress={() =>
-              Alert.alert(
-                'READY',
-                "User's Card Border Color will be green when clicking the button",
-              )
-            }>
+            onPress={() => onUserGetReady()}>
             <Icons
               style={lobby_screen_styles.checkIcon}
               name="check-bold"
