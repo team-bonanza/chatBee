@@ -45,7 +45,7 @@ function OnboardingStack() {
 
 function Router() {
   const [firstLaunch, setFirstLaunch] = useState(false);
-  
+
   useEffect(() => {
     AsyncStorage.getItem('hasLaunch').then((value) => {
       if (value == 'true') {
@@ -53,19 +53,19 @@ function Router() {
       }
     });
   }, []);
-  
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-      {firstLaunch ? (
-        <Stack.Screen
+        {firstLaunch ? (
+          <Stack.Screen
             options={{
               headerShown: false,
             }}
             name="HomeStack"
             component={HomeStack}
-            />
-            ) : (
+          />
+        ) : (
           <Stack.Screen
             options={{
               headerShown: false,
