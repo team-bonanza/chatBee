@@ -9,7 +9,6 @@ import {
   FlatList,
 } from 'react-native';
 
-import storage from '@react-native-firebase/storage';
 import {db} from '../utilities/firebase';
 
 import BeeView from '../components/BeeView';
@@ -19,8 +18,6 @@ import {lobby_screen_styles} from '../assets/styles';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
 import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
-
-import {logo} from '../assets/images';
 
 function LobbyScreen({navigation, route}) {
   const {

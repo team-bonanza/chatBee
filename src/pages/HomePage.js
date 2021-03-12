@@ -1,12 +1,5 @@
 import React, {useState} from 'react';
-import {
-  View,
-  Text,
-  TouchableOpacity,
-  TextInput,
-  Image,
-  KeyboardAvoidingView,
-} from 'react-native';
+import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import BeeView from '../components/BeeView';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';

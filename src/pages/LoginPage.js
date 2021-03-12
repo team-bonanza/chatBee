@@ -47,7 +47,7 @@ const LoginPage = () => {
   }
 
   if (response && !error) {
-    navigation.navigate('CallStack');
+    navigation.navigate('Home Page');
   }
   if (error) {
     Alert.alert('ChatBee', error.message);
