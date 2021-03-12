@@ -2,11 +2,7 @@ import React from 'react';
 import {
   Text,
   StyleSheet,
-<<<<<<< HEAD
   Image,
-=======
-  Button,
->>>>>>> e7468d48aacd2c5e91cce25c7026d353200fa05c
   View,
   TouchableOpacity,
   Dimensions,
