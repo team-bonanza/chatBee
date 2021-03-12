@@ -295,7 +295,7 @@ const ROOMTITLETEXTCOLOR =
   theme === 'dark' ? colors.TEXTONE : colors.BACKGROUND_LIGHT;
 
 const LESSOPACITYCONTAINER =
-  theme === 'dark' ? 'rgba(137, 33, 242, 0.2)' : 'rgba(242, 233, 200, 0.5)';
+  theme === 'dark' ? 'rgb(37, 133, 142)' : 'rgb(100, 200, 200)';
 
 const lobby_screen_styles = StyleSheet.create({
   mainContainer: {
@@ -403,21 +403,21 @@ const lobby_screen_styles = StyleSheet.create({
     borderRadius: 5,
     marginBottom: 10,
     padding: 5,
-    backgroundColor: LESSOPACITYCONTAINER,
-    elevation: 5,
+    //backgroundColor: LESSOPACITYCONTAINER,
+    //elevation: 5,
   },
   buttonsContainer: {
     flexDirection: 'row',
     justifyContent: 'space-around',
     alignItems: 'center',
-    backgroundColor: 'white',
+    //backgroundColor: 'white',
     borderRadius: 5,
-    padding: 10,
+    padding: 5,
   },
   hourglassContainer: {
     width: 60,
     height: 60,
-    borderRadius: 50,
+    borderRadius: 30,
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#f0a500',
@@ -521,36 +521,38 @@ const lobby_container_styles = StyleSheet.create({
     height: 70,
   },
   card: {
-    margin: 10,
-    padding: 10,
-    justifyContent: 'center',
+    margin: 5,
+    marginTop: 7,
+    marginBottom: 7,
+    padding: 5,
+    paddingLeft: 10,
+    flexDirection: 'row',
     alignItems: 'center',
-    width: deviceSize.width / 2.5,
+    alignSelf: 'center',
+    width: deviceSize.width * 0.9,
     borderRadius: 10,
     backgroundColor: LESSOPACITYCONTAINER,
     borderWidth: 2,
     borderColor: 'yellow',
-  },
-
-  photoContianer: {
-    width: 80,
-    height: 80,
-    borderRadius: 80,
-    elevation: 20,
+    elevation: 5,
   },
 
   photo: {
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
-    height: 80,
-    width: 80,
-    borderRadius: 80,
+    height: 40,
+    width: 40,
+    borderRadius: 40,
+    marginRight: 5,
   },
   displayNameContianer: {
-    marginTop: 10,
     backgroundColor: '#efe2e0',
-    padding: 10,
-    borderRadius: 10,
+    marginLeft: 5,
+    padding: 5,
+    borderRadius: 5,
+    borderTopLeftRadius: 10,
+    borderBottomRightRadius: 8,
+    elevation: 5,
   },
   displayName: {
     color: '#333',
