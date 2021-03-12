@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, TouchableOpacity, StyleSheet, Button, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {
   RTCPeerConnection,
   RTCView,
@@ -9,7 +9,7 @@ import {
 } from 'react-native-webrtc';
 
 import RandomQuote from '../components/RandomQuote';
-
+import db from '../utilities/firebase';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {room_screen_styles} from '../assets/styles';
 import LottieView from 'lottie-react-native';
@@ -27,11 +27,7 @@ const configuration = {
 };
 
 function JoinScreen({navigation, route}) {
-  const {
-    id: roomId,
-    roomRef: roomRef,
-    roomSnapshot: roomSnapshot,
-  } = route.params;
+  const {id: roomId} = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {
@@ -77,6 +73,9 @@ function JoinScreen({navigation, route}) {
   };
 
   const joinCall = async (id) => {
+    const roomRef = await db.collection('rooms').doc(id);
+    const roomSnapshot = await roomRef.get();
+
     const localPC = new RTCPeerConnection(configuration);
     localPC.addStream(localStream);
 
