@@ -54,6 +54,17 @@ function LobbyScreen({navigation, route}) {
     });
   }
 
+  async function onUserBusy() {
+    const user = db
+      .collection('lobby')
+      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .collection('users')
+      .doc(`${auth().currentUser.uid}`);
+    await user.update({
+      isReady: false,
+    });
+  }
+
   const copyToClipboard = () => {
     Clipboard.setString(id);
     Alert.alert('Kopyalandı', 'Bunu kendi kendine kaybolan bi uyarı yapsak?!');
@@ -64,17 +75,17 @@ function LobbyScreen({navigation, route}) {
     navigation.navigate(screen, {id: id});
   }
   // TODO: buraya yarın bakarsın
-  async function getUsers() {
-    const userList = [];
-    const userRef = db
-      .collection('lobby')
+  function getUsers() {
+    db.collection('lobby')
       .doc('a9oiOCCYqeb97Ja9OS6D')
-      .collection('users');
-
-    userRef.onSnapshot((querySnapshot) =>
-      querySnapshot.forEach((snapshot) => userList.push(snapshot.data())),
-    );
-    setLobbyUsers(userList);
+      .collection('users')
+      .onSnapshot((querySnapshot) => {
+        const userList = [];
+        querySnapshot.forEach((snapshot) => {
+          userList.push({...snapshot.data()});
+        });
+        setLobbyUsers(userList);
+      });
   }
 
   React.useEffect(() => {
@@ -150,12 +161,7 @@ function LobbyScreen({navigation, route}) {
         <View style={lobby_screen_styles.buttonsContainer}>
           <TouchableOpacity
             style={lobby_screen_styles.hourglassContainer}
-            onPress={() =>
-              Alert.alert(
-                'HOLD ON',
-                "User's Card Border Color will be yellow when clicking the button",
-              )
-            }>
+            onPress={() => onUserBusy()}>
             <MaterialIcons
               style={lobby_screen_styles.hourglassIcon}
               name="hourglass-full"

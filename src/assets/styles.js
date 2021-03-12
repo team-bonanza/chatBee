@@ -533,7 +533,7 @@ const lobby_container_styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: LESSOPACITYCONTAINER,
     borderWidth: 2,
-    borderColor: 'yellow',
+    borderColor: 'green',
     elevation: 5,
   },
 

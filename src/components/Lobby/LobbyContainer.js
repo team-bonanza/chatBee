@@ -5,7 +5,11 @@ import {lobby_container_styles} from '../../assets/styles';
 export function LobbyContainer({user}) {
   return (
     <View style={lobby_container_styles.photoMainContainer}>
-      <View style={lobby_container_styles.card}>
+      <View
+        style={
+          ([lobby_container_styles.card],
+          {borderColor: user.isReady ? 'green' : 'yellow'})
+        }>
         <View style={lobby_container_styles.photoContianer}>
           <Image
             source={{uri: user.photoURL}}
