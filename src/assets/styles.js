@@ -4,8 +4,20 @@ import {setCustomText, setCustomTextInput} from 'react-native-global-props';
 const deviceSize = Dimensions.get('window');
 // FOR DARK & LIGHT THEME
 const theme = Appearance.getColorScheme();
-const TEXT = theme === 'dark' ? colors.WHITE : colors.BLACK;
+const TEXT = theme === 'dark' ? colors.TEXTONE : colors.TEXTTWO;
 const BACKGROUND = theme === 'dark' ? colors.BUTTON_DARK : colors.BUTTON_LIGHT;
+
+const INPUTBACKGROUND =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+const INPUTTEXT = theme === 'dark' ? '#f0f0f0' : 'white';
+
+const PHOTOCONTAINERCOLOR =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+
+const NAMEBACKGROUND =
+  theme === 'dark' ? colors.BACKGROUND_LIGHT : colors.BACKGROUND_DARK;
+
+const ICONCOLOR = theme === 'dark' ? 'white' : '#00509D';
 
 // FONT UYGULAMASI
 const customTextProps = {
@@ -146,45 +158,58 @@ const login_page_styles = StyleSheet.create({
 
 const home_page_styles = StyleSheet.create({
   photoMainContianer: {
-    flex: 2,
+    flex: 3,
     alignItems: 'center',
     justifyContent: 'center',
     height: 100,
     width: deviceSize.width,
     borderRadius: 100,
+    paddingTop: 20,
+    margin: 10,
   },
   photoContianer: {
     width: 150,
     height: 150,
     borderRadius: 100,
-    elevation: 10,
+    elevation: 5,
+    padding: 5,
   },
 
   photo: {
     alignSelf: 'center',
     borderWidth: 2,
-    borderColor: colors.BUTTON_DARK,
+    borderColor: PHOTOCONTAINERCOLOR,
     height: 150,
     width: 150,
     borderRadius: 100,
   },
-  displayNameContianer: {
-    marginTop: 10,
-    backgroundColor: '#efe2e0',
-    padding: 10,
+  displayNameContainer: {
+    margin: 10,
+    backgroundColor: TEXT,
+    borderWidth: 2,
+    borderColor: PHOTOCONTAINERCOLOR,
+    padding: 5,
     borderRadius: 10,
-    elevation: 10,
+    elevation: 5,
   },
   displayName: {
-    color: '#333',
+    color: NAMEBACKGROUND,
   },
 
   container: {
     flex: 2,
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'flex-start',
     margin: 10,
+    padding: 10,
+    flexDirection: 'column',
+    justifyContent: 'center',
+    //margin: 10,
+  },
+  createRoom: {
+    color: INPUTTEXT,
+    fontSize: 8,
+    paddingLeft: 10,
+    marginBottom: -20,
+    zIndex: 1000,
   },
 
   inputArea: {
@@ -197,77 +222,216 @@ const home_page_styles = StyleSheet.create({
   input: {
     width: deviceSize.width / 2,
     borderWidth: 2,
-    borderColor: '#00509D',
+    borderColor: ICONCOLOR,
     borderBottomLeftRadius: 5,
     borderTopLeftRadius: 5,
     height: 55,
+    paddingTop: 5,
+    paddingBottom: 5,
     paddingLeft: 10,
-    color: '#333666',
+    paddingRight: 10,
+    color: INPUTTEXT,
     textAlignVertical: 'center',
-    backgroundColor: '#f0f0f0',
+    backgroundColor: INPUTBACKGROUND,
     fontFamily: differentFont,
   },
 
-  iconCopy: {
+  goToRoom: {
     justifyContent: 'center',
     flexDirection: 'column',
     alignSelf: 'center',
-    backgroundColor: '#00509D',
+    borderTopWidth: 2,
+    borderBottomWidth: 2,
+    borderRightWidth: 2,
+    borderTopWidth: 2,
+    borderColor: ICONCOLOR,
     borderBottomRightRadius: 5,
     borderTopRightRadius: 5,
     height: 55,
   },
+  icon: {
+    color: ICONCOLOR,
+  },
+  buttonContainer: {
+    flex: 2,
+    justifyContent: 'center',
+  },
 
-  buttons: {
-    flexDirection: 'row',
-    alignContent: 'space-between',
+  button: {
     marginBottom: 20,
     elevation: 5,
-    borderWidth: 3,
-    borderColor: 'white',
-    backgroundColor: '#e0e0e0',
+    borderWidth: 1,
+    borderColor: '#ef0000',
+    backgroundColor: 'red',
     borderRadius: 5,
   },
 
-  settingsIcon: {
-    color: '#FFA643',
-    margin: 15,
-  },
-  closingContainer: {
-    flex: 1,
-    flexDirection: 'row',
-    justifyContent: 'flex-end',
-    alignContent: 'flex-end',
-    alignItems: 'flex-end',
-    marginBottom: 5,
-    paddingBottom: 5,
-  },
   signOutContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    alignContent: 'center',
-    justifyContent: 'center',
-    margin: 4,
-    padding: 4,
-    backgroundColor: '#e00000',
+    backgroundColor: '#fdfdfd',
     borderWidth: 3,
-    borderColor: 'red',
+    borderColor: 'white',
     borderRadius: 5,
     width: deviceSize.width / 3,
-    elevation: 5,
+    //elevation: 5,
   },
-  signOutIcon: {
-    marginRight: 5,
-    paddingRight: 5,
+  signOut: {
     flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingLeft: 5,
   },
   signOutText: {
-    marginRight: 5,
-    paddingRight: 5,
-    color: '#fff',
+    color: '#e00000',
     fontFamily: differentFont,
+    paddingBottom: 3,
+    paddingLeft: 3,
   },
 });
+
+const SHAREICONS =
+  theme === 'dark' ? colors.BUTTON_DARK_HOVER : colors.BUTTON_LIGHT_HOVER;
+
+const ROOMTITLECOLOR = theme === 'dark' ? colors.BACKGROUND_LIGHT : '#f0a500';
+const ROOMTITLETEXTCOLOR =
+  theme === 'dark' ? colors.TEXTONE : colors.BACKGROUND_LIGHT;
+
+const LESSOPACITYCONTAINER =
+  theme === 'dark' ? 'rgba(137, 33, 242, 0.2)' : 'rgba(242, 233, 200, 0.5)';
+
+const lobby_screen_styles = StyleSheet.create({
+  mainContainer: {
+    flex: 1,
+    flexDirection: 'column',
+    alignContent: 'flex-start',
+    margin: 5,
+    padding: 5,
+    width: deviceSize.width * 0.9,
+    backgroundColor: LESSOPACITYCONTAINER,
+    borderRadius: 5,
+  },
+  topContainer: {
+    alignItems: 'center',
+    justifyContent: 'flex-start',
+  },
+  logo: {
+    padding: 5,
+    margin: 5,
+    height: 40,
+    width: 40,
+    resizeMode: 'center',
+  },
+
+  inviteContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    //borderWidth: 4,
+    //borderRadius: 5,
+    //borderColor: INPUTBACKGROUND,
+  },
+  inviteId: {
+    width: deviceSize.width / 2,
+    paddingLeft: 10,
+    paddingRight: 10,
+    height: 40,
+    color: INPUTTEXT,
+    textAlignVertical: 'center',
+    backgroundColor: INPUTBACKGROUND,
+    borderRadius: 5,
+    fontFamily: differentFont,
+    padding: 5,
+  },
+
+  shareIcon: {
+    padding: 5,
+    height: 40,
+    justifyContent: 'center',
+  },
+  copyIcon: {
+    padding: 5,
+    height: 40,
+    justifyContent: 'center',
+  },
+
+  icon: {
+    color: SHAREICONS,
+    padding: 5,
+  },
+  streamButtonContainer: {
+    width: deviceSize.width / 2,
+    alignSelf: 'center',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  streamButton: {
+    backgroundColor: '#ff3344',
+    color: '#eeeacc',
+    fontFamily: differentFont,
+    elevation: 5,
+    borderRadius: 5,
+    margin: 10,
+    padding: 10,
+  },
+
+  listContainer: {
+    flex: 3,
+    justifyContent: 'flex-start',
+  },
+  roomTitle: {
+    width: deviceSize.width * 1,
+    backgroundColor: ROOMTITLECOLOR,
+    color: ROOMTITLETEXTCOLOR,
+    paddingTop: 5,
+    paddingBottom: 5,
+    textAlign: 'center',
+  },
+  lobbyContainer: {
+    padding: 10,
+  },
+  buttonsMainContainer: {
+    width: deviceSize.width / 2,
+    position: 'relative',
+    //flex: 0.5,
+    borderRadius: 5,
+    marginBottom: 10,
+    padding: 5,
+    backgroundColor: LESSOPACITYCONTAINER,
+    elevation: 5,
+  },
+  buttonsContainer: {
+    flexDirection: 'row',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    backgroundColor: 'white',
+    borderRadius: 5,
+    padding: 10,
+  },
+  hourglassContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#f0a500',
+    elevation: 5,
+  },
+  hourglassIcon: {
+    color: 'white',
+  },
+  checkContainer: {
+    width: 60,
+    height: 60,
+    borderRadius: 50,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#007965',
+    elevation: 5,
+  },
+  checkIcon: {
+    color: 'white',
+  },
+});
+
 const lobby_container_styles = StyleSheet.create({
   logoContainer: {
     flex: 1,
@@ -348,14 +512,16 @@ const lobby_container_styles = StyleSheet.create({
     alignSelf: 'center',
     height: 70,
   },
-  card:{
-    margin:10,
-    padding:10,
-    justifyContent:'center',
-    alignItems:'center',
-    width: deviceSize.width/2.5,
-    borderRadius:10,
-    backgroundColor: 'rgba(250, 250,250, 0.5)',
+  card: {
+    margin: 10,
+    padding: 10,
+    justifyContent: 'center',
+    alignItems: 'center',
+    width: deviceSize.width / 2.5,
+    borderRadius: 10,
+    backgroundColor: LESSOPACITYCONTAINER,
+    borderWidth: 2,
+    borderColor: 'yellow',
   },
 
   photoContianer: {
@@ -363,11 +529,9 @@ const lobby_container_styles = StyleSheet.create({
     height: 80,
     borderRadius: 80,
     elevation: 20,
-    
   },
 
   photo: {
-
     borderWidth: 2,
     borderColor: colors.BUTTON_DARK,
     height: 80,
@@ -387,10 +551,6 @@ const lobby_container_styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
   },
-  
-  
-
-  
 });
 
 export {
@@ -401,5 +561,8 @@ export {
   login_container_styles,
   login_page_styles,
   home_page_styles,
+  lobby_screen_styles,
   lobby_container_styles,
+  INPUTTEXT,
+  ICONCOLOR,
 };

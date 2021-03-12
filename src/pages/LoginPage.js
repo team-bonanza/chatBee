@@ -42,20 +42,12 @@ const LoginPage = () => {
     return subscriber; // unsubscribe on unmount
   }, []);
 
-  async function handleSubmit(values) {
-    await signIn(values);
-  }
-
-  function handleRegister() {
-    navigation.navigate('Sign Up');
-  }
-
   if (loading) {
     return <LoadingProvider />;
   }
 
   if (response && !error) {
-    navigation.navigate('Home Page');
+    navigation.navigate('CallStack');
   }
   if (error) {
     Alert.alert('ChatBee', error.message);
@@ -74,7 +66,7 @@ const LoginPage = () => {
       );
       await auth()
         .signInWithCredential(credential)
-        .then(() => navigation.navigate('Home Page'));
+        .then(() => navigation.navigate('CallStack'));
     } catch (googleError) {
       if (googleError.code) {
         Alert.alert('Error', googleError.code);

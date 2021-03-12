@@ -80,7 +80,11 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
                 source={require('../../assets/gif/home1.json')}
                 autoPlay
                 loop
-                style={{height: Dimensions.get('window').height / 10, marginTop:10,alignSelf:'center'}}
+                style={{
+                  height: Dimensions.get('window').height / 10,
+                  marginTop: 10,
+                  alignSelf: 'center',
+                }}
               />
             </TouchableOpacity>
           </View>
@@ -92,7 +96,7 @@ export default function SignUpContainer({loading, onSubmit, onLogin}) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: 'rgba(250, 250, 250, 0.5)', //TODO: kayıt olma sayfasında arka taraf saydam mı yoksa gölgeli mi olsun?
+    backgroundColor: 'rgba(250, 250, 250, 0.5)',
     borderRadius: 5,
     //levation: 10,
     padding: 20,

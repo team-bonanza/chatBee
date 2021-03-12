@@ -1,9 +1,16 @@
 import React, {useState} from 'react';
-import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  Image,
+  KeyboardAvoidingView,
+} from 'react-native';
 import BeeView from '../components/BeeView';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
-import {home_page_styles} from '../assets/styles';
+import {home_page_styles, INPUTTEXT, ICONCOLOR} from '../assets/styles';
 import auth from '@react-native-firebase/auth';
 import useAuth from '../hooks/useAuth';
 import {LoadingProvider} from '../components/Loading/LoadingProvider';
@@ -22,7 +29,7 @@ function HomePage({navigation}) {
   function signOut() {
     auth()
       .signOut()
-      .then(() => navigation.navigate('Login'));
+      .then(() => navigation.navigate('HomeStack'));
   }
 
   if (loading) {
@@ -65,48 +72,53 @@ function HomePage({navigation}) {
             style={home_page_styles.photo}
           />
         </View>
-        <View style={home_page_styles.displayNameContianer}>
+        <View style={home_page_styles.displayNameContainer}>
           <Text style={home_page_styles.displayName}>
             {auth().currentUser.displayName}
           </Text>
         </View>
       </View>
       <View style={home_page_styles.container}>
+        <Text style={home_page_styles.createRoom}>ODA OLUŞTUR</Text>
         <View style={home_page_styles.inputArea}>
-          <Text style={home_page_styles.input}>{uniqueId}</Text>
+          <Text style={home_page_styles.input} numberOfLines={1}>
+            {uniqueId}
+          </Text>
           <TouchableOpacity
-            style={home_page_styles.iconCopy}
+            style={home_page_styles.goToRoom}
             onPress={() => onNavigateToRoom('Lobby')}>
-            <Icons name="arrow-right" size={30} color={'#fff'} />
+            <Icons name="arrow-right" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
         <View style={home_page_styles.inputArea}>
           <TextInput
             placeholder="KOD GİRİNİZ"
-            placeholderTextColor="#333666"
+            placeholderTextColor={INPUTTEXT}
             style={home_page_styles.input}
             value={roomId}
             onChangeText={(val) => setRoomId(val)}
           />
           <TouchableOpacity
-            style={home_page_styles.iconCopy}
+            style={home_page_styles.goToRoom}
             onPress={() => onNavigateToJoin('Lobby')}>
-            <Icons name="check-circle-outline" size={30} color={'#fff'} />
+            <Icons name="check-circle-outline" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
       </View>
 
-      <View style={home_page_styles.buttons}>
-        <View style={home_page_styles.signOutContainer}>
-          <TouchableOpacity
-            onPress={() => signOut()}
-            style={home_page_styles.signOutIcon}>
-            <FontAwesome name="sign-out" size={30} color={'white'} />
-          </TouchableOpacity>
-          <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
+      <View style={home_page_styles.buttonContainer}>
+        <View style={home_page_styles.button}>
+          <View style={home_page_styles.signOutContainer}>
+            <TouchableOpacity
+              onPress={() => signOut()}
+              style={home_page_styles.signOut}>
+              <FontAwesome name="sign-out" size={30} color={'#e00000'} />
+              <Text style={home_page_styles.signOutText}>Çıkış Yap</Text>
+            </TouchableOpacity>
+          </View>
         </View>
+        <View />
       </View>
-      <View />
     </BeeView>
   );
 }

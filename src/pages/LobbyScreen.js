@@ -1,14 +1,26 @@
 import React from 'react';
 import {
   Text,
-  StyleSheet,
-  Button,
+  Image,
   View,
   TouchableOpacity,
   Share,
+  Alert,
+  FlatList,
 } from 'react-native';
+
+import storage from '@react-native-firebase/storage';
+import {db} from '../utilities/firebase';
+
+import BeeView from '../components/BeeView';
+import {LobbyContainer} from '../components/Lobby';
+import {lobby_screen_styles} from '../assets/styles';
+
 import Icons from 'react-native-vector-icons/MaterialCommunityIcons';
+import MaterialIcons from 'react-native-vector-icons/MaterialIcons';
 import Clipboard from '@react-native-clipboard/clipboard';
+
+import {logo} from '../assets/images';
 
 function LobbyScreen({navigation, route}) {
   const {
@@ -39,6 +51,7 @@ function LobbyScreen({navigation, route}) {
 
   const copyToClipboard = () => {
     Clipboard.setString(id);
+    Alert.alert('Kopyalandı', 'Bunu kendi kendine kaybolan bi uyarı yapsak?!');
     console.log('Copy to clipboard');
   };
 
@@ -46,54 +59,120 @@ function LobbyScreen({navigation, route}) {
     navigation.navigate(screen, {id: id});
   }
 
+  async function getUsers() {
+    const roomRef = await db
+      .collection('lobby')
+      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .get();
+    //roomRef.collection();
+    console.log('ANAN ANAN HATTA ANNEN ' + roomRef.data().user.displayName);
+  }
+
+  React.useEffect(() => {
+    getUsers();
+  }, []);
+
+  const renderComponent = ({data}) => {
+    return (
+      <LobbyContainer name={roomRef.data().user.displayName} data={data} />
+    );
+  };
+
+  //TODO: LobbyContainer is the container that is going to added to FlatList
+
   return (
-    <View style={styles.container}>
-      <Text>{id}</Text>
-      <TouchableOpacity onPress={onShare}>
-        <Icons name="share-variant" size={30} color={'#000'} />
-      </TouchableOpacity>
-      <TouchableOpacity onPress={() => copyToClipboard()}>
-        <Icons name="content-copy" size={30} color={'#000'} />
-      </TouchableOpacity>
-      <View>{console.log(id)}</View>
-      <Button
-        title="Click to start stream"
-        onPress={() => onNavigate(toScreen)}
-      />
-      <View>
-        <Text>Üst Kısım | Logo ile Kodun Kopyalanacağı Kısım Olacak</Text>
+    <BeeView>
+      <View style={lobby_screen_styles.mainContainer}>
+        <View style={lobby_screen_styles.topContainer}>
+          {/* <Image source={logo._W} style={lobby_screen_styles.logo} /> */}
+
+          <Image
+            source={require('../assets/bee.png')}
+            style={lobby_screen_styles.logo}
+          />
+
+          <View style={lobby_screen_styles.inviteContainer}>
+            <TouchableOpacity
+              style={lobby_screen_styles.shareIcon}
+              onPress={onShare}>
+              <Icons
+                style={lobby_screen_styles.icon}
+                name="share-variant"
+                size={30}
+              />
+            </TouchableOpacity>
+            <Text numberOfLines={1} style={lobby_screen_styles.inviteId}>
+              {id}
+            </Text>
+            <TouchableOpacity
+              style={lobby_screen_styles.copyIcon}
+              onPress={() => copyToClipboard()}>
+              <Icons
+                style={lobby_screen_styles.icon}
+                name="content-copy"
+                size={30}
+              />
+            </TouchableOpacity>
+          </View>
+        </View>
+        <TouchableOpacity
+          style={lobby_screen_styles.streamButtonContainer}
+          onPress={() => onNavigate(toScreen)}>
+          <Text style={lobby_screen_styles.streamButton}>
+            Click to start stream
+          </Text>
+        </TouchableOpacity>
       </View>
-      <View>
-        <Text>Orta Kısım | Kullanıcılar Bu Kısımda Gözükecekler</Text>
+      <View style={lobby_screen_styles.listContainer}>
+        <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+        <View style={lobby_screen_styles.lobbyContainer}>
+          <LobbyContainer
+            // photo={source={{uri: getUsers().photoURL}}}
+            name={getUsers().displayName}
+          />
+          <FlatList
+            keyExtractor={(item) => item.id.toString()}
+            data={getUsers}
+            renderItem={renderComponent}
+          />
+        </View>
       </View>
-      <View>
-        <Text>
-          Alt Kısım | Kullanıcılar Hazır Olup Olmadıklarını Buradaki Tuşlarla
-          Kontrol Edebilecekler
-        </Text>
+      <View style={lobby_screen_styles.buttonsMainContainer}>
+        <View style={lobby_screen_styles.buttonsContainer}>
+          <TouchableOpacity
+            style={lobby_screen_styles.hourglassContainer}
+            onPress={() =>
+              Alert.alert(
+                'HOLD ON',
+                "User's Card Border Color will be yellow when clicking the button",
+              )
+            }>
+            <MaterialIcons
+              style={lobby_screen_styles.hourglassIcon}
+              name="hourglass-full"
+              size={30}
+            />
+          </TouchableOpacity>
+          <TouchableOpacity
+            style={lobby_screen_styles.checkContainer}
+            onPress={() =>
+              Alert.alert(
+                'READY',
+                "User's Card Border Color will be green when clicking the button",
+              )
+            }>
+            <Icons
+              style={lobby_screen_styles.checkIcon}
+              name="check-bold"
+              size={30}
+            />
+          </TouchableOpacity>
+        </View>
       </View>
-    </View>
+    </BeeView>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'space-evenly',
-  },
-  heading: {
-    marginVertical: 10,
-    alignSelf: 'center',
-    fontSize: 30,
-  },
-  input: {
-    margin: 20,
-    height: 40,
-    backgroundColor: '#aaa',
-  },
-  buttonContainer: {
-    margin: 5,
-  },
-});
+//TODO: buttons must be affecting the border colors
 
 export {LobbyScreen};
