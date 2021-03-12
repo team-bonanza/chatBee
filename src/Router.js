@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   LoginPage,
   HomePage,
@@ -6,10 +6,11 @@ import {
   SignUpPage,
   JoinScreen,
   RoomScreen,
+  OnboardingScreens,
 } from './pages';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
 
 function CallStack() {
@@ -34,10 +35,36 @@ function HomeStack() {
 }
 
 function Router() {
+  const [firstLaunch, setFirstLaunch] = useState(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem('hasLaunch').then((value) => {
+      if (value == 'true') {
+        setFirstLaunch(true);
+      }
+    });
+  }, []);
+
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        <Stack.Screen name="HomeStack" component={HomeStack} />
+        {firstLaunch ? (
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="HomeStack"
+            component={HomeStack}
+          />
+        ) : (
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="Onboarding"
+            component={OnboardingScreens}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
