@@ -27,7 +27,7 @@ function LobbyScreen({navigation, route}) {
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: `Lets Play with BeeChat \n Chat Link: \n ${id}`,
+        message: `Lets Play with BeeChat\nChat Link:\n${id}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -46,7 +46,7 @@ function LobbyScreen({navigation, route}) {
   async function onUserGetReady() {
     const user = db
       .collection('lobby')
-      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .doc(id)
       .collection('users')
       .doc(`${auth().currentUser.uid}`);
     await user.update({
@@ -57,7 +57,7 @@ function LobbyScreen({navigation, route}) {
   async function onUserBusy() {
     const user = db
       .collection('lobby')
-      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .doc(id)
       .collection('users')
       .doc(`${auth().currentUser.uid}`);
     await user.update({
@@ -77,7 +77,7 @@ function LobbyScreen({navigation, route}) {
   // TODO: buraya yarın bakarsın
   function getUsers() {
     db.collection('lobby')
-      .doc('a9oiOCCYqeb97Ja9OS6D')
+      .doc(id)
       .collection('users')
       .onSnapshot((querySnapshot) => {
         const userList = [];

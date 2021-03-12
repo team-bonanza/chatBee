@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {View, Text, TouchableOpacity, TextInput, Image} from 'react-native';
 import BeeView from '../components/BeeView';
 import FontAwesome from 'react-native-vector-icons/FontAwesome';
@@ -30,10 +30,22 @@ function HomePage({navigation}) {
   }
 
   function onNavigateToRoom(screen) {
+    db.collection('lobby')
+      .doc(uniqueId)
+      .collection('users')
+      .doc(`${auth().currentUser.uid}`)
+      .set(
+        {
+          displayName: auth().currentUser.displayName,
+          isReady: false,
+          photoURL: auth().currentUser.photoURL,
+        },
+        {merge: true},
+      );
     navigation.navigate(screen, {id: uniqueId, toScreen: 'Room'});
   }
   async function onNavigateToJoin(screen) {
-    const roomRef = await db.collection('rooms').doc(roomId);
+    const roomRef = db.collection('rooms').doc(roomId);
     const roomSnapshot = await roomRef.get();
     console.log('roomref', roomRef);
     console.log('roomsp', roomSnapshot);
@@ -41,6 +53,7 @@ function HomePage({navigation}) {
     if (!roomSnapshot.exists) {
       console.log('oda yok');
     }
+
     navigation.navigate(screen, {
       id: roomId,
       toScreen: 'Join',

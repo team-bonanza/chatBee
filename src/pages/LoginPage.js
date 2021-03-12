@@ -10,7 +10,7 @@ import {LoadingProvider} from '../components/Loading/LoadingProvider';
 
 import useAuth from '../hooks/useAuth';
 import auth from '@react-native-firebase/auth';
-import {GoogleSignin, statusCodes} from '@react-native-community/google-signin';
+import {GoogleSignin} from '@react-native-community/google-signin';
 
 //TODO: loading screen
 //TODO: google sigin için hooks .
@@ -66,7 +66,7 @@ const LoginPage = () => {
       );
       await auth()
         .signInWithCredential(credential)
-        .then(() => navigation.navigate('CallStack'));
+        .then(() => navigation.navigate('Home Page'));
     } catch (googleError) {
       if (googleError.code) {
         Alert.alert('Error', googleError.code);

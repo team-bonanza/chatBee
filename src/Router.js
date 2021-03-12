@@ -48,8 +48,10 @@ function Router() {
 
   useEffect(() => {
     AsyncStorage.getItem('hasLaunch').then((value) => {
-      if (value == 'true') {
+      if (value === 'true') {
         setFirstLaunch(true);
+      } else {
+        console.log('ilk defa açıldı', value);
       }
     });
   }, []);
