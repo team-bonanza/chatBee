@@ -1,5 +1,5 @@
 import React from 'react';
-import {Text, Image, View, TouchableOpacity} from 'react-native';
+import {Text, View, TouchableOpacity} from 'react-native';
 import RandomQuote from '../components/RandomQuote';
 
 import Icons from 'react-native-vector-icons/MaterialIcons';

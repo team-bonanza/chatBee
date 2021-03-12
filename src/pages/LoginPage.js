@@ -47,7 +47,7 @@ const LoginPage = () => {
   }
 
   if (response && !error) {
-    navigation.navigate('HomeStack');
+    navigation.navigate('Home Page');
   }
   if (error) {
     Alert.alert('ChatBee', error.message);
@@ -75,7 +75,7 @@ const LoginPage = () => {
   };
   function onAuthStateChanged(user) {
     setUser(user);
-    console.log(user);
+    //console.log("user", user);
     if (user) {
       setloggedIn(true);
     }

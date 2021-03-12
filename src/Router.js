@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import {
   LoginPage,
   HomePage,
@@ -6,16 +6,12 @@ import {
   SignUpPage,
   JoinScreen,
   RoomScreen,
+  OnboardingScreens,
 } from './pages';
-
-import auth from '@react-native-firebase/auth';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
 const Stack = createStackNavigator();
-
-const hasSession = auth().currentUser;
 
 function CallStack() {
   return (
@@ -32,20 +28,52 @@ function HomeStack() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Login" component={LoginPage} />
+      <Stack.Screen name="Sign Up" component={SignUpPage} />
+      <Stack.Screen name="Home Page" component={CallStack} />
+    </Stack.Navigator>
+  );
+}
+
+function OnboardingStack() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Onboarding" component={OnboardingScreens} />
+      <Stack.Screen name="HomeStack" component={HomeStack} />
     </Stack.Navigator>
   );
 }
 
 function Router() {
+  const [firstLaunch, setFirstLaunch] = useState(false);
+
+  useEffect(() => {
+    AsyncStorage.getItem('hasLaunch').then((value) => {
+      if (value == 'true') {
+        setFirstLaunch(true);
+      }
+    });
+  }, []);
+
   return (
     <NavigationContainer>
-      <Stack.Navigator
-        screenOptions={{
-          headerShown: false,
-        }}
-        initialRouteName={hasSession ? 'CallStack' : 'HomeStack'}>
-        <Stack.Screen name="HomeStack" component={HomeStack} />
-        <Stack.Screen name="CallStack" component={CallStack} />
+      <Stack.Navigator>
+        {firstLaunch ? (
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="HomeStack"
+            component={HomeStack}
+          />
+        ) : (
+          <Stack.Screen
+            options={{
+              headerShown: false,
+            }}
+            name="OnboardingStack"
+            component={OnboardingStack}
+          />
+        )}
       </Stack.Navigator>
     </NavigationContainer>
   );
