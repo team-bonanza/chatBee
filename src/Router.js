@@ -34,9 +34,18 @@ function HomeStack() {
   );
 }
 
+function OnboardingStack() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Onboarding" component={OnboardingScreens} />
+      <Stack.Screen name="HomeStack" component={HomeStack} />
+    </Stack.Navigator>
+  );
+}
+
 function Router() {
   const [firstLaunch, setFirstLaunch] = useState(false);
-
+  
   useEffect(() => {
     AsyncStorage.getItem('hasLaunch').then((value) => {
       if (value == 'true') {
@@ -44,25 +53,25 @@ function Router() {
       }
     });
   }, []);
-
+  
   return (
     <NavigationContainer>
       <Stack.Navigator>
-        {firstLaunch ? (
-          <Stack.Screen
+      {firstLaunch ? (
+        <Stack.Screen
             options={{
               headerShown: false,
             }}
             name="HomeStack"
             component={HomeStack}
-          />
-        ) : (
+            />
+            ) : (
           <Stack.Screen
             options={{
               headerShown: false,
             }}
-            name="Onboarding"
-            component={OnboardingScreens}
+            name="OnboardingStack"
+            component={OnboardingStack}
           />
         )}
       </Stack.Navigator>

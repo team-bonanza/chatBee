@@ -1,38 +1,42 @@
 import React from 'react';
-import {Image} from 'react-native';
+import {Image, StyleSheet, Dimensions} from 'react-native';
 import Onboarding from 'react-native-onboarding-swiper';
-import AsyncStorage from '@react-native-async-storage/async-storage';
 function OnboardingScreens({navigation}) {
   async function onNavigate() {
-    // navigation.navigate('Home Page');
-    await AsyncStorage.setItem('hasLaunch', 'true');
-    navigation.navigate('HomeStack');
+    navigation.navigate("HomeStack");
   }
   return (
     <Onboarding
       pages={[
         {
           backgroundColor: '#fff',
-          image: <Image source={require('../assets/onboarding-first.png')} />,
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          image: <Image style={styles.image} source={require('../assets/onboarding-first.png')} />,
+          title: 'Easily Sing',
+          subtitle: 'Join us easily with google sing..',
         },
         {
           backgroundColor: '#fff',
-          image: <Image source={require('../assets/onboarding-second.png')} />,
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          image: <Image style={styles.image} source={require('../assets/onboarding-second.png')} />,
+          title: 'Invite Friends',
+          subtitle: 'Create call room and invite your friends..',
         },
         {
           backgroundColor: '#fff',
-          image: <Image source={require('../assets/onboarding-third.png')} />,
-          title: 'Onboarding',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          image: <Image style={styles.image} source={require('../assets/onboarding-third.png')} />,
+          title: "Let's Play",
+          subtitle: '',
         },
       ]}
       onDone={() => onNavigate()}
     />
   );
 }
+
+const styles = StyleSheet.create({
+  image: {
+    width: Dimensions.get('screen').width,
+    height: Dimensions.get('screen').height /3
+  },
+});
 
 export {OnboardingScreens};
