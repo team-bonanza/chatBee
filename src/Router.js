@@ -3,11 +3,11 @@ import {
   LoginPage,
   HomePage,
   LobbyScreen,
+  SignUpPage,
   JoinScreen,
   RoomScreen,
   OnboardingScreens,
 } from './pages';
-
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -27,8 +27,18 @@ function CallStack() {
 function HomeStack() {
   return (
     <Stack.Navigator headerMode="none">
-      <Stack.Screen name="OnboardingScreen" component={OnboardingScreens} />
       <Stack.Screen name="Login" component={LoginPage} />
+      <Stack.Screen name="Sign Up" component={SignUpPage} />
+      <Stack.Screen name="Home Page" component={CallStack} />
+    </Stack.Navigator>
+  );
+}
+
+function OnboardingStack() {
+  return (
+    <Stack.Navigator headerMode="none">
+      <Stack.Screen name="Onboarding" component={OnboardingScreens} />
+      <Stack.Screen name="HomeStack" component={HomeStack} />
     </Stack.Navigator>
   );
 }
@@ -52,7 +62,7 @@ function Router() {
             options={{
               headerShown: false,
             }}
-            name="Home"
+            name="HomeStack"
             component={HomeStack}
           />
         ) : (
@@ -60,8 +70,8 @@ function Router() {
             options={{
               headerShown: false,
             }}
-            name="Call"
-            component={CallStack}
+            name="OnboardingStack"
+            component={OnboardingStack}
           />
         )}
       </Stack.Navigator>
