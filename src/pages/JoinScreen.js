@@ -150,7 +150,7 @@ function JoinScreen({navigation, route}) {
             <Icons name="call-end" size={30} color={'red'} />
           </TouchableOpacity>
         </View>
-        <View styles={styles.buttonContainer}>
+        <View>
           {!localStream && (
             <TouchableOpacity
               style={room_screen_styles.buttonCover}

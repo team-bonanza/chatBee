@@ -542,7 +542,8 @@ const room_screen_styles = StyleSheet.create({
     padding: 0,
   },
   rtcview1: {
-    position: 'relative',
+   // flex: 1,
+   position:'relative',
     backgroundColor: 'rgba(20,20,20, 0.2)',
     borderRadius: 5,
     width: Dimensions.get('window').width,
@@ -556,6 +557,7 @@ const room_screen_styles = StyleSheet.create({
   },
 
   rtc1: {
+    //flex: 1,
     width: Dimensions.get('window').width * 1.55,
     height: Dimensions.get('window').height,
     alignItems: 'center',
@@ -616,7 +618,7 @@ const room_screen_styles = StyleSheet.create({
     //height: deviceSize.height / 12,
     width: deviceSize.width,
     position: 'absolute',
-    zIndex: 1006,
+    zIndex: 1007,
     flexDirection: 'row',
     justifyContent: 'center',
     bottom: 40,
@@ -626,6 +628,7 @@ const room_screen_styles = StyleSheet.create({
     backgroundColor: 'rgba(250,250,250, 0.5)',
     justifyContent: 'center',
     alignItems: 'center',
+    zIndex: 1006,
     width: 50,
     height: 50,
     borderRadius: 50,

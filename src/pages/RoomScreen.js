@@ -195,6 +195,7 @@ function RoomScreen({navigation, route}) {
             <RTCView
               style={room_screen_styles.rtc1}
               streamURL={localStream && localStream.toURL()}
+              // objectFit={'cover'}
             />
           ) : (
             <View style={room_screen_styles.gifArea}>
