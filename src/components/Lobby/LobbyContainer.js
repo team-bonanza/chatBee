@@ -6,10 +6,10 @@ export function LobbyContainer({user}) {
   return (
     <View style={lobby_container_styles.photoMainContainer}>
       <View
-        style={
-          ([lobby_container_styles.card],
-          {borderColor: user.isReady ? 'green' : 'yellow'})
-        }>
+        style={[
+          lobby_container_styles.card,
+          {borderColor: user.isReady ? 'green' : 'yellow'},
+        ]}>
         <View style={lobby_container_styles.photoContianer}>
           <Image
             source={{uri: user.photoURL}}
@@ -20,7 +20,6 @@ export function LobbyContainer({user}) {
           <Text style={lobby_container_styles.displayName}>
             {user.displayName}
           </Text>
-          <Text>{`Kullanıcı ${user.isReady}`}</Text>
         </View>
       </View>
     </View>

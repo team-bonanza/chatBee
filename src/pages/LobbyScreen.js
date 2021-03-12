@@ -143,10 +143,12 @@ function LobbyScreen({navigation, route}) {
       </View>
       <View style={lobby_screen_styles.listContainer}>
         <View style={lobby_screen_styles.roomTitleContainer}>
-          <Image
-            source={require('../assets/bee.png')}
-            style={lobby_screen_styles.logo}
-          />
+          <View style={lobby_screen_styles.logoContainer}>
+            <Image
+              source={require('../assets/bee.png')}
+              style={lobby_screen_styles.logo}
+            />
+          </View>
           <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
         </View>
         <View style={lobby_screen_styles.lobbyContainer}>

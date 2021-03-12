@@ -359,7 +359,7 @@ const lobby_screen_styles = StyleSheet.create({
     backgroundColor: '#ff3344',
     color: '#eeeacc',
     fontFamily: differentFont,
-    fontSize: 11,
+    fontSize: 14,
     elevation: 5,
     borderRadius: 5,
     margin: 10,
@@ -371,12 +371,23 @@ const lobby_screen_styles = StyleSheet.create({
   },
   roomTitleContainer: {
     width: deviceSize.width,
+    margin: 5,
+    padding: 5,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
+    backgroundColor: ROOMTITLECOLOR,
+  },
+  logoContainer: {
+    backgroundColor: '#ddd',
+    flex: 1,
+    marginLeft: 20,
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    elevation: 5,
   },
   logo: {
-    flex: 1,
     height: 40,
     width: 40,
     resizeMode: 'center',
@@ -385,13 +396,14 @@ const lobby_screen_styles = StyleSheet.create({
   roomTitle: {
     flex: 1,
     fontFamily: differentFont,
-    backgroundColor: ROOMTITLECOLOR,
+
     color: ROOMTITLETEXTCOLOR,
     borderTopLeftRadius: 5,
     borderBottomLeftRadius: 5,
     paddingTop: 5,
     paddingBottom: 5,
     textAlign: 'center',
+    fontSize: 15,
   },
   lobbyContainer: {
     padding: 10,
@@ -441,85 +453,6 @@ const lobby_screen_styles = StyleSheet.create({
 });
 
 const lobby_container_styles = StyleSheet.create({
-  logoContainer: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  logo: {
-    width: 60,
-    height: 60,
-  },
-  inputCopy: {
-    flexDirection: 'row',
-    margin: 5,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-
-  input: {
-    width: deviceSize.width / 2,
-    borderWidth: 2,
-    borderColor: '#00509D',
-    borderBottomLeftRadius: 5,
-    borderTopLeftRadius: 5,
-    height: 55,
-    paddingLeft: 10,
-    color: '#333666',
-    textAlignVertical: 'center',
-    backgroundColor: '#f0f0f0',
-    fontFamily: differentFont,
-  },
-  iconCopy: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    backgroundColor: '#00509D',
-    borderBottomRightRadius: 5,
-    borderTopRightRadius: 5,
-    height: 55,
-  },
-
-  buttonOrange: {
-    height: 70,
-    width: 70,
-    borderRadius: 100,
-    backgroundColor: 'orange',
-    elevation: 15,
-    marginRight: 10,
-  },
-
-  phContainer: {
-    backgroundColor: '#f0f0f0',
-    borderWidth: 2,
-    borderRadius: 10,
-    borderColor: 'white',
-    flexDirection: 'row',
-    justifyContent: 'center',
-    alignContent: 'center',
-    marginBottom: 5,
-    padding: 5,
-    elevation: 15,
-  },
-  buttonYellow: {
-    height: 70,
-    width: 70,
-    borderRadius: 100,
-    backgroundColor: 'green',
-    elevation: 15,
-    marginLeft: 10,
-  },
-  iconHour: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    height: 70,
-  },
-  iconCheck: {
-    justifyContent: 'center',
-    flexDirection: 'column',
-    alignSelf: 'center',
-    height: 70,
-  },
   card: {
     margin: 5,
     marginTop: 7,
@@ -533,7 +466,7 @@ const lobby_container_styles = StyleSheet.create({
     borderRadius: 10,
     backgroundColor: LESSOPACITYCONTAINER,
     borderWidth: 2,
-    borderColor: 'green',
+    //borderColor: 'green',
     elevation: 5,
   },
 
@@ -547,19 +480,26 @@ const lobby_container_styles = StyleSheet.create({
   },
   displayNameContianer: {
     backgroundColor: '#efe2e0',
+    flex: 1,
     marginLeft: 5,
     padding: 5,
-    borderRadius: 5,
-    borderTopLeftRadius: 10,
-    borderBottomRightRadius: 8,
+    borderTopRightRadius: 10,
+    borderBottomRightRadius: 10,
+    borderTopLeftRadius: 5,
+    borderBottomLeftRadius: 5,
     elevation: 5,
   },
   displayName: {
     color: '#333',
+    textAlign: 'center',
+    fontFamily: differentFont,
+    fontSize: 15,
   },
   photoMainContianer: {
     alignItems: 'center',
     justifyContent: 'center',
+    borderWidth: 2,
+    borderColor: 'red',
   },
 });
 
