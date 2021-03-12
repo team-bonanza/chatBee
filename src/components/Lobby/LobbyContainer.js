@@ -8,7 +8,7 @@ export function LobbyContainer({user}) {
       <View
         style={[
           lobby_container_styles.card,
-          {borderColor: user.isReady ? 'green' : 'yellow'},
+          {borderColor: user.isReady ? '#007965' : '#f0a500'},
         ]}>
         <View style={lobby_container_styles.photoContianer}>
           <Image

@@ -465,8 +465,7 @@ const lobby_container_styles = StyleSheet.create({
     width: deviceSize.width * 0.9,
     borderRadius: 10,
     backgroundColor: LESSOPACITYCONTAINER,
-    borderWidth: 2,
-    //borderColor: 'green',
+    borderWidth: 3,
     elevation: 5,
   },
 
