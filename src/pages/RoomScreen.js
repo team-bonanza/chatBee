@@ -137,13 +137,6 @@ function RoomScreen({navigation, route}) {
   return (
     <>
       <View style={room_screen_styles.topContainer}>
-        {/* <View style={room_screen_styles.logoContainer}>
-          <Image
-            source={require('../assets/bee.png')}
-            style={room_screen_styles.logo}
-          />
-        </View> */}
-
         <View style={room_screen_styles.questionContainer}>
           <View style={room_screen_styles.question}>
             <RandomQuote />
