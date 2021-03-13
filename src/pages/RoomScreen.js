@@ -28,7 +28,7 @@ const configuration = {
 };
 
 function RoomScreen({navigation, route}) {
-  const {id: id} = route.params;
+  const {id: roomId} = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {
@@ -72,10 +72,11 @@ function RoomScreen({navigation, route}) {
   };
 
   const startCall = async (id) => {
+    console.log('bastık', id);
     const localPC = new RTCPeerConnection(configuration);
     localPC.addStream(localStream);
 
-    const roomRef = await db.collection('rooms').doc(id);
+    const roomRef = db.collection('rooms').doc(id);
     const callerCandidatesCollection = roomRef.collection('callerCandidates');
     localPC.onicecandidate = (e) => {
       if (!e.candidate) {
@@ -163,7 +164,7 @@ function RoomScreen({navigation, route}) {
           {localStream && (
             <TouchableOpacity
               style={room_screen_styles.buttonCover}
-              onPress={() => startCall(id)}
+              onPress={() => startCall(roomId)}
               disabled={!!remoteStream}>
               <Icons name="call" size={30} color={ICONCOLOR} />
             </TouchableOpacity>

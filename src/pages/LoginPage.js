@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from 'react';
+import React from 'react';
 import {Text, Alert, TouchableOpacity} from 'react-native';
 import BeeView from '../components/BeeView';
 import {useNavigation} from '@react-navigation/native';
@@ -17,9 +17,6 @@ import {GoogleSignin} from '@react-native-community/google-signin';
 //TODO: google button
 
 const LoginPage = () => {
-  const [loggedIn, setloggedIn] = useState(false);
-  const [user, setUser] = useState([]);
-
   const navigation = useNavigation();
   const {
     loading,
@@ -31,7 +28,7 @@ const LoginPage = () => {
     responseReset,
   } = useAuth();
 
-  useEffect(() => {
+  React.useEffect(() => {
     GoogleSignin.configure({
       scopes: ['email'], // what API you want to access on behalf of the user, default is email and profile
       webClientId:
@@ -58,7 +55,6 @@ const LoginPage = () => {
     try {
       await GoogleSignin.hasPlayServices();
       const {accessToken, idToken} = await GoogleSignin.signIn();
-      setloggedIn(true);
 
       const credential = auth.GoogleAuthProvider.credential(
         idToken,
@@ -74,10 +70,8 @@ const LoginPage = () => {
     }
   };
   function onAuthStateChanged(user) {
-    setUser(user);
     //console.log("user", user);
     if (user) {
-      setloggedIn(true);
     }
   }
   return (

@@ -22,7 +22,7 @@ function HomePage({navigation}) {
   function signOut() {
     auth()
       .signOut()
-      .then(() => navigation.navigate('HomeStack'));
+      .then(() => navigation.navigate('Login'));
   }
 
   if (loading) {
