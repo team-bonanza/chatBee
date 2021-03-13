@@ -183,7 +183,8 @@ function RoomScreen({navigation, route}) {
             style={room_screen_styles.volumeButton}
             title={`${isMuted ? 'Unmute' : 'Mute'} stream`}
             onPress={toggleMute}
-            disabled={!remoteStream}>
+            //disabled={!remoteStream}
+          >
             <Icons name="volume-mute" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
@@ -207,7 +208,7 @@ function RoomScreen({navigation, route}) {
               />
 
               <Text style={room_screen_styles.gifText}>
-                Kameranı aç da gül cemalini görelim
+                Kameranı aç da gülcemalini görelim
               </Text>
             </View>
           )}

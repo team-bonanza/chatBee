@@ -542,8 +542,8 @@ const room_screen_styles = StyleSheet.create({
     padding: 0,
   },
   rtcview1: {
-   // flex: 1,
-   position:'relative',
+    // flex: 1,
+    position: 'relative',
     backgroundColor: 'rgba(20,20,20, 0.2)',
     borderRadius: 5,
     width: Dimensions.get('window').width,
@@ -568,11 +568,13 @@ const room_screen_styles = StyleSheet.create({
   rtcview2: {
     position: 'absolute',
     backgroundColor: 'rgba(250,200,20, 0.6)',
-    bottom: 0,
-    alignSelf: 'center',
+    borderRadius: 10,
+    bottom: 110,
+    right: 20,
+    alignSelf: 'flex-end',
     zIndex: 100,
     borderRadius: 5,
-    width: 350,
+    width: 200,
     height: 250,
   },
 
@@ -581,6 +583,15 @@ const room_screen_styles = StyleSheet.create({
     height: 300,
     margin: 5,
     borderRadius: 5,
+  },
+
+  gifArea: {
+    position: 'relative',
+    top: -40,
+    padding: 10,
+    borderRadius: 10,
+    backgroundColor: 'rgba(200,200,200, 1)',
+    elevation: 5,
   },
   gif: {
     width: 50,
@@ -591,17 +602,16 @@ const room_screen_styles = StyleSheet.create({
     color: '#222',
     alignSelf: 'center',
     textAlignVertical: 'center',
-    fontSize: 20,
+    fontSize: 15,
   },
   VolumeAndFlip: {
-    //height: deviceSize.height / 12,
+    backgroundColor: 'rgba(80,100, 180, 1)',
     width: deviceSize.width,
     position: 'absolute',
     zIndex: 1006,
-    bottom: 40,
-    paddingRight: 20,
-    flexDirection: 'column',
-    alignItems: 'flex-end',
+    bottom: 0,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
   },
   volumeButton: {
     backgroundColor: 'rgba(250,250,250, 0.5)',
@@ -616,12 +626,19 @@ const room_screen_styles = StyleSheet.create({
 
   callButtons: {
     //height: deviceSize.height / 12,
-    width: deviceSize.width,
+    backgroundColor: 'rgba(80,100, 180, 1)',
+    borderRadius: 10,
+    width: deviceSize.width / 3,
+    alignSelf: 'center',
+    paddingLeft: 15,
+    paddingRight: 15,
+
     position: 'absolute',
     zIndex: 1007,
     flexDirection: 'row',
     justifyContent: 'center',
-    bottom: 40,
+    bottom: 0,
+    elevation: 10,
   },
 
   buttonCover: {
@@ -633,6 +650,8 @@ const room_screen_styles = StyleSheet.create({
     height: 50,
     borderRadius: 50,
     margin: 15,
+    paddingLeft: 10,
+    paddingRight: 10,
     //marginRight: 40,
   },
 });

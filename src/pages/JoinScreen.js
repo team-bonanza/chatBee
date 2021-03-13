@@ -203,7 +203,7 @@ function JoinScreen({navigation, route}) {
                 loop
               />
               <Text style={room_screen_styles.gifText}>
-                Kameranı aç da gül cemalini görelim
+                Kameranı aç da gülcemalini görelim
               </Text>
             </View>
           )}
