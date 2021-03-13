@@ -3,7 +3,6 @@ import {
   LoginPage,
   HomePage,
   LobbyScreen,
-  SignUpPage,
   JoinScreen,
   RoomScreen,
   OnboardingScreens,
@@ -28,7 +27,6 @@ function HomeStack() {
   return (
     <Stack.Navigator headerMode="none">
       <Stack.Screen name="Login" component={LoginPage} />
-      <Stack.Screen name="Sign Up" component={SignUpPage} />
       <Stack.Screen name="Home Page" component={CallStack} />
     </Stack.Navigator>
   );

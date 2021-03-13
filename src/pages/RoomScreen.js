@@ -28,7 +28,7 @@ const configuration = {
 };
 
 function RoomScreen({navigation, route}) {
-  const {id: id} = route.params;
+  const {id: roomId} = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {
@@ -137,13 +137,6 @@ function RoomScreen({navigation, route}) {
   return (
     <>
       <View style={room_screen_styles.topContainer}>
-        {/* <View style={room_screen_styles.logoContainer}>
-          <Image
-            source={require('../assets/bee.png')}
-            style={room_screen_styles.logo}
-          />
-        </View> */}
-
         <View style={room_screen_styles.questionContainer}>
           <View style={room_screen_styles.question}>
             <RandomQuote />
@@ -170,7 +163,7 @@ function RoomScreen({navigation, route}) {
           {localStream && (
             <TouchableOpacity
               style={room_screen_styles.buttonCover}
-              onPress={() => startCall(id)}
+              onPress={() => startCall(roomId)}
               disabled={!!remoteStream}>
               <Icons name="call" size={30} color={ICONCOLOR} />
             </TouchableOpacity>
@@ -190,7 +183,8 @@ function RoomScreen({navigation, route}) {
             style={room_screen_styles.volumeButton}
             title={`${isMuted ? 'Unmute' : 'Mute'} stream`}
             onPress={toggleMute}
-            disabled={!remoteStream}>
+            //disabled={!remoteStream}
+          >
             <Icons name="volume-mute" size={30} color={ICONCOLOR} />
           </TouchableOpacity>
         </View>
@@ -202,6 +196,7 @@ function RoomScreen({navigation, route}) {
             <RTCView
               style={room_screen_styles.rtc1}
               streamURL={localStream && localStream.toURL()}
+              // objectFit={'cover'}
             />
           ) : (
             <View style={room_screen_styles.gifArea}>
@@ -213,7 +208,7 @@ function RoomScreen({navigation, route}) {
               />
 
               <Text style={room_screen_styles.gifText}>
-                Kameranı aç da gül cemalini görelim
+                Kameranı aç da gülcemalini görelim
               </Text>
             </View>
           )}

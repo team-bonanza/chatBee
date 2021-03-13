@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {Text, StyleSheet, Button, View} from 'react-native';
+import {Text, TouchableOpacity, View} from 'react-native';
 import {
   RTCPeerConnection,
   RTCView,
@@ -7,7 +7,15 @@ import {
   RTCIceCandidate,
   RTCSessionDescription,
 } from 'react-native-webrtc';
+
+import RandomQuote from '../components/RandomQuote';
 import {db} from '../utilities/firebase';
+import Icons from 'react-native-vector-icons/MaterialIcons';
+import {room_screen_styles} from '../assets/styles';
+import LottieView from 'lottie-react-native';
+
+//About the style
+const ICONCOLOR = 'rgba(250,250,250,0.5)';
 
 const configuration = {
   iceServers: [
@@ -19,11 +27,7 @@ const configuration = {
 };
 
 function JoinScreen({navigation, route}) {
-  const {
-    id: roomId,
-    roomRef: roomRef,
-    roomSnapshot: roomSnapshot,
-  } = route.params;
+  const {id: roomId} = route.params;
 
   function onBackPress() {
     if (cachedLocalPC) {
@@ -69,6 +73,9 @@ function JoinScreen({navigation, route}) {
   };
 
   const joinCall = async (id) => {
+    const roomRef = await db.collection('rooms').doc(id);
+    const roomSnapshot = await roomRef.get();
+
     const localPC = new RTCPeerConnection(configuration);
     localPC.addStream(localStream);
 
@@ -127,51 +134,84 @@ function JoinScreen({navigation, route}) {
 
   return (
     <>
-      <Text style={styles.heading}>Join Screen</Text>
-      <Text style={styles.heading}>Room : {roomId}</Text>
-
-      <View style={styles.callButtons}>
-        <View styles={styles.buttonContainer}>
-          <Button title="Click to stop call" onPress={onBackPress} />
+      <View style={room_screen_styles.topContainer}>
+        <View style={room_screen_styles.questionContainer}>
+          <View style={room_screen_styles.question}>
+            <RandomQuote />
+          </View>
         </View>
-        <View styles={styles.buttonContainer}>
+      </View>
+
+      <View style={room_screen_styles.callButtons}>
+        <View>
+          <TouchableOpacity
+            style={room_screen_styles.buttonCover}
+            onPress={onBackPress}>
+            <Icons name="call-end" size={30} color={'red'} />
+          </TouchableOpacity>
+        </View>
+        <View>
           {!localStream && (
-            <Button title="Click to start stream" onPress={startLocalStream} />
+            <TouchableOpacity
+              style={room_screen_styles.buttonCover}
+              onPress={startLocalStream}>
+              <Icons name="call" size={30} color={ICONCOLOR} />
+            </TouchableOpacity>
           )}
           {localStream && (
-            <Button
-              title="Click to join call"
+            <TouchableOpacity
+              style={room_screen_styles.buttonCover}
               onPress={() => joinCall(roomId)}
-              disabled={!!remoteStream}
-            />
+              disabled={!!remoteStream}>
+              <Icons name="call" size={30} color={ICONCOLOR} />
+            </TouchableOpacity>
           )}
         </View>
       </View>
 
       {localStream && (
-        <View style={styles.toggleButtons}>
-          <Button title="Switch camera" onPress={switchCamera} />
-          <Button
+        <View style={room_screen_styles.VolumeAndFlip}>
+          <TouchableOpacity
+            style={room_screen_styles.volumeButton}
+            onPress={switchCamera}>
+            <Icons name="flip-camera-android" size={30} color={ICONCOLOR} />
+          </TouchableOpacity>
+
+          <TouchableOpacity
+            style={room_screen_styles.volumeButton}
             title={`${isMuted ? 'Unmute' : 'Mute'} stream`}
             onPress={toggleMute}
-            disabled={!remoteStream}
-          />
+            disabled={!remoteStream}>
+            <Icons name="volume-mute" size={30} color={ICONCOLOR} />
+          </TouchableOpacity>
         </View>
       )}
 
-      <View style={{display: 'flex', flex: 1, padding: 10}}>
-        <View style={styles.rtcview}>
-          {localStream && (
+      <View style={room_screen_styles.callingContainer}>
+        <View style={room_screen_styles.rtcview1}>
+          {localStream ? (
             <RTCView
-              style={styles.rtc}
+              style={room_screen_styles.rtc1}
               streamURL={localStream && localStream.toURL()}
             />
+          ) : (
+            <View style={room_screen_styles.gifArea}>
+              <LottieView
+                style={room_screen_styles.gif}
+                source={require('../assets/gif/bee1.json')}
+                autoPlay
+                loop
+              />
+              <Text style={room_screen_styles.gifText}>
+                Kameranı aç da gülcemalini görelim
+              </Text>
+            </View>
           )}
         </View>
-        <View style={styles.rtcview}>
+        <View style={room_screen_styles.rtcview2}>
           {remoteStream && (
             <RTCView
-              style={styles.rtc}
+              style={room_screen_styles.rtc2}
               streamURL={remoteStream && remoteStream.toURL()}
             />
           )}
@@ -181,36 +221,4 @@ function JoinScreen({navigation, route}) {
   );
 }
 
-const styles = StyleSheet.create({
-  heading: {
-    alignSelf: 'center',
-    fontSize: 30,
-  },
-  rtcview: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: 'black',
-    margin: 5,
-  },
-  rtc: {
-    flex: 1,
-    width: '100%',
-    height: '100%',
-  },
-  toggleButtons: {
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  callButtons: {
-    padding: 10,
-    width: '100%',
-    flexDirection: 'row',
-    justifyContent: 'space-around',
-  },
-  buttonContainer: {
-    margin: 5,
-  },
-});
 export {JoinScreen};

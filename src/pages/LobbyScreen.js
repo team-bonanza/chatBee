@@ -21,13 +21,13 @@ import Clipboard from '@react-native-clipboard/clipboard';
 import auth from '@react-native-firebase/auth';
 
 function LobbyScreen({navigation, route}) {
-  const {id: id, toScreen: toScreen} = route.params;
+  const {id: lobbyId, toScreen: toScreen} = route.params;
   const [lobbyUsers, setLobbyUsers] = React.useState([]);
 
   const onShare = async () => {
     try {
       const result = await Share.share({
-        message: `Lets Play with BeeChat\nChat Link:\n${id}`,
+        message: `Lets Play with BeeChat\nChat Link:\n${lobbyId}`,
       });
       if (result.action === Share.sharedAction) {
         if (result.activityType) {
@@ -46,7 +46,7 @@ function LobbyScreen({navigation, route}) {
   async function onUserGetReady() {
     const user = db
       .collection('lobby')
-      .doc(id)
+      .doc(lobbyId)
       .collection('users')
       .doc(`${auth().currentUser.uid}`);
     await user.update({
@@ -57,7 +57,7 @@ function LobbyScreen({navigation, route}) {
   async function onUserBusy() {
     const user = db
       .collection('lobby')
-      .doc(id)
+      .doc(lobbyId)
       .collection('users')
       .doc(`${auth().currentUser.uid}`);
     await user.update({
@@ -66,18 +66,18 @@ function LobbyScreen({navigation, route}) {
   }
 
   const copyToClipboard = () => {
-    Clipboard.setString(id);
+    Clipboard.setString(lobbyId);
     Alert.alert('Kopyalandı', 'Bunu kendi kendine kaybolan bi uyarı yapsak?!');
     console.log('Copy to clipboard');
   };
 
   function onNavigate(screen) {
-    navigation.navigate(screen, {id: id});
+    navigation.navigate(screen, {id: lobbyId});
   }
   // TODO: buraya yarın bakarsın
   function getUsers() {
     db.collection('lobby')
-      .doc(id)
+      .doc(lobbyId)
       .collection('users')
       .onSnapshot((querySnapshot) => {
         const userList = [];
@@ -120,7 +120,7 @@ function LobbyScreen({navigation, route}) {
               />
             </TouchableOpacity>
             <Text numberOfLines={1} style={lobby_screen_styles.inviteId}>
-              {id}
+              {lobbyId}
             </Text>
             <TouchableOpacity
               style={lobby_screen_styles.copyIcon}
