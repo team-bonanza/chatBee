@@ -72,11 +72,10 @@ function RoomScreen({navigation, route}) {
   };
 
   const startCall = async (id) => {
-    console.log('bastık', id);
     const localPC = new RTCPeerConnection(configuration);
     localPC.addStream(localStream);
 
-    const roomRef = db.collection('rooms').doc(id);
+    const roomRef = await db.collection('rooms').doc(id);
     const callerCandidatesCollection = roomRef.collection('callerCandidates');
     localPC.onicecandidate = (e) => {
       if (!e.candidate) {

@@ -202,7 +202,6 @@ function JoinScreen({navigation, route}) {
                 autoPlay
                 loop
               />
-
               <Text style={room_screen_styles.gifText}>
                 Kameranı aç da gül cemalini görelim
               </Text>
