@@ -23,6 +23,7 @@ import auth from '@react-native-firebase/auth';
 function LobbyScreen({navigation, route}) {
   const {id: lobbyId, toScreen: toScreen} = route.params;
   const [lobbyUsers, setLobbyUsers] = React.useState([]);
+  const [lobbyUserLen, setLobbyUserLen] = React.useState(null);
 
   const onShare = async () => {
     try {
@@ -67,8 +68,6 @@ function LobbyScreen({navigation, route}) {
 
   const copyToClipboard = () => {
     Clipboard.setString(lobbyId);
-    Alert.alert('Kopyalandı', 'Bunu kendi kendine kaybolan bi uyarı yapsak?!');
-    console.log('Copy to clipboard');
   };
 
   function onNavigate(screen) {
@@ -76,6 +75,14 @@ function LobbyScreen({navigation, route}) {
   }
   // TODO: buraya yarın bakarsın
   function getUsers() {
+    db.collection('lobby')
+      .doc(lobbyId)
+      .collection('users')
+      .get()
+      .then((querySnapshot) => {
+        setLobbyUserLen(querySnapshot.size);
+      });
+
     db.collection('lobby')
       .doc(lobbyId)
       .collection('users')
@@ -135,7 +142,9 @@ function LobbyScreen({navigation, route}) {
         </View>
         <TouchableOpacity
           style={lobby_screen_styles.streamButtonContainer}
-          onPress={() => onNavigate(toScreen)}>
+          onPress={() => onNavigate(toScreen)}
+          //disabled={lobbyUserLen % 2 === 0 ? false : true}
+        >
           <Text style={lobby_screen_styles.streamButton}>
             Click to start stream
           </Text>
@@ -149,7 +158,12 @@ function LobbyScreen({navigation, route}) {
               style={lobby_screen_styles.logo}
             />
           </View>
-          <Text style={lobby_screen_styles.roomTitle}>Your Room</Text>
+          <Text style={lobby_screen_styles.roomTitle}>
+            {lobbyUserLen % 2 === 0
+              ? `${lobbyUserLen}/${lobbyUserLen}`
+              : `${lobbyUserLen}/${lobbyUserLen + 1} `}
+            Your Room
+          </Text>
         </View>
         <View style={lobby_screen_styles.lobbyContainer}>
           <FlatList
