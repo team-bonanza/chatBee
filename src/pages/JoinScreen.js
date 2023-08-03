@@ -9,7 +9,7 @@ import {
 } from 'react-native-webrtc';
 
 import RandomQuote from '../components/RandomQuote';
-import db from '../utilities/firebase';
+import {db} from '../utilities/firebase';
 import Icons from 'react-native-vector-icons/MaterialIcons';
 import {room_screen_styles} from '../assets/styles';
 import LottieView from 'lottie-react-native';
@@ -203,7 +203,7 @@ function JoinScreen({navigation, route}) {
                 loop
               />
               <Text style={room_screen_styles.gifText}>
-                Kameranı aç da gül cemalini görelim
+                Kameranı aç da gülcemalini görelim
               </Text>
             </View>
           )}
